@@ -1,0 +1,61 @@
+[
+  {
+    "type": "Two Pointers",
+    "scenario": "Utilize two pointers when the problem involves searching for pairs or triplets of characters within a string that satisfy specific conditions, particularly in sorted strings or when the order matters.",
+    "clue": "Look for problem descriptions mentioning the need to compare characters from both ends of the string or to traverse the string simultaneously with two pointers. Phrases like 'pair of characters', 'triplet of characters', or 'sorted string' indicate the potential application of two pointers.",
+    "questions": [
+      { "title": "Valid Palindrome", "url": "https://leetcode.com/problems/valid-palindrome/" },
+      { "title": "Reverse Words in a String", "url": "https://leetcode.com/problems/reverse-words-in-a-string/" },
+      { "title": "Longest Palindromic Substring", "url": "https://leetcode.com/problems/longest-palindromic-substring/" },
+      { "title": "Implement strStr()", "url": "https://leetcode.com/problems/implement-strstr/" },
+      { "title": "Remove Duplicates from Sorted Array", "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/" }
+    ]
+  },
+  {
+    "type": "Sliding Window",
+    "scenario": "Apply sliding window technique when you need a contiguous substring/segment to be processed, especially for problems like finding minimum sum, maximum sum, longest length, and you can adjust the window size dynamically as you traverse the string.",
+    "clue": "Problems involving contiguous substrings often hint at the use of sliding window technique. Look for phrases like 'substring', 'contiguous characters', 'sliding window', or hints that a window needs to slide through the string.",
+    "questions": [
+      { "title": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/" },
+      { "title": "Longest Substring Without Repeating Characters", "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
+      { "title": "Longest Substring with At Most Two Distinct Characters", "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/" },
+      { "title": "Find All Anagrams in a String", "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/" },
+      { "title": "Longest Repeating Character Replacement", "url": "https://leetcode.com/problems/longest-repeating-character-replacement/" }
+    ]
+  },
+  {
+    "type": "Hashmaps",
+    "scenario": "Employ hashmaps when the problem involves frequency counting, grouping characters based on some property, or checking for the existence of certain characters in the string. Hashmaps offer efficient storage and retrieval of characters or keys.",
+    "clue": "Phrases like 'count', 'frequency', 'group', or 'exist' suggest the potential use of hashmaps in the problem.",
+    "questions": [
+      { "title": "Group Anagrams", "url": "https://leetcode.com/problems/group-anagrams/" },
+      { "title": "First Unique Character in a String", "url": "https://leetcode.com/problems/first-unique-character-in-a-string/" },
+      { "title": "Valid Anagram", "url": "https://leetcode.com/problems/valid-anagram/" },
+      { "title": "Count and Say", "url": "https://leetcode.com/problems/count-and-say/" }
+    ]
+  },
+  {
+    "type": "String Manipulation",
+    "scenario": "Utilize string manipulation techniques when tasked with operations such as reversing strings, joining, or converting strings into different formats. These techniques are useful for parsing input, formatting output, or transforming strings according to specific rules.",
+    "clue": "Problem descriptions mentioning operations like 'manipulate', 'convert', 'parse', or 'perform string operations' (e.g., reversing, splitting) indicate the need for string manipulation techniques.",
+    "questions": [
+      { "title": "Reverse String", "url": "https://leetcode.com/problems/reverse-string/" },
+      { "title": "Reverse Integer", "url": "https://leetcode.com/problems/reverse-integer/" },
+      { "title": "String to Integer (atoi)", "url": "https://leetcode.com/problems/string-to-integer-atoi/" },
+      { "title": "String Compression", "url": "https://leetcode.com/problems/string-compression/" },
+      { "title": "Implement strStr()", "url": "https://leetcode.com/problems/implement-strstr/" },
+      { "title": "Decode String", "url": "https://leetcode.com/problems/decode-string/" }
+    ]
+  },
+  {
+    "type": "Regular Expressions",
+    "scenario": "Apply regular expressions when the problem involves pattern matching in string validation, such as input string validation, especially complex patterns or constraints. Regular expressions provide a powerful way to search, validate, and manipulate text efficiently.",
+    "clue": "Look for phrases like 'pattern', 'validation', 'matching', or 'specific patterns' (e.g., email addresses, phone numbers). Problems requiring extraction of input strings against specific patterns or constraints often suggest the application of regular expressions.",
+    "questions": [
+      { "title": "Regular Expression Matching", "url": "https://leetcode.com/problems/regular-expression-matching/" },
+      { "title": "Regular Expression Matching (with support for '.' and '*')", "url": "https://leetcode.com/problems/regular-expression-matching/" },
+      { "title": "Wildcard Matching", "url": "https://leetcode.com/problems/wildcard-matching/" },
+      { "title": "Validate IP Address", "url": "https://leetcode.com/problems/validate-ip-address/" }
+    ]
+  }
+]

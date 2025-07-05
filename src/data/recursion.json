@@ -1,0 +1,48 @@
+[
+  {
+    "type": "Basic Recursive Functions",
+    "scenario": "Implement basic recursive functions that solve a problem by dividing it into smaller instances of the same problem until a base case is reached.",
+    "clue": "Problems where the solution can be naturally expressed in terms of smaller instances of the same problem, such as factorial calculation, Fibonacci sequence generation, or exponentiation.",
+    "questions": [
+      { "title": "Factorial", "url": "https://leetcode.com/problems/factorial/" },
+      { "title": "Fibonacci Number", "url": "https://leetcode.com/problems/fibonacci-number/" },
+      { "title": "Pow(x, n)", "url": "https://leetcode.com/problems/pow-x-n/" },
+      { "title": "Greatest Common Divisor of Strings", "url": "https://leetcode.com/problems/greatest-common-divisor-of-strings/" },
+      { "title": "Minimum Moves to Move a Box to Their Target Location", "url": "https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/" }
+    ]
+  },
+  {
+    "type": "Divide & Conquer",
+    "scenario": "Break down a problem into smaller subproblems of the same type, solve each subproblem recursively, and combine their solutions to solve the original problem.",
+    "clue": "Tasks where the solution to a larger problem can be obtained by recursively combining solutions to smaller instances of the same problem, such as binary search or finding maximum or minimum elements in an array.",
+    "questions": [
+      { "title": "Binary Search", "url": "https://leetcode.com/problems/binary-search/" },
+      { "title": "Merge Sort", "url": "https://leetcode.com/problems/sort-an-array/" },
+      { "title": "Quick Sort", "url": "https://leetcode.com/problems/sort-an-array/" },
+      { "title": "Maximum Subarray", "url": "https://leetcode.com/problems/maximum-subarray/" }
+    ]
+  },
+  {
+    "type": "Backtracking",
+    "scenario": "Explore all potential solutions to a problem by trying out different choices and backtracking when a dead-end is reached, undoing choices and trying alternative paths.",
+    "clue": "Problems where you need to find permutations, combinations, or subsets of elements while satisfying specific constraints.",
+    "questions": [
+      { "title": "Generate Parentheses", "url": "https://leetcode.com/problems/generate-parentheses/" },
+      { "title": "Combination Sum", "url": "https://leetcode.com/problems/combination-sum/" },
+      { "title": "N-Queens", "url": "https://leetcode.com/problems/n-queens/" },
+      { "title": "Letter Combinations of a Phone Number", "url": "https://leetcode.com/problems/letter-combinations-of-a-phone-number/" },
+      { "title": "Word Search", "url": "https://leetcode.com/problems/word-search/" }
+    ]
+  },
+  {
+    "type": "Recursive Search",
+    "scenario": "Search for a target element or solution recursively by exploring different branches of a search space until the target is found or the search space is exhausted.",
+    "clue": "Problems involving searching for specific elements or solutions in a structured or unstructured search space. Tasks requiring finding paths in mazes, solving Sudoku puzzles, or searching for elements in a tree or graph.",
+    "questions": [
+      { "title": "Sudoku Solver", "url": "https://leetcode.com/problems/sudoku-solver/" },
+      { "title": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/" },
+      { "title": "Path Sum", "url": "https://leetcode.com/problems/path-sum/" },
+      { "title": "Word Search II", "url": "https://leetcode.com/problems/word-search-ii/" }
+    ]
+  }
+]

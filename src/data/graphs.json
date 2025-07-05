@@ -1,0 +1,85 @@
+[
+  {
+    "type": "Finding Connected Components",
+    "scenario": "You're given a graph, and you need to identify distinct subgraphs where all vertices are connected to each other by paths.",
+    "clue": "Look for problems where you need to group nodes based on their connectivity, often involving DFS or BFS traversal.",
+    "questions": [
+      { "title": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/" },
+      { "title": "Connected Components in Undirected Graph", "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" },
+      { "title": "Friend Circles", "url": "https://leetcode.com/problems/friend-circles/" },
+      { "title": "Accounts Merge", "url": "https://leetcode.com/problems/accounts-merge/" },
+      { "title": "Redundant Connection", "url": "https://leetcode.com/problems/redundant-connection/" }
+    ]
+  },
+  {
+    "type": "Shortest Path Finding",
+    "scenario": "Given a graph with weighted edges, you're tasked with finding the shortest path between two nodes.",
+    "clue": "Look for problems where you need to optimize distance or traversal time between two points, typically using Dijkstra’s or Floyd-Warshall algorithms.",
+    "questions": [
+      { "title": "Network Delay Time", "url": "https://leetcode.com/problems/network-delay-time/" },
+      { "title": "Cheapest Flights Within K Stops", "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/" },
+      { "title": "Shortest Path in Binary Matrix", "url": "https://leetcode.com/problems/shortest-path-in-binary-matrix/" },
+      { "title": "Word Ladder", "url": "https://leetcode.com/problems/word-ladder/" },
+      { "title": "Maze", "url": "https://leetcode.com/problems/the-maze/" }
+    ]
+  },
+  {
+    "type": "Cycle Detection",
+    "scenario": "You're required to detect whether a graph contains cycles or not.",
+    "clue": "Look for problems where you need to ensure that no node is visited more than once during traversal, employing DFS or BFS to detect back edges.",
+    "questions": [
+      { "title": "Course Schedule", "url": "https://leetcode.com/problems/course-schedule/" },
+      { "title": "Find Eventual Safe States", "url": "https://leetcode.com/problems/find-eventual-safe-states/" },
+      { "title": "Course Schedule II", "url": "https://leetcode.com/problems/course-schedule-ii/" },
+      { "title": "Detect Cycle in Directed Graph", "url": "https://leetcode.com/problems/find-eventual-safe-states/" },
+      { "title": "Redundant Connection II", "url": "https://leetcode.com/problems/redundant-connection-ii/" }
+    ]
+  },
+  {
+    "type": "Bipartite Graph Check",
+    "scenario": "You need to determine if a given undirected graph is bipartite, i.e., it's possible to split the vertices into two independent sets such that no edge connects vertices of the same set.",
+    "clue": "Look for problems where you need to color nodes alternatively while traversing the graph to detect any conflicts.",
+    "questions": [
+      { "title": "Is Graph Bipartite?", "url": "https://leetcode.com/problems/is-graph-bipartite/" },
+      { "title": "Possible Bipartition", "url": "https://leetcode.com/problems/possible-bipartition/" },
+      { "title": "Bipartite", "url": "https://leetcode.com/problems/bipartite-graph/" },
+      { "title": "Graph Coloring", "url": "https://leetcode.com/problems/graph-coloring/" },
+      { "title": "Matching Bipartite Graph", "url": "https://leetcode.com/problems/matching-bipartite-graph/" }
+    ]
+  },
+  {
+    "type": "Minimum Spanning Tree",
+    "scenario": "You're tasked with finding the minimum weight connected subtree that spans all vertices in a graph.",
+    "clue": "Look for problems involving weighted edges and the need to minimize the total weight to connect all nodes.",
+    "questions": [
+      { "title": "Minimum Spanning Tree", "url": "https://leetcode.com/problems/graph-valid-tree/" },
+      { "title": "Connecting Cities With Minimum Cost", "url": "https://leetcode.com/problems/connecting-cities-with-minimum-cost/" },
+      { "title": "Campus Bikes II", "url": "https://leetcode.com/problems/campus-bikes-ii/" },
+      { "title": "Optimal Division", "url": "https://leetcode.com/problems/optimal-division/" },
+      { "title": "Redundant Connection II", "url": "https://leetcode.com/problems/redundant-connection-ii/" }
+    ]
+  },
+  {
+    "type": "Directed Acyclic Graph (DAG) Traversal",
+    "scenario": "You're given a directed graph without cycles, and you need to traverse it efficiently.",
+    "clue": "Look for problems where you need to perform a topological sort or find the longest path without revisiting nodes.",
+    "questions": [
+      { "title": "Alien Dictionary", "url": "https://leetcode.com/problems/alien-dictionary/" },
+      { "title": "Longest Increasing Path in a Matrix", "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" },
+      { "title": "Course Schedule III", "url": "https://leetcode.com/problems/course-schedule-iii/" },
+      { "title": "Sequence Reconstruction", "url": "https://leetcode.com/problems/sequence-reconstruction/" },
+      { "title": "All Paths from Source Lead to Destination", "url": "https://leetcode.com/problems/all-paths-from-source-lead-to-destination/" }
+    ]
+  },
+  {
+    "type": "Graph Coloring",
+    "scenario": "You need to assign colors to the vertices of a graph such that no two adjacent vertices have the same color.",
+    "clue": "Look for problems where you need to color the graph with a minimum number of colors without violating the coloring rule.",
+    "questions": [
+      { "title": "Graph Coloring", "url": "https://leetcode.com/problems/graph-coloring/" },
+      { "title": "Course Schedule IV", "url": "https://leetcode.com/problems/course-schedule-iv/" },
+      { "title": "Minimum Number of Vertices to Reach All Nodes", "url": "https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/" },
+      { "title": "Flower Planting With No Adjacent", "url": "https://leetcode.com/problems/flower-planting-with-no-adjacent/" }
+    ]
+  }
+]

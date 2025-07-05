@@ -1,0 +1,61 @@
+[
+  {
+    "type": "Two Pointers",
+    "scenario": "Look for problems where you need to iterate through the array with two pointers, typically starting from different ends or positions within the array. Consider tasks that involve comparing or manipulating elements from two different parts of the array simultaneously.",
+    "clue": "Look for problem descriptions mentioning a sorted array or the need to compare elements from both ends of the array.",
+    "questions": [
+      { "title": "Two Sum", "url": "https://leetcode.com/problems/two-sum/" },
+      { "title": "3Sum", "url": "https://leetcode.com/problems/3sum/" },
+      { "title": "3Sum Closest", "url": "https://leetcode.com/problems/3sum-closest/" },
+      { "title": "Remove Duplicates from Sorted Array", "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/" },
+      { "title": "Squares of a Sorted Array", "url": "https://leetcode.com/problems/squares-of-a-sorted-array/" }
+    ]
+  },
+  {
+    "type": "Merge Intervals",
+    "scenario": "Identify problems involving intervals or ranges of values, such as time intervals, scheduling, or overlapping events. Look for tasks where you need to combine or compare intervals, merge overlapping intervals, or find intersections between them.",
+    "clue": "Look for problems where the input involves intervals represented as pairs of start and end points.",
+    "questions": [
+      { "title": "Merge Intervals", "url": "https://leetcode.com/problems/merge-intervals/" },
+      { "title": "Insert Interval", "url": "https://leetcode.com/problems/insert-interval/" },
+      { "title": "Non-overlapping Intervals", "url": "https://leetcode.com/problems/non-overlapping-intervals/" },
+      { "title": "Interval List Intersections", "url": "https://leetcode.com/problems/interval-list-intersections/" }
+    ]
+  },
+  {
+    "type": "Sorting",
+    "scenario": "Consider problems where arranging elements in a specific order can simplify searching, counting, or comparing elements efficiently.",
+    "clue": "Look for problems mentioning that the array needs to be sorted first.",
+    "questions": [
+      { "title": "Sort Colors", "url": "https://leetcode.com/problems/sort-colors/" },
+      { "title": "Meeting Rooms II", "url": "https://leetcode.com/problems/meeting-rooms-ii/" },
+      { "title": "Largest Number", "url": "https://leetcode.com/problems/largest-number/" },
+      { "title": "Wiggle Sort II", "url": "https://leetcode.com/problems/wiggle-sort-ii/" },
+      { "title": "Merge Sorted Array", "url": "https://leetcode.com/problems/merge-sorted-array/" }
+    ]
+  },
+  {
+    "type": "Sliding Window",
+    "scenario": "Identify problems involving contiguous subarrays or substrings where you need to maintain a window of elements and slide it across the array.",
+    "clue": "Look for problems involving contiguous subarrays and terms like \"maximum sum\" or \"minimum length.\"",
+    "questions": [
+      { "title": "Minimum Size Subarray Sum", "url": "https://leetcode.com/problems/minimum-size-subarray-sum/" },
+      { "title": "Longest Mountain in Array", "url": "https://leetcode.com/problems/longest-mountain-in-array/" },
+      { "title": "Longest Continuous Increasing Subsequence", "url": "https://leetcode.com/problems/longest-continuous-increasing-subsequence/" },
+      { "title": "Maximum Points You Can Obtain from Cards", "url": "https://leetcode.com/problems/maximum-points-you-can-obtain-from-cards/" },
+      { "title": "Maximum Product Subarray", "url": "https://leetcode.com/problems/maximum-product-subarray/" }
+    ]
+  },
+  {
+    "type": "Prefix Sums",
+    "scenario": "Consider problems where you need to compute cumulative sums or averages of elements in subarrays.",
+    "clue": "Look for problems mentioning subarray sums, cumulative sums, or precomputed sums.",
+    "questions": [
+      { "title": "Count of Smaller Numbers After Self", "url": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/" },
+      { "title": "Range Sum Query - Mutable", "url": "https://leetcode.com/problems/range-sum-query-mutable/" },
+      { "title": "Count of Range Sum", "url": "https://leetcode.com/problems/count-of-range-sum/" },
+      { "title": "Subarray Product Less Than K", "url": "https://leetcode.com/problems/subarray-product-less-than-k/" },
+      { "title": "Find All Duplicates in an Array", "url": "https://leetcode.com/problems/find-all-duplicates-in-an-array/" }
+    ]
+  }
+]

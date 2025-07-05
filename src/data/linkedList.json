@@ -1,0 +1,50 @@
+[
+  {
+    "type": "Fast and Slow Pointers",
+    "scenario": "You have a problem where you need to find pairs of elements that meet certain conditions, such as the midpoint of the linked list, detecting cycles, or removing specific elements.",
+    "clue": "Look for problems that involve traversing the linked list efficiently using two pointers simultaneously, often requiring pointer manipulation or comparison.",
+    "questions": [
+      { "title": "Middle of the Linked List", "url": "https://leetcode.com/problems/middle-of-the-linked-list/" },
+      { "title": "Intersection of Two Linked Lists", "url": "https://leetcode.com/problems/intersection-of-two-linked-lists/" },
+      { "title": "Linked List Cycle", "url": "https://leetcode.com/problems/linked-list-cycle/" },
+      { "title": "Remove Nth Node From End of List", "url": "https://leetcode.com/problems/remove-nth-node-from-end-of-list/" },
+      { "title": "Odd Even Linked List", "url": "https://leetcode.com/problems/odd-even-linked-list/" },
+      { "title": "Linked List Cycle II", "url": "https://leetcode.com/problems/linked-list-cycle-ii/" }
+    ]
+  },
+  {
+    "type": "Dummy Node Technique",
+    "scenario": "You need to simplify edge cases, such as handling an empty list or adding/removing elements at the beginning.",
+    "clue": "Problems often involve scenarios where dealing with the head of the linked list is cumbersome or requires special treatment.",
+    "questions": [
+      { "title": "Add Two Numbers", "url": "https://leetcode.com/problems/add-two-numbers/" },
+      { "title": "Merge Two Sorted Lists", "url": "https://leetcode.com/problems/merge-two-sorted-lists/" },
+      { "title": "Partition List", "url": "https://leetcode.com/problems/partition-list/" },
+      { "title": "Remove Duplicates from Sorted List", "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list/" }
+    ]
+  },
+  {
+    "type": "Recursion Technique",
+    "scenario": "Solving problems that require traversal or manipulation of the linked list structure in a recursive manner.",
+    "clue": "Look for problems where a recursive approach provides an elegant solution, such as dividing it into subproblems.",
+    "questions": [
+      { "title": "Swap Nodes in Pairs", "url": "https://leetcode.com/problems/swap-nodes-in-pairs/" },
+      { "title": "Palindrome Linked List", "url": "https://leetcode.com/problems/palindrome-linked-list/" },
+      { "title": "Remove Duplicates from Sorted List II", "url": "https://leetcode.com/problems/remove-duplicates-from-sorted-list-ii/" },
+      { "title": "Flatten a Multilevel Doubly Linked List", "url": "https://leetcode.com/problems/flatten-a-multilevel-doubly-linked-list/" }
+    ]
+  },
+  {
+    "type": "In-Place Reversal Technique",
+    "scenario": "You need to reverse the linked list in-place without using extra space, typically by modifying the pointers iteratively.",
+    "clue": "Problems where you're asked to reverse the linked list or perform operations on segments without using additional data structures.",
+    "questions": [
+      { "title": "Reverse Linked List", "url": "https://leetcode.com/problems/reverse-linked-list/" },
+      { "title": "Swap Nodes in Pairs", "url": "https://leetcode.com/problems/swap-nodes-in-pairs/" },
+      { "title": "Rotate List", "url": "https://leetcode.com/problems/rotate-list/" },
+      { "title": "Reorder List", "url": "https://leetcode.com/problems/reorder-list/" },
+      { "title": "Split Linked List in Parts", "url": "https://leetcode.com/problems/split-linked-list-in-parts/" },
+      { "title": "Reverse Nodes in k-Group", "url": "https://leetcode.com/problems/reverse-nodes-in-k-group/" }
+    ]
+  }
+]

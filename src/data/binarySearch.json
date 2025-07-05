@@ -1,0 +1,60 @@
+[
+  {
+    "type": "Basic Binary Search",
+    "scenario": "Involves searching for a target element in a sorted array by repeatedly dividing the search interval in half.",
+    "clue": "Look for scenarios where the array is sorted, and you need to find a specific element efficiently.",
+    "questions": [
+      { "title": "Search Insert Position", "url": "https://leetcode.com/problems/search-insert-position/" },
+      { "title": "Find Minimum in Rotated Sorted Array", "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/" },
+      { "title": "Peak Index in a Mountain Array", "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/" },
+      { "title": "Find Smallest Letter Greater Than Target", "url": "https://leetcode.com/problems/find-smallest-letter-greater-than-target/" },
+      { "title": "Valid Perfect Square", "url": "https://leetcode.com/problems/valid-perfect-square/" }
+    ]
+  },
+  {
+    "type": "Range Search",
+    "scenario": "Involves searching for the maximum or minimum value that satisfies a specific condition within a given range.",
+    "clue": "Look for scenarios where you need to optimize a value within a given range, such as maximizing or minimizing a certain condition.",
+    "questions": [
+      { "title": "Split Array Largest Sum", "url": "https://leetcode.com/problems/split-array-largest-sum/" },
+      { "title": "Find Kth Smallest Element in a Sorted Matrix", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/" },
+      { "title": "Capacity To Ship Packages Within D Days", "url": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/" },
+      { "title": "Maximum Average Subarray I", "url": "https://leetcode.com/problems/maximum-average-subarray-i/" }
+    ]
+  },
+  {
+    "type": "Allocation Problems",
+    "scenario": "Involves dividing resources or items among multiple entities while optimizing a certain criterion.",
+    "clue": "Look for scenarios where resources need to be distributed among entities with certain constraints, and the goal is to optimize a certain criterion, such as minimizing the maximum or maximizing the minimum.",
+    "questions": [
+      { "title": "Allocate Minimum Number of Pages", "url": "https://www.interviewbit.com/problems/allocate-books/" },
+      { "title": "Minimize Maximum Pair Sum in Array", "url": "https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/" },
+      { "title": "Divide Chocolate", "url": "https://leetcode.com/problems/divide-chocolate/" },
+      { "title": "Maximum Distance to Gas Station", "url": "https://leetcode.com/problems/minimize-max-distance-to-gas-station/" }
+    ]
+  },
+  {
+    "type": "Counting Occurrences",
+    "scenario": "Involves counting the number of occurrences of a specific value or satisfying a certain condition.",
+    "clue": "Look for scenarios where you need to count occurrences or determine the frequency of certain elements/values in a sorted array or range.",
+    "questions": [
+      { "title": "Find First and Last Position of Element in Sorted Array", "url": "https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/" },
+      { "title": "Count Negative Numbers in a Sorted Matrix", "url": "https://leetcode.com/problems/count-negative-numbers-in-a-sorted-matrix/" },
+      { "title": "Search a 2D Matrix II", "url": "https://leetcode.com/problems/search-a-2d-matrix-ii/" },
+      { "title": "Find Minimum in Rotated Sorted Array II", "url": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array-ii/" },
+      { "title": "Count Primes", "url": "https://leetcode.com/problems/count-primes/" }
+    ]
+  },
+  {
+    "type": "Bitonic Array Search",
+    "scenario": "Involves searching for an element in a bitonic array, which first increases and then decreases (or vice versa).",
+    "clue": "Look for scenarios where the array exhibits a bitonic behavior, and you need to find an element within it efficiently.",
+    "questions": [
+      { "title": "Find Peak Element", "url": "https://leetcode.com/problems/find-peak-element/" },
+      { "title": "Find in Mountain Array", "url": "https://leetcode.com/problems/find-in-mountain-array/" },
+      { "title": "Longest Mountain in Array", "url": "https://leetcode.com/problems/longest-mountain-in-array/" },
+      { "title": "Peak Index in a Mountain Array", "url": "https://leetcode.com/problems/peak-index-in-a-mountain-array/" },
+      { "title": "Maximum Value at a Given Index in a Bounded Array", "url": "https://leetcode.com/problems/maximum-value-at-a-given-index-in-a-bounded-array/" }
+    ]
+  }
+]

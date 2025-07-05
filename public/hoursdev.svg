@@ -1,0 +1,23 @@
+<svg width="300" height="150" viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <style>
+    .text { font-family: 'Arial Black', sans-serif; font-size: 60px; fill: #0A2A4D; font-weight: bold; }
+    .clock-outline { stroke: #0A2A4D; stroke-width: 15; fill: none; }
+    .clock-hand { stroke: #0A2A4D; stroke-width: 10; stroke-linecap: round; }
+    .brackets { fill: #0A2A4D; font-size: 80px; font-weight: bold; }
+    .arc { stroke: #FDBA21; stroke-width: 12; fill: none; stroke-linecap: round; }
+  </style>
+
+  <!-- Clock -->
+  <circle cx="100" cy="100" r="75" class="clock-outline" />
+  <line x1="100" y1="100" x2="100" y2="60" class="clock-hand" />
+  <line x1="100" y1="100" x2="130" y2="85" class="clock-hand" />
+
+  <!-- Arc for clock -->
+  <path d="M160 45 A75 75 0 0 1 185 100" class="arc"/>
+
+  <!-- Coding brackets -->
+  <text x="200" y="120" class="brackets">&lt;/&gt;</text>
+
+  <!-- Hoursdev Text -->
+  <text x="80" y="230" class="text">Hoursdev</text>
+</svg>

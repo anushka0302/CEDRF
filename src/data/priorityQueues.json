@@ -1,0 +1,86 @@
+[
+  {
+    "type": "Finding Kth Largest/Smallest",
+    "scenario": "You have a large dataset, and you need to efficiently find the Kth largest or smallest element.",
+    "clue": "Look for problems where you need to track the K largest or smallest elements while processing the dataset.",
+    "questions": [
+      { "title": "Kth Largest Element in an Array", "url": "https://leetcode.com/problems/kth-largest-element-in-an-array/" },
+      { "title": "Kth Smallest Element in a Sorted Matrix", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/" },
+      { "title": "Find Median from Data Stream", "url": "https://leetcode.com/problems/find-median-from-data-stream/" },
+      { "title": "K Closest Points to Origin", "url": "https://leetcode.com/problems/k-closest-points-to-origin/" },
+      { "title": "Kth Largest Element in a Stream", "url": "https://leetcode.com/problems/kth-largest-element-in-a-stream/" }
+    ]
+  },
+  {
+    "type": "Top K Frequent Elements",
+    "scenario": "You're analyzing data and need to identify the most frequently occurring elements.",
+    "clue": "Look for problems where you need to track element frequencies and select the top K elements based on occurrence count.",
+    "questions": [
+      { "title": "Top K Frequent Elements", "url": "https://leetcode.com/problems/top-k-frequent-elements/" },
+      { "title": "Sort Characters By Frequency", "url": "https://leetcode.com/problems/sort-characters-by-frequency/" },
+      { "title": "Top K Frequent Words", "url": "https://leetcode.com/problems/top-k-frequent-words/" },
+      { "title": "Top K Frequent Elements in a Sorted Matrix", "url": "https://leetcode.com/problems/top-k-frequent-elements-in-a-sorted-matrix/" },
+      { "title": "Maximum Frequency Stack", "url": "https://leetcode.com/problems/maximum-frequency-stack/" }
+    ]
+  },
+  {
+    "type": "Merge K Lists",
+    "scenario": "You have K sorted lists and need to merge them into a single sorted list.",
+    "clue": "Look for problems where you're required to merge multiple sorted sequences while maintaining order.",
+    "questions": [
+      { "title": "Merge K Sorted Lists", "url": "https://leetcode.com/problems/merge-k-sorted-lists/" },
+      { "title": "Merge Sorted Array", "url": "https://leetcode.com/problems/merge-sorted-array/" },
+      { "title": "Merge Intervals", "url": "https://leetcode.com/problems/merge-intervals/" },
+      { "title": "Find Smallest Common Number", "url": "https://leetcode.com/problems/find-smallest-common-number/" },
+      { "title": "Smallest Range Covering Elements from K Lists", "url": "https://leetcode.com/problems/smallest-range-covering-elements-from-k-lists/" }
+    ]
+  },
+  {
+    "type": "Sliding Window Maximum/Minimum",
+    "scenario": "You need to find the maximum or minimum element in all contiguous subarrays of size K.",
+    "clue": "Look for problems where you maintain a sliding window of fixed size and efficiently find the maximum or minimum element.",
+    "questions": [
+      { "title": "Sliding Window Maximum", "url": "https://leetcode.com/problems/sliding-window-maximum/" },
+      { "title": "Maximum Sum of Subarray of Size K", "url": "https://leetcode.com/problems/maximum-sum-of-subarray-of-size-k/" },
+      { "title": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/" },
+      { "title": "Max Consecutive Ones III", "url": "https://leetcode.com/problems/max-consecutive-ones-iii/" },
+      { "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit", "url": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/" }
+    ]
+  },
+  {
+    "type": "Design Problems",
+    "scenario": "You're tasked with designing a custom data structure using priority queues to solve specific problems efficiently.",
+    "clue": "Look for problems where you need to design a data structure using priority queues for various functionalities.",
+    "questions": [
+      { "title": "Design Twitter", "url": "https://leetcode.com/problems/design-twitter/" },
+      { "title": "Design Hit Counter", "url": "https://leetcode.com/problems/design-hit-counter/" },
+      { "title": "Design Browser History", "url": "https://leetcode.com/problems/design-browser-history/" },
+      { "title": "Design Snake Game", "url": "https://leetcode.com/problems/design-snake-game/" },
+      { "title": "Design a Leaderboard", "url": "https://leetcode.com/problems/design-a-leaderboard/" }
+    ]
+  },
+  {
+    "type": "Construction and Manipulation",
+    "scenario": "You need to construct, modify, or manipulate data structures using priority queues efficiently.",
+    "clue": "Look for problems where you construct or manipulate data structures based on specific rules using priority queues.",
+    "questions": [
+      { "title": "Task Scheduler", "url": "https://leetcode.com/problems/task-scheduler/" },
+      { "title": "Rearrange String K Distance Apart", "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/" },
+      { "title": "Reorganize String", "url": "https://leetcode.com/problems/reorganize-string/" },
+      { "title": "Distant Barcodes", "url": "https://leetcode.com/problems/distant-barcodes/" },
+      { "title": "Rearrange Words in a Sentence", "url": "https://leetcode.com/problems/rearrange-words-in-a-sentence/" }
+    ]
+  },
+  {
+    "type": "With Graphs",
+    "scenario": "You need to solve graph-related problems efficiently using priority queues for operations like Dijkstra's algorithm or finding minimum spanning trees.",
+    "clue": "Look for problems where you process nodes or edges based on their weights or distances in graph-related scenarios.",
+    "questions": [
+      { "title": "Network Delay Time", "url": "https://leetcode.com/problems/network-delay-time/" },
+      { "title": "Cheapest Flights Within K Stops", "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/" },
+      { "title": "Path with Maximum Probability", "url": "https://leetcode.com/problems/path-with-maximum-probability/" },
+      { "title": "The Maze II", "url": "https://leetcode.com/problems/the-maze-ii/" },
+      { "title": "Kth Smallest Element in a Sorted Matrix", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/" }
+    ]
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "type": "Basic Dynamic Programming",
+    "scenario": "You encounter a problem where recursive calls result in redundant computations, leading to inefficiency. The problem can be optimized by storing the results of previous computations in a data structure.",
+    "clue": "Look for recursive problems where subproblems are overlapping or repetitive.",
+    "questions": [
+      { "title": "Fibonacci Number", "url": "https://leetcode.com/problems/fibonacci-number/" },
+      { "title": "Climbing Stairs", "url": "https://leetcode.com/problems/climbing-stairs/" },
+      { "title": "House Robber", "url": "https://leetcode.com/problems/house-robber/" },
+      { "title": "Unique Paths", "url": "https://leetcode.com/problems/unique-paths/" },
+      { "title": "Minimum Path Sum", "url": "https://leetcode.com/problems/minimum-path-sum/" }
+    ]
+  },
+  {
+    "type": "Optimal Substructure",
+    "scenario": "You encounter a problem where an optimal solution can be constructed from optimal solutions of its subproblems.",
+    "clue": "Look for problems where the optimal solution to the problem can be formed by combining optimal solutions of its subproblems.",
+    "questions": [
+      { "title": "Maximum Subarray", "url": "https://leetcode.com/problems/maximum-subarray/" },
+      { "title": "Longest Increasing Subsequence", "url": "https://leetcode.com/problems/longest-increasing-subsequence/" },
+      { "title": "Coin Change", "url": "https://leetcode.com/problems/coin-change/" },
+      { "title": "Edit Distance", "url": "https://leetcode.com/problems/edit-distance/" },
+      { "title": "Longest Common Subsequence", "url": "https://leetcode.com/problems/longest-common-subsequence/" }
+    ]
+  },
+  {
+    "type": "Interval/Range DP",
+    "scenario": "You encounter a problem where you need to find optimal solutions for subintervals within a larger interval.",
+    "clue": "Look for problems where the optimal solution for a given interval can be derived from optimal solutions of its subintervals.",
+    "questions": [
+      { "title": "Minimum Falling Path Sum", "url": "https://leetcode.com/problems/minimum-falling-path-sum/" },
+      { "title": "Burst Balloons", "url": "https://leetcode.com/problems/burst-balloons/" },
+      { "title": "Partition Equal Subset Sum", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
+      { "title": "Strange Printer", "url": "https://leetcode.com/problems/strange-printer/" },
+      { "title": "Maximum Vacation Days", "url": "https://leetcode.com/problems/maximum-vacation-days/" }
+    ]
+  },
+  {
+    "type": "Knapsack Problems",
+    "scenario": "You encounter a problem where you need to optimize the allocation of resources to maximize or minimize a value, subject to capacity constraints.",
+    "clue": "Look for problems where you need to select items from a set to maximize or minimize a value without exceeding capacity constraints.",
+    "questions": [
+      { "title": "0/1 Knapsack", "url": "https://leetcode.com/problems/01-knapsack/" },
+      { "title": "Partition Equal Subset Sum", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
+      { "title": "Target Sum", "url": "https://leetcode.com/problems/target-sum/" },
+      { "title": "Minimum Subset Sum Difference", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
+      { "title": "Equal Subset Sum Partition", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" }
+    ]
+  },
+  {
+    "type": "Prefix Sums",
+    "scenario": "You encounter a problem where you need to efficiently compute cumulative sums or counts over a range of elements.",
+    "clue": "Look for problems where you can preprocess the input using prefix sums or counts, enabling fast query operations.",
+    "questions": [
+      { "title": "Subarray Sum Equals K", "url": "https://leetcode.com/problems/subarray-sum-equals-k/" },
+      { "title": "Range Sum Query - Immutable", "url": "https://leetcode.com/problems/range-sum-query-immutable/" },
+      { "title": "Count of Range Sum", "url": "https://leetcode.com/problems/count-of-range-sum/" },
+      { "title": "Number of Submatrices That Sum to Target", "url": "https://leetcode.com/problems/number-of-submatrices-that-sum-to-target/" },
+      { "title": "Subarray Sums Divisible by K", "url": "https://leetcode.com/problems/subarray-sums-divisible-by-k/" }
+    ]
+  },
+  {
+    "type": "Counting Problems",
+    "scenario": "You encounter a problem where you need to count the number of ways to achieve a certain outcome, subject to certain constraints.",
+    "clue": "Look for problems where you can define states representing counts, and transitions between states correspond to valid outcomes.",
+    "questions": [
+      { "title": "Unique Paths III", "url": "https://leetcode.com/problems/unique-paths-iii/" },
+      { "title": "Distinct Subsequences", "url": "https://leetcode.com/problems/distinct-subsequences/" },
+      { "title": "Count Different Palindromic Subsequences", "url": "https://leetcode.com/problems/count-different-palindromic-subsequences/" },
+      { "title": "Count Numbers with Unique Digits", "url": "https://leetcode.com/problems/count-numbers-with-unique-digits/" },
+      { "title": "Count of Smaller Numbers After Self", "url": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/" }
+    ]
+  },
+  {
+    "type": "Interval Partitioning",
+    "scenario": "You encounter a problem where you need to divide a set of intervals into the minimum number of non-overlapping subsets.",
+    "clue": "Look for problems where you can sort the intervals by their endpoints and use dynamic programming to find the optimal partitioning.",
+    "questions": [
+      { "title": "Non-overlapping Intervals", "url": "https://leetcode.com/problems/non-overlapping-intervals/" },
+      { "title": "Partition Labels", "url": "https://leetcode.com/problems/partition-labels/" },
+      { "title": "Maximum Number of Non-Overlapping Subarrays With Sum Equals Target", "url": "https://leetcode.com/problems/maximum-number-of-non-overlapping-subarrays-with-sum-equals-target/" },
+      { "title": "Split Array into Consecutive Subsequences", "url": "https://leetcode.com/problems/split-array-into-consecutive-subsequences/" },
+      { "title": "Longest Continuous Increasing Subsequence", "url": "https://leetcode.com/problems/longest-continuous-increasing-subsequence/" }
+    ]
+  },
+  {
+    "type": "Probability & Expectations",
+    "scenario": "You encounter a problem where you need to compute the probability of certain events or the expected value of a random variable.",
+    "clue": "Look for problems where you can model the problem using probability distributions or expected values and use dynamic programming to compute them efficiently.",
+    "questions": [
+      { "title": "Knight Probability in Chessboard", "url": "https://leetcode.com/problems/knight-probability-in-chessboard/" },
+      { "title": "Dice Roll Simulation", "url": "https://leetcode.com/problems/dice-roll-simulation/" },
+      { "title": "Stone Game VII", "url": "https://leetcode.com/problems/stone-game-vii/" },
+      { "title": "Predict the Winner", "url": "https://leetcode.com/problems/predict-the-winner/" },
+      { "title": "Cherry Pickup", "url": "https://leetcode.com/problems/cherry-pickup/" }
+    ]
+  }
+]

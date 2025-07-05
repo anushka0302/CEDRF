@@ -1,0 +1,64 @@
+[
+  {
+    "type": "Design Problems",
+    "scenario": "When you need to design and implement a custom data structure based on stacks.",
+    "clue": "Look for problems that require you to design a stack-based system or implement specific functionalities.",
+    "questions": [
+      { "title": "Implement Queue using Stacks", "url": "https://leetcode.com/problems/implement-queue-using-stacks/" },
+      { "title": "Implement Stack using Queues", "url": "https://leetcode.com/problems/implement-stack-using-queues/" },
+      { "title": "Design Browser History", "url": "https://leetcode.com/problems/design-browser-history/" },
+      { "title": "Design Hit Counter", "url": "https://leetcode.com/problems/design-hit-counter/" },
+      { "title": "Design Circular Queue", "url": "https://leetcode.com/problems/design-circular-queue/" },
+      { "title": "Design Twitter", "url": "https://leetcode.com/problems/design-twitter/" },
+      { "title": "Design Snake Game", "url": "https://leetcode.com/problems/design-snake-game/" }
+    ]
+  },
+  {
+    "type": "Monotonic Stack",
+    "scenario": "You encounter a problem where you need to find the nearest smaller or greater element to the left or right in an array. For example, finding the nearest greater element on the right in an array.",
+    "clue": "Look for problems where you need to maintain a monotonic increasing or decreasing stack to efficiently track elements' positions or values.",
+    "questions": [
+      { "title": "Next Greater Element I", "url": "https://leetcode.com/problems/next-greater-element-i/" },
+      { "title": "Largest Rectangle in Histogram", "url": "https://leetcode.com/problems/largest-rectangle-in-histogram/" },
+      { "title": "Online Stock Span", "url": "https://leetcode.com/problems/online-stock-span/" },
+      { "title": "Daily Temperatures", "url": "https://leetcode.com/problems/daily-temperatures/" },
+      { "title": "Remove Duplicate Letters", "url": "https://leetcode.com/problems/remove-duplicate-letters/" }
+    ]
+  },
+  {
+    "type": "Expression Evaluation",
+    "scenario": "You encounter problems involving arithmetic or logical expression evaluation, where you need to parse and compute expressions.",
+    "clue": "Look for problems that involve evaluating arithmetic expressions or postfix notation.",
+    "questions": [
+      { "title": "Basic Calculator II", "url": "https://leetcode.com/problems/basic-calculator-ii/" },
+      { "title": "Evaluate Division", "url": "https://leetcode.com/problems/evaluate-division/" },
+      { "title": "Simplify Path", "url": "https://leetcode.com/problems/simplify-path/" },
+      { "title": "Basic Calculator", "url": "https://leetcode.com/problems/basic-calculator/" },
+      { "title": "Decode String", "url": "https://leetcode.com/problems/decode-string/" }
+    ]
+  },
+  {
+    "type": "Two Stacks",
+    "scenario": "You need to maintain a specific order or perform operations efficiently by utilizing two stacks, such as simulating a queue using two stacks.",
+    "clue": "Look for problems where you can simulate a specific behavior or implement operations efficiently by employing two stacks.",
+    "questions": [
+      { "title": "Evaluate Reverse Polish Notation", "url": "https://leetcode.com/problems/evaluate-reverse-polish-notation/" },
+      { "title": "Min Stack", "url": "https://leetcode.com/problems/min-stack/" },
+      { "title": "Design a Stack With Increment Operation", "url": "https://leetcode.com/problems/design-a-stack-with-increment-operation/" },
+      { "title": "Baseball Game", "url": "https://leetcode.com/problems/baseball-game/" },
+      { "title": "Backspace String Compare", "url": "https://leetcode.com/problems/backspace-string-compare/" }
+    ]
+  },
+  {
+    "type": "Sliding Window & Monotonic Queue",
+    "scenario": "You need to maintain a sliding window or find the maximum/minimum element in a window efficiently, often used in problems involving data stream processing or window-based statistics.",
+    "clue": "Look for problems where you need to process elements in a sliding window or maintain monotonicity in a queue, especially in array-related or streaming problems.",
+    "questions": [
+      { "title": "Sliding Window Maximum", "url": "https://leetcode.com/problems/sliding-window-maximum/" },
+      { "title": "Design Circular Deque", "url": "https://leetcode.com/problems/design-circular-deque/" },
+      { "title": "Moving Average from Data Stream", "url": "https://leetcode.com/problems/moving-average-from-data-stream/" },
+      { "title": "First Unique Number", "url": "https://leetcode.com/problems/first-unique-number/" },
+      { "title": "Max Sum of Rectangle No Larger Than K", "url": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/" }
+    ]
+  }
+]
