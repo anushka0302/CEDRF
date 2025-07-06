@@ -10,9 +10,10 @@ export default function Home({ data }) {
   const [mindstormingTime, setMindstormingTime] = useState(0);
   const activityTimeoutRef = useRef(null);
   const activityCheckRef = useRef(null);
+  const [openSubtopics, setOpenSubtopics] = useState({});
 
   useEffect(() => {
-    const todayKey = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const todayKey = new Date().toISOString().slice(0, 10);
     const stored = localStorage.getItem(`mindstormingTime-${todayKey}`);
     const initialTime = stored ? parseInt(stored, 10) : 0;
     setMindstormingTime(initialTime);
@@ -23,7 +24,7 @@ export default function Home({ data }) {
       clearTimeout(activityTimeoutRef.current);
       activityTimeoutRef.current = setTimeout(() => {
         isActive = false;
-      }, 30000); // user inactive after 30s idle
+      }, 30000);
     };
 
     ['mousemove', 'keydown', 'click', 'scroll'].forEach((event) => {
@@ -38,7 +39,7 @@ export default function Home({ data }) {
           return updated;
         });
       }
-    }, 60000); // every 1 minute
+    }, 60000);
 
     return () => {
       clearInterval(activityCheckRef.current);
@@ -73,6 +74,11 @@ export default function Home({ data }) {
     );
   };
 
+  const toggleSubtopic = (topic, index) => {
+    const key = `${topic}-${index}`;
+    setOpenSubtopics((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
   const totalQuestions = Object.values(data).reduce((sum, patterns) => (
     sum + patterns.reduce((acc, p) => acc + p.questions.length, 0)
   ), 0);
@@ -83,16 +89,16 @@ export default function Home({ data }) {
   const completedPercentage = ((totalChecked / totalQuestions) * 100).toFixed(1);
 
   return (
-    <div className="flex min-h-screen w-full overflow-x-hidden bg-gray-50">
+    <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-50">
       {/* Left Sidebar */}
-      <aside className="w-60 bg-white flex flex-col px-4 py-6 space-y-6">
+      <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">
         <div className="bg-indigo-100 p-4 rounded">
           <h2 className="font-semibold text-sm">Indicate your preferences</h2>
           <p className="text-xs text-gray-600 mt-1">We will recommend the best practice questions.</p>
         </div>
 
         <div className="bg-yellow-100 p-4 rounded animate-pulse">
-          <h2 className="font-semibold text-sm text-gray-700">⏱️Max mindstorming time</h2>
+          <h2 className="font-semibold text-sm text-gray-700">⏱️ Max mindstorming time</h2>
           <p className="text-lg font-bold text-yellow-800 mt-2">
             {mindstormingTime} minute{mindstormingTime === 1 ? '' : 's'} (today)
           </p>
@@ -131,8 +137,8 @@ export default function Home({ data }) {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 px-8 py-10">
-        <h1 className="text-3xl font-semibold mb-6">DSA Patterns</h1>
+      <main className="flex-1 px-4 md:px-8 py-6 order-0 lg:order-none">
+        <h1 className="text-2xl md:text-3xl font-semibold mb-6 text-center lg:text-left">DSA Patterns</h1>
         <div className="space-y-6">
           {Object.entries(data).map(([topic, patterns]) => (
             <details
@@ -146,54 +152,62 @@ export default function Home({ data }) {
                 {isTopicChecked(topic, patterns) && <span className="text-green-600 font-bold text-lg">✔</span>}
               </summary>
               <div className="space-y-4 px-4 pb-4">
-                {patterns.map((pattern, idx) => (
-                  <div key={idx} className="p-4 border border-gray-200 rounded bg-white hover:shadow transition">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-semibold text-blue-700">
+                {patterns.map((pattern, idx) => {
+                  const isOpen = openSubtopics[`${topic}-${idx}`];
+                  return (
+                    <div key={idx}>
+                      <div
+                        className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 bg-blue-50 hover:bg-blue-100 rounded flex justify-between items-center"
+                        onClick={() => toggleSubtopic(topic, idx)}
+                      >
                         {pattern.type}
-                      </h3>
-                      {isAllChecked(topic, pattern.type, pattern.questions.length) && (
-                        <span className="text-green-600 font-bold text-lg">✔</span>
+                        {isAllChecked(topic, pattern.type, pattern.questions.length) && (
+                          <span className="text-green-600 font-bold">✔</span>
+                        )}
+                      </div>
+                      {isOpen && (
+                        <div className="p-4 border border-gray-200 rounded bg-white hover:shadow transition">
+                          <p className="text-sm text-gray-700 mb-1">
+                            <strong>Scenario:</strong> {pattern.scenario}
+                          </p>
+                          <p className="text-sm text-gray-700 mb-2">
+                            <strong>Clue:</strong> {pattern.clue}
+                          </p>
+                          <ul className="space-y-2">
+                            {pattern.questions.map((q, i) => {
+                              const checked = checkedTopics[`${topic}-${pattern.type}`]?.includes(i);
+                              return (
+                                <li
+                                  key={i}
+                                  className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 ${
+                                    checked ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200'
+                                  }`}
+                                >
+                                  <a
+                                    href={q.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`text-sm font-medium ${
+                                      checked ? 'text-green-700' : 'text-blue-700 hover:underline'
+                                    }`}
+                                  >
+                                    {q.title}
+                                  </a>
+                                  <input
+                                    type="checkbox"
+                                    className="accent-blue-600 h-4 w-4"
+                                    checked={checked || false}
+                                    onChange={() => toggleQuestion(topic, pattern.type, i)}
+                                  />
+                                </li>
+                              );
+                            })}
+                          </ul>
+                        </div>
                       )}
                     </div>
-                    <p className="text-sm text-gray-700 mb-1">
-                      <strong>Scenario:</strong> {pattern.scenario}
-                    </p>
-                    <p className="text-sm text-gray-700 mb-2">
-                      <strong>Clue:</strong> {pattern.clue}
-                    </p>
-                    <ul className="space-y-2">
-                      {pattern.questions.map((q, i) => {
-                        const checked = checkedTopics[`${topic}-${pattern.type}`]?.includes(i);
-                        return (
-                          <li
-                            key={i}
-                            className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 ${
-                              checked ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200'
-                            }`}
-                          >
-                            <a
-                              href={q.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className={`text-sm font-medium ${
-                                checked ? 'text-green-700' : 'text-blue-700 hover:underline'
-                              }`}
-                            >
-                              {q.title}
-                            </a>
-                            <input
-                              type="checkbox"
-                              className="accent-blue-600 h-4 w-4"
-                              checked={checked || false}
-                              onChange={() => toggleQuestion(topic, pattern.type, i)}
-                            />
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </details>
           ))}
@@ -201,13 +215,16 @@ export default function Home({ data }) {
       </main>
 
       {/* Right Sidebar */}
-      <aside className="w-60 bg-white  flex flex-col px-4 py-6 space-y-6">
+      <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
         <div className="bg-blue-100 p-4 rounded">
           <h3 className="text-sm font-semibold">Welcome to Hoursdev — Code Your Future, One Hour at a Time.</h3>
-          <p className="text-xs text-gray-700 mt-1">We help students turn ideas into real IT projects — fast.<br></br> <br></br>
-
-Whether you're in B.Tech, M.Tech, MBA, or MCA, build with AI, ML, Blockchain, Android, and more — guided by experts, powered by the latest tech.<br></br> <br></br>
-Let’s code your future, invest in your skills.</p>
+          <p className="text-xs text-gray-700 mt-1">
+            We help students turn ideas into real IT projects — fast.
+            <br /><br />
+            Whether you're in B.Tech, M.Tech, MBA, or MCA, build with AI, ML, Blockchain, Android, and more — guided by experts, powered by the latest tech.
+            <br /><br />
+            Let’s code your future, invest in your skills.
+          </p>
           <a href="#" className="text-xs text-blue-600 hover:underline mt-1 block">
             Join today for a 20% discount!
           </a>
