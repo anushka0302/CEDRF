@@ -90,43 +90,26 @@ export default function Home({ data }) {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-50">
-      {/* Left Sidebar */}
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">
         <div className="bg-indigo-100 p-4 rounded">
           <h2 className="font-semibold text-sm">Indicate your preferences</h2>
           <p className="text-xs text-gray-600 mt-1">We will recommend the best practice questions.</p>
         </div>
-
         <div className="bg-yellow-100 p-4 rounded animate-pulse">
           <h2 className="font-semibold text-sm text-gray-700">⏱️ Max mindstorming time</h2>
           <p className="text-lg font-bold text-yellow-800 mt-2">
             {mindstormingTime} minute{mindstormingTime === 1 ? '' : 's'} (today)
           </p>
         </div>
-
         <div>
           <h3 className="text-sm font-semibold text-gray-700">SCHEDULE</h3>
           <div className="mt-2">
             <p className="text-xs">Weeks: {weeks}</p>
-            <input
-              type="range"
-              min="1"
-              max="20"
-              value={weeks}
-              onChange={(e) => setWeeks(Number(e.target.value))}
-              className="w-full mt-1 cursor-pointer"
-            />
+            <input type="range" min="1" max="20" value={weeks} onChange={(e) => setWeeks(Number(e.target.value))} className="w-full mt-1 cursor-pointer" />
           </div>
           <div className="mt-3">
             <p className="text-xs">Hours/week: {hours}</p>
-            <input
-              type="range"
-              min="1"
-              max="60"
-              value={hours}
-              onChange={(e) => setHours(Number(e.target.value))}
-              className="w-full mt-1 text-blue-500 cursor-pointer"
-            />
+            <input type="range" min="1" max="60" value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full mt-1 text-blue-500 cursor-pointer" />
           </div>
           <div className="mt-4 text-xs text-gray-600">
             <p><strong>Total hours:</strong> {totalHours}</p>
@@ -136,15 +119,11 @@ export default function Home({ data }) {
         </div>
       </aside>
 
-      {/* Main Content */}
       <main className="flex-1 px-4 md:px-8 py-6 order-0 lg:order-none">
         <h1 className="text-2xl md:text-3xl font-semibold mb-6 text-center lg:text-left">DSA Patterns</h1>
         <div className="space-y-6">
           {Object.entries(data).map(([topic, patterns]) => (
-            <details
-              key={topic}
-              className="border rounded bg-white shadow-sm transition-all duration-300"
-            >
+            <details key={topic} className="border rounded bg-white shadow-sm transition-all duration-300">
               <summary className="text-blue-700 font-semibold px-4 py-3 cursor-pointer text-lg flex items-center justify-between hover:bg-blue-50">
                 <span className="flex items-center gap-2">
                   ▶ {topic.replace(/([a-z])([A-Z])/g, '$1 $2')}
@@ -157,7 +136,7 @@ export default function Home({ data }) {
                   return (
                     <div key={idx}>
                       <div
-                        className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 bg-blue-50 hover:bg-blue-100 rounded flex justify-between items-center"
+                        className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 hover:bg-blue-100 rounded flex justify-between items-center"
                         onClick={() => toggleSubtopic(topic, idx)}
                       >
                         {pattern.type}
@@ -177,20 +156,8 @@ export default function Home({ data }) {
                             {pattern.questions.map((q, i) => {
                               const checked = checkedTopics[`${topic}-${pattern.type}`]?.includes(i);
                               return (
-                                <li
-                                  key={i}
-                                  className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 ${
-                                    checked ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200'
-                                  }`}
-                                >
-                                  <a
-                                    href={q.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`text-sm font-medium ${
-                                      checked ? 'text-green-700' : 'text-blue-700 hover:underline'
-                                    }`}
-                                  >
+                                <li key={i} className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 ${checked ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200'}`}>
+                                  <a href={q.url} target="_blank" rel="noopener noreferrer" className={`text-sm font-medium ${checked ? 'text-green-700' : 'text-blue-700 hover:underline'}`}>
                                     {q.title}
                                   </a>
                                   <input
@@ -214,7 +181,6 @@ export default function Home({ data }) {
         </div>
       </main>
 
-      {/* Right Sidebar */}
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
         <div className="bg-blue-100 p-4 rounded">
           <h3 className="text-sm font-semibold">Welcome to Hoursdev — Code Your Future, One Hour at a Time.</h3>
