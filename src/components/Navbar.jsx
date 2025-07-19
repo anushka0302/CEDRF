@@ -1,6 +1,8 @@
+// src/components/Navbar.jsx
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
+import React from 'react';
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -15,7 +17,7 @@ export default function Navbar() {
       {/* Center Title */}
       <div className="text-center sm:flex-1">
         <h1 className="text-base sm:text-lg font-bold text-blue-800 leading-snug">
-          Comprehensive Education Development And Research Foundation
+          Comprehensive Educational Development And Research Foundation
           <div className="text-[11px] sm:text-xs text-black italic animate-pulse font-semibold">
             — Since 2009 —
           </div>
@@ -24,7 +26,9 @@ export default function Navbar() {
 
       {/* Right: User Info */}
       <div className="flex items-center justify-center sm:justify-end space-x-4 text-sm">
-        {user && <span className="text-gray-600">Hello, {user.firstName || user.username}</span>}
+        {user?.firstName && (
+          <span className="text-gray-600">Hello, {user.firstName}</span>
+        )}
         {user ? (
           <button
             onClick={logout}

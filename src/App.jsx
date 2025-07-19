@@ -1,18 +1,29 @@
+// src/App.jsx
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import PatternPage from './pages/PatternPage';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
-import { AuthProvider } from './context/AuthContext';
+import CatalogPage from './components/CatalogPage.jsx';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import data from './data/index.js';
 import DisableInspect from './components/DisableInspect';
-
-// Wrapper component to access location and apply conditional navbar
+import Footer from './components/Footer';
+import ContactUs from './pages/ContactUs.jsx';
+import TermsOfUse from './pages/TermsOfUse.jsx';
+import CancellationPolicyPage from './pages/CancellationPolicyPage.jsx';
+import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
+import MentoringFormPage from './pages/MentoringFormPage.jsx';
 function AppWrapper() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const { loading } = useAuth();
+
+  if (loading) {
+    return <div className="text-center mt-20 text-xl font-bold">Loading...</div>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
@@ -20,33 +31,23 @@ function AppWrapper() {
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Routes>
           <Route path="/login" element={<LoginPage />} />
-          <Route
-            path="/"
-            element={
-              <PrivateRoute>
-                <Home data={data} />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <PrivateRoute>
-                <Dashboard />
-              </PrivateRoute>
-            }
-          />
-          <Route
-            path="/patterns/:topic"
-            element={
-              <PrivateRoute>
-                <PatternPage data={data} />
-              </PrivateRoute>
-            }
-          />
+          <Route path="/catalog" element={<CatalogPage />} />
+          <Route path="/" element={<PrivateRoute requirePayment={true}><Home data={data} /></PrivateRoute>} />
+          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/patterns/:topic" element={<PrivateRoute><PatternPage data={data} /></PrivateRoute>} />
+           <Route path="/contact" element={<PrivateRoute><ContactUs/></PrivateRoute>} />
+            <Route path="/terms" element={<PrivateRoute><TermsOfUse/></PrivateRoute>} />
+             <Route path="/cancellation-policy" element={<PrivateRoute><CancellationPolicyPage/></PrivateRoute>} />
+               <Route path="/privacy-policy" element={<PrivateRoute><PrivacyPolicy/></PrivateRoute>} />
+<Route path="/mentoring" element={<PrivateRoute><MentoringFormPage/></PrivateRoute>} />
+
+
         </Routes>
+
+        
       </div>
     </div>
+    
   );
 }
 

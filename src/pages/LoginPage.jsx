@@ -1,13 +1,22 @@
 import { useAuth } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import logo from '../assets/logo.png';
+import { auth, db } from '../firebase';
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail
+} from 'firebase/auth';
+import { setDoc, doc } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import logo from '../assets/logo.png';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const { login } = useAuth();
-  const [isSignup, setIsSignup] = useState(true);
+  const navigate = useNavigate();
+
+  const [isSignup, setIsSignup] = useState(false);
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [dob, setDob] = useState('');
@@ -15,56 +24,53 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showIntro, setShowIntro] = useState(true);
   const [forgotMode, setForgotMode] = useState(false);
-  const [dobCheck, setDobCheck] = useState('');
-  const [newPassword, setNewPassword] = useState('');
 
   useEffect(() => {
     const timer = setTimeout(() => setShowIntro(false), 2000);
     return () => clearTimeout(timer);
   }, []);
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    const newUser = { firstName, lastName, dob, email, password };
-    localStorage.setItem(`user-${email}`, JSON.stringify(newUser));
-    toast.success('Account created successfully! Please login.');
-    setIsSignup(false);
+    try {
+      const cred = await createUserWithEmailAndPassword(auth, email, password);
+      const uid = cred.user.uid;
+
+      await setDoc(doc(db, 'users', uid), {
+        firstName,
+        lastName,
+        dob,
+        email,
+        hasPaid: false,
+      });
+
+      toast.success('Signup successful! Logging you in...');
+      await login(email, password);
+    } catch (err) {
+      toast.error(err.message || 'Signup failed');
+    }
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const saved = localStorage.getItem(`user-${email}`);
-    if (!saved) {
-      toast.error('User not found. Please sign up.');
-      return;
+    try {
+      await login(email, password);
+    } catch (err) {
+      toast.error(err.message || 'Login failed');
     }
-    const userData = JSON.parse(saved);
-    if (userData.password !== password) {
-      toast.error('Incorrect password');
-      return;
-    }
-    login(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
-    window.location.href = '/';
   };
 
-  const handleForgotPassword = (e) => {
+  // ✅ NEW forgot password logic (based on image)
+  const handleForgotPassword = async (e) => {
     e.preventDefault();
-    const saved = localStorage.getItem(`user-${email}`);
-    if (!saved) {
-      toast.error('User not found. Please sign up.');
-      return;
+    try {
+      await sendPasswordResetEmail(auth, email);
+      toast.success('Check your email for password reset link.');
+      setForgotMode(false);
+      navigate('/login');
+    } catch (err) {
+      toast.error(err.message || 'Error sending reset email.');
     }
-    const userData = JSON.parse(saved);
-    if (userData.dob !== dobCheck) {
-      toast.error('Date of birth does not match.');
-      return;
-    }
-    userData.password = newPassword;
-    localStorage.setItem(`user-${email}`, JSON.stringify(userData));
-    toast.success('Password updated. You can now login.');
-    setForgotMode(false);
-    setIsSignup(false);
   };
 
   return (
@@ -80,37 +86,75 @@ export default function LoginPage() {
             {forgotMode ? 'Reset Password' : isSignup ? 'Sign Up' : 'Login'}
           </h2>
 
-          <form onSubmit={forgotMode ? handleForgotPassword : isSignup ? handleSignup : handleLogin} className="space-y-4">
+          <form
+            onSubmit={
+              forgotMode ? handleForgotPassword : isSignup ? handleSignup : handleLogin
+            }
+            className="space-y-4"
+          >
             {isSignup && !forgotMode && (
               <>
-                <input type="text" required value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <input type="text" required value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Last Name" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
-                <input type="date" required value={dob} onChange={(e) => setDob(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+                <input
+                  type="text"
+                  required
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  placeholder="First Name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <input
+                  type="text"
+                  required
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  placeholder="Last Name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+                <input
+                  type="date"
+                  required
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
+                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </>
             )}
 
-            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Email" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email"
+              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
 
             {!forgotMode && (
-              <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
             )}
 
-            {forgotMode && (
-              <>
-                <input type="date" required value={dobCheck} onChange={(e) => setDobCheck(e.target.value)} placeholder="Your DOB" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-                <input type="password" required value={newPassword} onChange={(e) => setNewPassword(e.target.value)} placeholder="New Password" className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-yellow-500" />
-              </>
-            )}
-
-            <button type="submit" className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200">
-              {forgotMode ? 'Update Password' : isSignup ? 'Sign Up' : 'Login'}
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
+            >
+              {forgotMode ? 'Send Reset Link' : isSignup ? 'Sign Up' : 'Login'}
             </button>
           </form>
 
           {!forgotMode && (
             <p className="text-sm text-center mt-4 text-gray-600">
               {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
-              <button onClick={() => setIsSignup(!isSignup)} className="text-blue-600 hover:underline font-medium">
+              <button
+                onClick={() => setIsSignup(!isSignup)}
+                className="text-blue-600 hover:underline font-medium"
+              >
                 {isSignup ? 'Login' : 'Sign Up'}
               </button>
             </p>
@@ -119,7 +163,10 @@ export default function LoginPage() {
           {!isSignup && !forgotMode && (
             <p className="text-sm text-center mt-2 text-yellow-600">
               Forgot your password?{' '}
-              <button onClick={() => setForgotMode(true)} className="text-yellow-600 underline">
+              <button
+                onClick={() => setForgotMode(true)}
+                className="text-yellow-600 underline"
+              >
                 Reset it
               </button>
             </p>
@@ -128,7 +175,10 @@ export default function LoginPage() {
           {forgotMode && (
             <p className="text-sm text-center mt-4 text-gray-600">
               Remembered your password?{' '}
-              <button onClick={() => setForgotMode(false)} className="text-blue-600 underline font-medium">
+              <button
+                onClick={() => setForgotMode(false)}
+                className="text-blue-600 underline font-medium"
+              >
                 Go to Login
               </button>
             </p>

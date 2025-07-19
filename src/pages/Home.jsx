@@ -1,12 +1,18 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
+import ScrollToTop from '../components/ScrollToTop';
+import Footer from '../components/Footer';
+import React from 'react';
+import { toast } from 'react-toastify';
+
+
 
 export default function Home({ data }) {
   const [checkedTopics, setCheckedTopics] = useState({});
   const [weeks, setWeeks] = useState(12);
   const [hours, setHours] = useState(40);
-  const { user } = useAuth();
+  const { user, logout} = useAuth();
   const [mindstormingTime, setMindstormingTime] = useState(0);
   const activityTimeoutRef = useRef(null);
   const activityCheckRef = useRef(null);
@@ -41,6 +47,10 @@ export default function Home({ data }) {
       }
     }, 60000);
 
+
+
+
+    
     return () => {
       clearInterval(activityCheckRef.current);
       ['mousemove', 'keydown', 'click', 'scroll'].forEach((event) => {
@@ -48,6 +58,12 @@ export default function Home({ data }) {
       });
     };
   }, []);
+
+useEffect(() => {
+  if (location.state?.paymentRequired) {
+    toast.warning("Please complete payment to access the dashboard.");
+  }
+}, [location.state]);
 
   const toggleQuestion = (topic, type, index) => {
     const key = `${topic}-${type}`;
@@ -88,8 +104,25 @@ export default function Home({ data }) {
   const questionsPerHour = totalQuestions > 0 ? (totalQuestions / totalHours).toFixed(2) : 0;
   const completedPercentage = ((totalChecked / totalQuestions) * 100).toFixed(1);
 
+//setTimeout(() => {
+ // logout();
+ // toast.info('Forced logout after 5 sec');
+//}, 5000);
+useEffect(() => {
+  const timeout = setTimeout(() => {
+    logout();
+    toast.info('You have been logged out due to 8 hours of inactivity.');
+  }, 8 * 60 * 60 * 1000); // 8 hours in milliseconds
+
+  return () => clearTimeout(timeout);
+}, []);
+
+
+
   return (
+    <>
     <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-50">
+     <ScrollToTop/>
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">
         <div className="bg-indigo-100 p-4 rounded">
           <h2 className="font-semibold text-sm">Indicate your preferences</h2>
@@ -182,29 +215,41 @@ export default function Home({ data }) {
       </main>
 
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
-        <div className="bg-blue-100 p-4 rounded">
-          <h3 className="text-sm font-semibold">Welcome to Hoursdev — Code Your Future, One Hour at a Time.</h3>
-          <p className="text-xs text-gray-700 mt-1">
-            We help students turn ideas into real IT projects — fast.
-            <br /><br />
-            Whether you're in B.Tech, M.Tech, MBA, or MCA, build with AI, ML, Blockchain, Android, and more — guided by experts, powered by the latest tech.
-            <br /><br />
-            Let’s code your future, invest in your skills.
-          </p>
-          <a href="#" className="text-xs text-blue-600 hover:underline mt-1 block">
-            Join today for a 20% discount!
-          </a>
-        </div>
+       
+        <div className="rounded-xl border border-blue-200 p-4 bg-blue-50 text-gray-800 font-sans shadow-sm">
+  <h5 className="text-lg font-bold text-blue-900 tracking-tight mb-2">
+    Welcome to CEDRF — Code Your Future, One Hour at a Time.
+  </h5>
+  <p className="text-sm leading-relaxed text-gray-700 mb-4">
+    <strong>CEDRF</strong> is where your ideas become real-world projects.
+    Whether you're pursuing <strong>B.Tech</strong>, <strong>M.Tech</strong>, <strong>MBA</strong>, or <strong>MCA</strong>, our expert-led guidance helps you build hands-on IT projects in <strong>AI</strong>, <strong>Machine Learning</strong>, <strong>Blockchain</strong>, <strong>Android</strong>, and beyond.
+    <br /><br />
+    Learn from mentors who code, create, and inspire — and unlock the tools you need to succeed in today’s tech landscape.
+  </p>
+  <a
+    href="/mentoring"
+    className="inline-block text-sm font-medium text-blue-700 hover:text-blue-900 hover:underline transition duration-200"
+  >
+    Join today & get 20% off mentoring →
+  </a>
+</div>
         <div className="bg-red-100 p-4 rounded">
           <h3 className="text-sm font-semibold">Build a FAANG-Worthy Resume — Fast.</h3>
           <p className="text-xs text-gray-700 mt-1">
             Proven templates that land interviews.
           </p>
-          <a href="#" className="text-xs text-red-600 hover:underline mt-1 block">
+       <a href="https://payments.cashfree.com/links?code=Y8smduv534ig" className="text-xs text-red-600 hover:underline mt-1 block">
             Grab yours now at 70% OFF — limited time!
           </a>
+
+
         </div>
       </aside>
+     
     </div>
+    <div className="w-full flex justify-center items-center mt-4 px-2 md:px-4 lg:px-40">
+      <Footer />
+    </div>
+    </>
   );
 }

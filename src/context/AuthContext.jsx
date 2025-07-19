@@ -1,45 +1,80 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../firebase';
+import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // Load user from localStorage if available
-  const [user, setUser] = useState(() => {
-    const saved = localStorage.getItem('user');
-    return saved ? JSON.parse(saved) : null;
-  });
+  const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
-  // ✅ Login method with loginTime
-  const login = (username) => {
-    const userObj = {
-      username,
-      loginTime: Date.now() // Save login time
-    };
-    setUser(userObj);
-    localStorage.setItem('user', JSON.stringify(userObj));
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      if (firebaseUser) {
+        const docRef = doc(db, 'users', firebaseUser.uid);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setUser(docSnap.data());
+        } else {
+          setUser(null);
+        }
+      } else {
+        setUser(null);
+      }
+      setLoading(false);
+    });
+    return () => unsubscribe();
+  }, []);
+
+
+
+
+
+  const login = async (email, password) => {
+    try {
+      const userCred = await signInWithEmailAndPassword(auth, email, password);
+      const uid = userCred.user.uid;
+      const userDoc = await getDoc(doc(db, 'users', uid));
+      if (userDoc.exists()) {
+        setUser(userDoc.data());
+        toast.success('Login successful!');
+        navigate(userDoc.data().hasPaid ? '/' : '/catalog');
+      } else {
+        toast.error('User record not found in Firestore.');
+      }
+    } catch (err) {
+      toast.error(err.message || 'Login failed');
+    }
   };
 
-  // ✅ Logout clears everything
-  const logout = () => {
+  const logout = async () => {
+    await signOut(auth);
     setUser(null);
-    localStorage.removeItem('user');
+    toast.success('Logged out');
+    navigate('/login');
   };
 
-  // ✅ Return total time (minutes since login + 3 buffer)
-  const getMindstormingTime = () => {
-    if (!user?.loginTime) return 0;
-    const now = Date.now();
-    const diffMs = now - user.loginTime;
-    const diffMinutes = Math.floor(diffMs / 60000);
-    return diffMinutes + 3; // add bonus time
+  const markPaymentDone = async () => {
+    if (!user) return;
+    const updatedUser = { ...user, hasPaid: true };
+    const docRef = doc(db, 'users', auth.currentUser.uid);
+    await setDoc(docRef, updatedUser);
+     const freshSnap = await getDoc(docRef);
+  if (freshSnap.exists()) {
+    setUser(freshSnap.data()); // ✅ updates with the true value
+  }
+    toast.success('Payment completed!');
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, getMindstormingTime }}>
-      {children}
+    <AuthContext.Provider value={{ user, loading, login, logout, markPaymentDone }}>
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
 
-// ✅ Hook to access context
 export const useAuth = () => useContext(AuthContext);
