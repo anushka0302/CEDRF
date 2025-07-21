@@ -45,7 +45,6 @@ export default function CatalogPage() {
         customer_name: user.firstName || 'Customer',
         customer_email: user.email,
         customer_phone: user.phone || '9999999999',
-       amount: 599,
       });
 
       if (res.data && res.data.payment_session_id) {
