@@ -41,7 +41,7 @@ export default function CatalogPage() {
     }
 
     try {
-      const res = await axios.post('https://server-cedrf.onrender.com/payment', {
+      const res = await axios.post('https://cedrf.umangmathpal.workers.dev/payment', {
         customer_name: user.firstName || 'Customer',
         customer_email: user.email,
         customer_phone: user.phone || '9999999999',
@@ -66,7 +66,7 @@ export default function CatalogPage() {
     if (!orderId) return;
 
     try {
-      const res = await axios.post('https://server-cedrf.onrender.com/verify', { orderId });
+      const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
       if (res.data && res.data.success) {
         markPaymentDone();
         navigate('/');
