@@ -110,13 +110,17 @@ export default function LoginPage() {
                   placeholder="Last Name"
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <input
-                  type="date"
+                            <input
+                  type="text"
                   required
+                  onFocus={(e) => (e.target.type = 'date')}
+                  onBlur={(e) => {
+                    if (!e.target.value) e.target.type = 'text';
+                  }}
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
                   placeholder="DOB"
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </>
             )}
