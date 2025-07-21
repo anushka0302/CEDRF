@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-
+import linkIcon from '../assets/clickss.svg';
 
 export default function Home({ data }) {
   const [checkedTopics, setCheckedTopics] = useState({});
@@ -17,6 +17,20 @@ export default function Home({ data }) {
   const activityTimeoutRef = useRef(null);
   const activityCheckRef = useRef(null);
   const [openSubtopics, setOpenSubtopics] = useState({});
+const [clickedLinks, setClickedLinks] = useState({});
+
+const handleLinkClick = (topic, type, index, url) => {
+  window.open(url, "_blank", "noopener,noreferrer");
+
+  setClickedLinks((prev) => {
+    const key = `${topic}-${type}`;
+    const already = prev[key] || [];
+    if (!already.includes(index)) {
+      return { ...prev, [key]: [...already, index] };
+    }
+    return prev;
+  });
+};
 
   useEffect(() => {
     const todayKey = new Date().toISOString().slice(0, 10);
@@ -152,67 +166,119 @@ useEffect(() => {
         </div>
       </aside>
 
-      <main className="flex-1 px-4 md:px-8 py-6 order-0 lg:order-none">
-        <h1 className="text-2xl md:text-3xl font-semibold mb-6 text-center lg:text-left">DSA Patterns</h1>
-        <div className="space-y-6">
-          {Object.entries(data).map(([topic, patterns]) => (
-            <details key={topic} className="border rounded bg-white shadow-sm transition-all duration-300">
-              <summary className="text-blue-700 font-semibold px-4 py-3 cursor-pointer text-lg flex items-center justify-between hover:bg-blue-50">
-                <span className="flex items-center gap-2">
-                  ▶ {topic.replace(/([a-z])([A-Z])/g, '$1 $2')}
-                </span>
-                {isTopicChecked(topic, patterns) && <span className="text-green-600 font-bold text-lg">✔</span>}
-              </summary>
-              <div className="space-y-4 px-4 pb-4">
-                {patterns.map((pattern, idx) => {
-                  const isOpen = openSubtopics[`${topic}-${idx}`];
-                  return (
-                    <div key={idx}>
-                      <div
-                        className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 hover:bg-blue-100 rounded flex justify-between items-center"
-                        onClick={() => toggleSubtopic(topic, idx)}
-                      >
-                        {pattern.type}
-                        {isAllChecked(topic, pattern.type, pattern.questions.length) && (
-                          <span className="text-green-600 font-bold">✔</span>
-                        )}
-                      </div>
-                      {isOpen && (
-                        <div className="p-4 border border-gray-200 rounded bg-white hover:shadow transition">
-                          <p className="text-sm text-gray-700 mb-1">
-                            <strong>Scenario:</strong> {pattern.scenario}
-                          </p>
-                          <p className="text-sm text-gray-700 mb-2">
-                            <strong>Clue:</strong> {pattern.clue}
-                          </p>
-                          <ul className="space-y-2">
-                            {pattern.questions.map((q, i) => {
-                              const checked = checkedTopics[`${topic}-${pattern.type}`]?.includes(i);
-                              return (
-                                <li key={i} className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 ${checked ? 'bg-green-50 border-green-300' : 'bg-gray-50 border-gray-200'}`}>
-                                  <a href={q.url} target="_blank" rel="noopener noreferrer" className={`text-sm font-medium ${checked ? 'text-green-700' : 'text-blue-700 hover:underline'}`}>
-                                    {q.title}
-                                  </a>
-                                  <input
-                                    type="checkbox"
-                                    className="accent-blue-600 h-4 w-4"
-                                    checked={checked || false}
-                                    onChange={() => toggleQuestion(topic, pattern.type, i)}
-                                  />
-                                </li>
-                              );
-                            })}
-                          </ul>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            </details>
-          ))}
+<main className="flex-1 px-4 md:px-8 py-6 order-0 lg:order-none">
+  <h1 className="text-2xl md:text-3xl font-semibold mb-6 text-center lg:text-left">
+    DSA Patterns
+  </h1>
+  <div className="space-y-6">
+    {Object.entries(data).map(([topic, patterns]) => (
+      <details
+        key={topic}
+        className="border rounded bg-white shadow-sm transition-all duration-300"
+      >
+        <summary className="text-blue-700 font-semibold px-4 py-3 cursor-pointer text-lg flex items-center justify-between hover:bg-blue-50">
+          <span className="flex items-center gap-2">
+            ▶ {topic.replace(/([a-z])([A-Z])/g, "$1 $2")}
+          </span>
+          {isTopicChecked(topic, patterns) && (
+            <span className="text-green-600 font-bold text-lg">✔</span>
+          )}
+        </summary>
+     <div className="space-y-4 px-4 pb-4">
+  {patterns.map((pattern, idx) => {
+    const isOpen = openSubtopics[`${topic}-${idx}`];
+
+    return (
+      <div key={idx}>
+        {/* Pattern Header */}
+        <div
+          className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 hover:bg-blue-100 rounded flex justify-between items-center"
+          onClick={() => toggleSubtopic(topic, idx)}
+        >
+          {pattern.type}
+          {isAllChecked(topic, pattern.type, pattern.questions.length) && (
+            <span className="text-green-600 font-bold">✔</span>
+          )}
         </div>
-      </main>
+
+        {isOpen && (
+          <div className="p-4 border border-gray-200 rounded bg-white hover:shadow transition">
+            {/* Scenario and Clue */}
+            <p className="text-sm text-gray-700 mb-1">
+              <strong>Scenario:</strong> {pattern.scenario}
+            </p>
+            <p className="text-sm text-gray-700 mb-4">
+              <strong>Clue:</strong> {pattern.clue}
+            </p>
+
+            {/* Mark when done header (global) */}
+            <div className="flex justify-end pr-4 text-xs text-gray-500 font-medium mb-2">
+              Mark when done
+            </div>
+
+            <ul className="space-y-3">
+              {pattern.questions.map((q, i) => {
+                const checked = checkedTopics[`${topic}-${pattern.type}`]?.includes(i);
+                const clicked = clickedLinks[`${topic}-${pattern.type}`]?.includes(i);
+                const questionNum = `Q${i + 1}`;
+
+                return (
+                  <li
+                    key={i}
+                    className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 flex-wrap gap-2 ${
+                      checked ? "bg-green-50 border-green-300" : "bg-gray-50 border-gray-200"
+                    }`}
+                  >
+                    {/* Left: Question Number and Title */}
+                    <div className="flex items-center gap-3 flex-wrap w-full sm:w-auto flex-1">
+                      <span className="text-sm font-medium text-gray-600">{questionNum}</span>
+                      <span
+                        className={`text-sm font-medium break-all ${
+                          checked ? "text-green-700" : "text-blue-700"
+                        }`}
+                      >
+                        {q.title}
+                      </span>
+                    </div>
+
+                    {/* Middle: Click here oval */}
+<div className="flex-1 flex justify-center sm:justify-start">
+  <button
+    onClick={() => handleLinkClick(topic, pattern.type, i, q.url)}
+    className={`text-xs font-semibold px-3 py-1 rounded-full transition duration-200 ${
+      clicked
+        ? "bg-green-600 text-white"
+        : "bg-blue-100 text-blue-700 hover:bg-blue-200"
+    }`}
+  >
+    Click here
+  </button>
+</div>
+
+                    {/* Right: Checkbox */}
+                    <div>
+                      <input
+                        type="checkbox"
+                        className="accent-blue-600 h-4 w-4"
+                        checked={checked || false}
+                        onChange={() => toggleQuestion(topic, pattern.type, i)}
+                      />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+      </details>
+    ))}
+  </div>
+</main>
 
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
        

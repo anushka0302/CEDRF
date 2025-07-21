@@ -25,12 +25,7 @@ export default function CatalogPage() {
     };
     init();
   }, []);
- useEffect(() => {
-    // Redirect to home if payment is complete
-    if (user?.hasPaid) {
-      navigate('/', { replace: true });
-    }
-  }, [user, navigate]);
+
 
 
   const getSessionId = async () => {
@@ -41,11 +36,10 @@ export default function CatalogPage() {
     }
 
     try {
-      const res = await axios.post('https://cedrf.umangmathpal.workers.dev/payment', {
+      const res = await axios.post('http://localhost:8000/payment', {
         customer_name: user.firstName || 'Customer',
         customer_email: user.email,
         customer_phone: user.phone || '9999999999',
-       amount: 599,
       });
 
       if (res.data && res.data.payment_session_id) {
@@ -67,7 +61,7 @@ export default function CatalogPage() {
     if (!orderId) return;
 
     try {
-      const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
+      const res = await axios.post('http://localhost:8000/verify', { orderId });
       if (res.data && res.data.success) {
         markPaymentDone();
         navigate('/');
