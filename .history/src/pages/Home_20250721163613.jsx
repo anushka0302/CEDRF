@@ -132,19 +132,6 @@ useEffect(() => {
 }, []);
 
 
-const email = "infocedrf@protonmail.com";
-const subject = "Interested in taking the FANG template";
-const body = `Hello, I found your FANG Template Resume on the website and would like to know more about your services.
-
-Please get back to me at your earliest convenience.
-
-Name: 
-Phone: 
-Email: 
-`;
-
-const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
 
   return (
     <>
@@ -312,19 +299,17 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
     Join today & get 20% off mentoring →
   </a>
 </div>
-       <div className="bg-red-100 p-4 rounded">
-    <h3 className="text-sm font-semibold">Build a FAANG-Worthy Resume — Fast.</h3>
-    <p className="text-xs text-gray-700 mt-1">
-      Proven templates that land interviews.
-    </p>
+        <div className="bg-red-100 p-4 rounded">
+          <h3 className="text-sm font-semibold">Build a FAANG-Worthy Resume — Fast.</h3>
+          <p className="text-xs text-gray-700 mt-1">
+            Proven templates that land interviews.
+          </p>
+       <a href="https://payments.cashfree.com/links?code=Y8smduv534ig" className="text-xs text-red-600 hover:underline mt-1 block">
+            Grab yours now at 70% OFF — limited time!
+          </a>
 
-    <a
-      href={mailtoLink}
-      className="text-xs text-white bg-red-600 hover:bg-red-700 transition px-3 py-1 rounded inline-block mt-2"
-    >
-      Click Me
-    </a>
-  </div>
+
+        </div>
       </aside>
      
     </div>

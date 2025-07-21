@@ -11,7 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { FaEye } from 'react-icons/fa';
+
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -24,7 +24,6 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showIntro, setShowIntro] = useState(true);
   const [forgotMode, setForgotMode] = useState(false);
-const [showPassword, setShowPassword] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setShowIntro(false), 2000);
@@ -73,11 +72,6 @@ const [showPassword, setShowPassword] = useState(false);
       toast.error(err.message || 'Error sending reset email.');
     }
   };
-  const handleShowPassword = () => {
-  setShowPassword(true);
-  setTimeout(() => setShowPassword(false), 3000);
-};
-
 
   return (
     <div className="fixed inset-0 bg-gradient-to-br from-indigo-100 to-blue-200 flex items-center justify-center overflow-hidden">
@@ -116,19 +110,18 @@ const [showPassword, setShowPassword] = useState(false);
                   placeholder="Last Name"
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                
-             <input
-  type="text"
-  required
-  onFocus={(e) => (e.target.type = 'date')}
-  onBlur={(e) => {
-    if (!e.target.value) e.target.type = 'text';
-  }}
-  value={dob}
-  onChange={(e) => setDob(e.target.value)}
-  placeholder="DOB"
-  className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-/>
+                            <input
+                  type="text"
+                  required
+                  onFocus={(e) => (e.target.type = 'date')}
+                  onBlur={(e) => {
+                    if (!e.target.value) e.target.type = 'text';
+                  }}
+                  value={dob}
+                  onChange={(e) => setDob(e.target.value)}
+                  placeholder="DOB"
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
               </>
             )}
 
@@ -141,25 +134,16 @@ const [showPassword, setShowPassword] = useState(false);
               className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
 
-           {!forgotMode && (
-  <div className="relative">
-    <input
-      type={showPassword ? 'text' : 'password'}
-      required
-      value={password}
-      onChange={(e) => setPassword(e.target.value)}
-      placeholder="Password"
-      className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 pr-10"
-    />
-    <button
-      type="button"
-      onClick={handleShowPassword}
-      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-blue-500 hover:text-blue-700"
-    >
-      <FaEye />
-    </button>
-  </div>
-)}
+            {!forgotMode && (
+              <input
+                type="password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Password"
+                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            )}
 
             <button
               type="submit"

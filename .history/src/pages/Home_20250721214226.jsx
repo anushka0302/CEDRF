@@ -132,15 +132,15 @@ useEffect(() => {
 }, []);
 
 
-const email = "infocedrf@protonmail.com";
+const email = "infoedrf@protonmail.com";
 const subject = "Interested in taking the FANG template";
 const body = `Hello, I found your FANG Template Resume on the website and would like to know more about your services.
 
 Please get back to me at your earliest convenience.
 
-Name: 
-Phone: 
-Email: 
+**Name**: 
+**Phone**: 
+**Email**: 
 `;
 
 const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

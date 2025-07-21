@@ -3,42 +3,44 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import logo from '../assets/logo.png';
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react'; // you can also use heroicons or inline svg
 
 export default function Navbar() {
   const { user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
-    <nav className="bg-white border-b shadow px-4 py-2 w-full">
-      {/* Top bar with logo, title, and hamburger */}
-      <div className="flex items-center justify-between relative">
-        {/* Logo (left) */}
+    <nav className="bg-white border-b shadow px-4 py-2">
+      <div className="flex items-center justify-between">
+        {/* Left: Logo */}
         <div className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+          <img src={logo} alt="Logo" className="w-12 h-12 object-contain" />
         </div>
 
-        {/* Center title */}
-        <div className="absolute left-1/2 transform -translate-x-1/2 text-center px-1 w-[80%] sm:w-auto">
-          <h1 className="text-[10px] sm:text-base font-bold text-blue-800 leading-tight break-words">
-            Comprehensive Educational Development
-
-           <br className="sm:hidden" />&nbsp;And Research Foundation
-            <div className="text-[9px] sm:text-xs text-black italic animate-pulse font-semibold mt-1">
+        {/* Center Title */}
+        <div className="absolute left-1/2 transform -translate-x-1/2 text-center">
+          <h1 className="text-base sm:text-lg font-bold text-blue-800 leading-snug">
+            Comprehensive Educational Development And Research Foundation
+            <div className="text-[11px] sm:text-xs text-black italic animate-pulse font-semibold">
               — Since 2009 —
             </div>
           </h1>
         </div>
 
-        {/* Hamburger icon (right for mobile) */}
-        <div className="sm:hidden z-10">
-          <button onClick={() => setMenuOpen(!menuOpen)}>
+        {/* Right: Hamburger Icon */}
+        <div className="sm:hidden">
+          <button
+            onClick={toggleMenu}
+            className="text-gray-700 focus:outline-none"
+          >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Desktop menu (right) */}
-        <div className="hidden sm:flex items-center font-medium space-x-6 text-sm z-10">
+        {/* Desktop Menu */}
+        <div className="hidden sm:flex items-center font-medium space-x-6 text-sm">
           <Link to="/jobs" className="text-gray-600 hover:underline transition">
             Jobs
           </Link>
@@ -49,7 +51,10 @@ export default function Navbar() {
             <span className="text-gray-600">Hello, {user.firstName}</span>
           )}
           {user ? (
-            <button onClick={logout} className="text-red-500 hover:underline transition">
+            <button
+              onClick={logout}
+              className="text-red-500 hover:underline transition"
+            >
               Logout
             </button>
           ) : (
@@ -60,13 +65,13 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile menu (dropdown below) */}
+      {/* Mobile Menu */}
       {menuOpen && (
-        <div className="sm:hidden mt-3 flex flex-col items-center space-y-3 text-sm font-medium">
-          <Link to="/jobs" onClick={() => setMenuOpen(false)} className="text-gray-600 hover:underline">
+        <div className="sm:hidden mt-4 flex flex-col items-center space-y-3 text-sm font-medium">
+          <Link to="/jobs" onClick={toggleMenu} className="text-gray-600 hover:underline">
             Jobs
           </Link>
-          <Link to="/about" onClick={() => setMenuOpen(false)} className="text-gray-600 hover:underline">
+          <Link to="/about" onClick={toggleMenu} className="text-gray-600 hover:underline">
             About
           </Link>
           {user?.firstName && (
@@ -75,7 +80,7 @@ export default function Navbar() {
           {user ? (
             <button
               onClick={() => {
-                setMenuOpen(false);
+                toggleMenu();
                 logout();
               }}
               className="text-red-500 hover:underline"
@@ -83,7 +88,11 @@ export default function Navbar() {
               Logout
             </button>
           ) : (
-            <Link to="/login" onClick={() => setMenuOpen(false)} className="text-blue-500 hover:underline">
+            <Link
+              to="/login"
+              onClick={toggleMenu}
+              className="text-blue-500 hover:underline"
+            >
               Login
             </Link>
           )}

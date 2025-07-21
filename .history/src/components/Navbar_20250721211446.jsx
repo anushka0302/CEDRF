@@ -22,8 +22,8 @@ export default function Navbar() {
         <div className="absolute left-1/2 transform -translate-x-1/2 text-center px-1 w-[80%] sm:w-auto">
           <h1 className="text-[10px] sm:text-base font-bold text-blue-800 leading-tight break-words">
             Comprehensive Educational Development
-
-           <br className="sm:hidden" />&nbsp;And Research Foundation
+            <br className="sm:hidden" />
+            And Research Foundation
             <div className="text-[9px] sm:text-xs text-black italic animate-pulse font-semibold mt-1">
               — Since 2009 —
             </div>

@@ -17,7 +17,6 @@ import CancellationPolicyPage from './pages/CancellationPolicyPage.jsx';
 import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import MentoringFormPage from './pages/MentoringFormPage.jsx';
 import AboutCEDRF from './pages/AboutCEDRF.jsx';
-import JobsPage from './pages/JobPage.jsx';
 function AppWrapper() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -43,7 +42,7 @@ function AppWrapper() {
              <Route path="/cancellation-policy" element={<PrivateRoute><CancellationPolicyPage/></PrivateRoute>} />
                <Route path="/privacy-policy" element={<PrivateRoute><PrivacyPolicy/></PrivateRoute>} />
 <Route path="/mentoring" element={<PrivateRoute><MentoringFormPage/></PrivateRoute>} />
-<Route path="/jobs" element={<PrivateRoute><JobsPage/></PrivateRoute>} />
+
 
         </Routes>
 
