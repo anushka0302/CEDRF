@@ -26,7 +26,6 @@ export default function CatalogPage() {
     init();
   }, []);
  useEffect(() => {
-    // Redirect to home if payment is complete
     if (user?.hasPaid) {
       navigate('/', { replace: true });
     }
@@ -47,7 +46,6 @@ export default function CatalogPage() {
         customer_phone: user.phone || '9999999999',
         amount: 599,
       });
-
       if (res.data && res.data.payment_session_id) {
         return {
           sessionId: res.data.payment_session_id,
@@ -78,7 +76,6 @@ export default function CatalogPage() {
       navigate('/catalog', { state: { paymentFailed: true } });
     }
   };
-
   const handleClick = async (e) => {
     e.preventDefault();
     const result = await getSessionId();
@@ -110,18 +107,14 @@ export default function CatalogPage() {
           </div>
           <button
             onClick={handleClick}
-            className="mt-6 bg-gradient-to-r from-blue-700 to-blue-900 text-white px-8 py-3 rounded-md font-semibold hover:scale-105 transition transform duration-300 shadow-lg"
-          >
+            className="mt-6 bg-gradient-to-r from-blue-700 to-blue-900 text-white px-8 py-3 rounded-md font-semibold hover:scale-105 transition transform duration-300 shadow-lg">
             Pay For Your Future Now
           </button>
         </div>
-
         <div className="md:w-1/2 z-10" data-aos="fade-left">
         <img src={stairimg} alt="DSA Stairs" style={{ width: '100%' }} />
-      
   </div>
       </section>
-
       {/* Curriculum Section */}
       <section className="px-6 md:px-16 py-12 bg-gray-50" data-aos="fade-up">
         <h2 className="text-2xl font-bold mb-4 text-blue-900">Structured Curriculum</h2>
@@ -130,8 +123,7 @@ export default function CatalogPage() {
           {['Arrays', 'Strings', 'Binary Search', 'Recursion', 'Linked List', 'Stacks & Queues'].map((item) => (
             <button
               key={item}
-              className="border border-gray-300 px-4 py-2 rounded-md text-left text-gray-800 font-medium hover:bg-white hover:shadow-lg transition duration-300"
-            >
+              className="border border-gray-300 px-4 py-2 rounded-md text-left text-gray-800 font-medium hover:bg-white hover:shadow-lg transition duration-300">
               {item}
             </button>
           ))}
@@ -179,8 +171,7 @@ export default function CatalogPage() {
         </div>
         <button
           onClick={handleClick}
-          className="bg-blue-700 text-white px-6 py-3 rounded-md font-bold hover:bg-blue-900 transition shadow-md hover:scale-105"
-        >
+          className="bg-blue-700 text-white px-6 py-3 rounded-md font-bold hover:bg-blue-900 transition shadow-md hover:scale-105">
           PAY ₹599 & START NOW
         </button>
       </section>
@@ -195,8 +186,7 @@ export default function CatalogPage() {
             </p>
             <button
               onClick={() => setShowPopup(false)}
-              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
-            >
+              className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
               Close
             </button>
           </div>
@@ -205,3 +195,4 @@ export default function CatalogPage() {
     </div>
   );
 }
+
