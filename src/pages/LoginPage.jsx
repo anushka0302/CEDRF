@@ -115,6 +115,7 @@ export default function LoginPage() {
                   required
                   value={dob}
                   onChange={(e) => setDob(e.target.value)}
+                  placeholder="DOB"
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
               </>
