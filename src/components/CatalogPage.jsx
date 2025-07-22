@@ -6,9 +6,8 @@ import { useAuth } from '../context/AuthContext';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import Footer from './Footer';
-import ScrollToTop  from './ScrollToTop'; 
+import ScrollToTop from './ScrollToTop';
 import stairimg from '../assets/mintinit.svg';
-
 
 export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
@@ -17,32 +16,33 @@ export default function CatalogPage() {
 
   const [paymentFailed, setPaymentFailed] = useState(location.state?.paymentFailed || false);
   const [showPopup, setShowPopup] = useState(paymentFailed);
- const [cashfreeInstance, setCashfreeInstance] = useState(null);
+  const [cashfreeInstance, setCashfreeInstance] = useState(null);
+  const [verifying, setVerifying] = useState(false);
 
-  //let cashfree;
-console.log("📦 CatalogPage loaded");
+  console.log("📦 CatalogPage loaded");
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
     const init = async () => {
       try {
-      const cf = await load({ mode: 'production' });
-      setCashfreeInstance(cf);
-      console.log("✅ Cashfree loaded");
-    } catch (e) {
-      console.error("❌ Cashfree load error", e);
-    }
+        const cf = await load({ mode: 'production' });
+        setCashfreeInstance(cf);
+        console.log("✅ Cashfree loaded");
+      } catch (e) {
+        console.error("❌ Cashfree load error", e);
+      }
     };
+
     init();
   }, []);
- useEffect(() => {
-  console.log("🔐 User is:", user);
 
-    if (user && user.hasPaid) {
+  useEffect(() => {
+    console.log("🔐 User is:", user);
+    if (user?.hasPaid) {
       navigate('/', { replace: true });
     }
   }, [user, navigate]);
-
 
   const getSessionId = async () => {
     if (!user) {
@@ -58,7 +58,8 @@ console.log("📦 CatalogPage loaded");
         customer_phone: user.phone || '9105498001',
         amount: 1,
       });
-      if (res.data && res.data.payment_session_id) {
+
+      if (res.data?.payment_session_id) {
         return {
           sessionId: res.data.payment_session_id,
           orderId: res.data.order_id,
@@ -73,52 +74,74 @@ console.log("📦 CatalogPage loaded");
     }
   };
 
-  const verifyPayment = async (orderId) => {
-    if (!orderId) return;
+  const pollVerifyPayment = (orderId) => {
+    let attempts = 0;
+    setVerifying(true);
 
-    try {
-      const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
-      if (res.data && res.data.success) {
-         console.log("✅ Verified. Now marking payment done.");
-       await markPaymentDone();
-        navigate('/');
-      } else {
+    const interval = setInterval(async () => {
+      try {
+        const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
+        console.log(`🌀 Poll attempt ${attempts + 1}:`, res.data);
+
+        if (res.data?.success) {
+          clearInterval(interval);
+          console.log("✅ Verified. Now marking payment done.");
+          await markPaymentDone();
+          navigate('/');
+        }
+      } catch (error) {
+        console.error("❌ Error verifying payment:", error.message);
+      }
+
+      attempts++;
+      if (attempts >= 5) {
+        clearInterval(interval);
+        setVerifying(false);
         navigate('/catalog', { state: { paymentFailed: true } });
       }
-    } catch (error) {
-      console.error("❌ Error verifying payment:", error);
-      navigate('/catalog', { state: { paymentFailed: true } });
-    }
+    }, 4000);
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
-     if (!cashfreeInstance) {
-    console.error("❌ Cashfree SDK not loaded yet");
-    return;
-  }
+
+    if (!cashfreeInstance) {
+      console.error("❌ Cashfree SDK not loaded yet");
+      return;
+    }
+
     const result = await getSessionId();
     if (!result) return;
 
     const { sessionId, orderId } = result;
 
     try {
-           await cashfreeInstance.checkout({ paymentSessionId: sessionId, redirectTarget: '_modal' });
-    verifyPayment(orderId);
-
+      await cashfreeInstance.checkout({ paymentSessionId: sessionId, redirectTarget: '_modal' });
+      pollVerifyPayment(orderId);
     } catch (error) {
-          console.error("❌ Checkout Error:", error);
-    navigate('/catalog', { state: { paymentFailed: true } });
-
+      console.error("❌ Checkout Error:", error);
+      navigate('/catalog', { state: { paymentFailed: true } });
     }
   };
-if (!cashfreeInstance || !user) {
-  return <div className="text-center p-8 text-gray-600">Loading...</div>;
-}
+
+  if (!cashfreeInstance || !user) {
+    return <div className="text-center p-8 text-gray-600">Loading...</div>;
+  }
+
+  if (verifying) {
+    return (
+      <div className="flex items-center justify-center h-screen bg-white">
+        <div className="text-center">
+          <div className="loader mb-4 border-4 border-blue-500 border-t-transparent rounded-full w-12 h-12 animate-spin"></div>
+          <p className="text-gray-700 text-lg">Verifying your payment...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-   
     <div className="bg-white min-h-screen font-sans overflow-x-hidden">
-      {/* Hero Section */}
-      <ScrollToTop/>
+      <ScrollToTop />
       <section className="relative flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-12 gap-8 bg-gradient-to-r from-gray-100 to-gray-300 shadow-inner">
         <div className="md:w-1/2 space-y-5 z-10" data-aos="fade-right">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-snug">
@@ -136,9 +159,10 @@ if (!cashfreeInstance || !user) {
           </button>
         </div>
         <div className="md:w-1/2 z-10" data-aos="fade-left">
-        <img src={stairimg} alt="DSA Stairs" style={{ width: '100%' }} />
-  </div>
+          <img src={stairimg} alt="DSA Stairs" style={{ width: '100%' }} />
+        </div>
       </section>
+
       {/* Curriculum Section */}
       <section className="px-6 md:px-16 py-12 bg-gray-50" data-aos="fade-up">
         <h2 className="text-2xl font-bold mb-4 text-blue-900">Structured Curriculum</h2>
@@ -188,7 +212,7 @@ if (!cashfreeInstance || !user) {
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* CTA */}
       <section className="px-6 md:px-16 py-10 bg-indigo-100 flex flex-col md:flex-row justify-between items-center gap-6" data-aos="zoom-in">
         <div className="text-lg font-semibold text-blue-900">
           ⏰ Monsoon Offer Ending Soon — Get Full Access for just ₹599
@@ -199,7 +223,9 @@ if (!cashfreeInstance || !user) {
           PAY ₹599 & START NOW
         </button>
       </section>
-<Footer/>
+
+      <Footer />
+
       {/* Payment Failed Popup */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
@@ -217,7 +243,5 @@ if (!cashfreeInstance || !user) {
         </div>
       )}
     </div>
-   
   );
 }
-
