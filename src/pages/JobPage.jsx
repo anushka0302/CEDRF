@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
-
+import Footer from "../components/Footer";
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGwA0BCBpGv51pmvnz5d-KwpbaipbOf5S7G5bnlY5TdRqalSiJYHKe-CQnuMLz6v5E1bM1GJlcego0/pub?output=csv";
 
@@ -58,6 +58,7 @@ export default function JobsPage() {
   const totalPages = Math.ceil(filteredJobs.length / JOBS_PER_PAGE);
 
   return (
+    <>
     <div className="p-6 bg-gray-50 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 text-center">🚀 Job Opportunities</h1>
 
@@ -134,6 +135,9 @@ export default function JobsPage() {
           ))}
         </div>
       )}
+     
     </div>
+     <Footer/>
+     </>
   );
 }

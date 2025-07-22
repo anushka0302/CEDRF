@@ -11,7 +11,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-
+import { Eye, EyeOff } from 'lucide-react';
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ export default function LoginPage() {
   const [password, setPassword] = useState('');
   const [showIntro, setShowIntro] = useState(true);
   const [forgotMode, setForgotMode] = useState(false);
-
+const [showPassword, setShowPassword] = useState(false);
   useEffect(() => {
     const timer = setTimeout(() => setShowIntro(false), 2000);
     return () => clearTimeout(timer);
@@ -135,14 +135,24 @@ export default function LoginPage() {
             />
 
             {!forgotMode && (
-              <input
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="Password"
-                className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+          <div className="relative w-full">
+      <input
+        type={showPassword ? 'text' : 'password'}
+        required
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        placeholder="Password"
+        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+      />
+      <button
+        type="button"
+        className="absolute inset-y-0 right-2 flex items-center text-gray-500"
+        onClick={() => setShowPassword((prev) => !prev)}
+        tabIndex={-1} // so it doesn't interfere with tabbing through the form
+      >
+        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+      </button>
+    </div>
             )}
 
             <button

@@ -1,7 +1,8 @@
 import React from "react";
-
+import Footer from "../components/Footer";
 const AboutCEDRF = () => {
   return (
+    <>
     <main className="max-w-4xl mx-auto font-sans px-6 py-12 text-gray-800">
       <h1 className="text-3xl font-bold mb-6">About CEDRF</h1>
 
@@ -95,7 +96,10 @@ const AboutCEDRF = () => {
           Facebook
         </a>
       </p>
+     
     </main>
+ <Footer/>
+    </>
   );
 };
 
