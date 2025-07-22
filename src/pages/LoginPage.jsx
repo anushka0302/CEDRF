@@ -88,6 +88,29 @@ const [showPassword, setShowPassword] = useState(false);
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.cedrf.com/logo.png" />
+     
+      <script type="application/ld+json">
+      {`
+        {
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          "name": "CEDRF",
+          "url": "https://www.cedrf.com",
+          "logo": "https://www.cedrf.com/logo.png",
+          "foundingDate": "2009",
+          "description": "Comprehensive Educational Development and Research Foundation - empowering India through education, research, and innovation.",
+          "sameAs": [
+            "https://www.linkedin.com/company/cedrf",
+            "https://twitter.com/cedrf"
+          ]
+        }
+      `}
+    </script>
+     
+     
+     
+     
+     
       </Helmet>
     <div className="fixed inset-0 bg-gradient-to-br from-indigo-100 to-blue-200 flex items-center justify-center overflow-hidden">
       <ToastContainer />
