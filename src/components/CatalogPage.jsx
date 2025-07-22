@@ -8,6 +8,7 @@ import 'aos/dist/aos.css';
 import Footer from './Footer';
 import ScrollToTop  from './ScrollToTop'; 
 import stairimg from '../assets/mintinit.svg';
+import { Helmet } from 'react-helmet';
 
 export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
@@ -92,6 +93,7 @@ export default function CatalogPage() {
   };
 
   return (
+    <Helmet>
     <div className="bg-white min-h-screen font-sans overflow-x-hidden">
       {/* Hero Section */}
       <ScrollToTop/>
@@ -193,6 +195,7 @@ export default function CatalogPage() {
         </div>
       )}
     </div>
+    </Helmet>
   );
 }
 

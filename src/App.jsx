@@ -18,6 +18,7 @@ import PrivacyPolicy from './pages/PrivacyPolicy.jsx';
 import MentoringFormPage from './pages/MentoringFormPage.jsx';
 import AboutCEDRF from './pages/AboutCEDRF.jsx';
 import JobsPage from './pages/JobPage.jsx';
+import { Helmet } from "react-helmet";
 function AppWrapper() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -28,6 +29,20 @@ function AppWrapper() {
   }
 
   return (
+    <>
+          <Helmet>
+        <title>CEDRF – Comprehensive Educational Development and Research Foundation</title>
+        <meta name="description" content="Empowering India with digital literacy, innovation, and education since 2009. Join CEDRF's mission to uplift communities nationwide." />
+        <meta name="keywords" content="CEDRF, Educational Foundation, Skill Development, Research, Digital Literacy, Innovation, Youth Empowerment, India, Education NGO, USA, World-wide, DSA, FAANG, Google, Microsoft, MNC, WWW, Job, Placement, Software Engineering, SDA, Gate, Btech, BCA, Mtech, MCA, Computer Science, DSA Patterns, Array, String, DP, Binary Tree, Queue, Stack, Linked list, Recursion, Advanced logic, OA, logical thinking, abstract thinking, logic building, easy DSA, DSA course, DSA patterns, Data Structures and Algorithms, DSA for coding interviews, Learn DSA online, DSA roadmap, DSA with JavaScript / Python / C++, Master DSA, data structures and algorithms for beginners, DSA pattern course for placements, DSA questions with solutions, system design and DSA, DSA cheat sheet, crack coding interviews with DSA, top DSA patterns for interviews, DSA in 30 days roadmap, DSA live classes with mentorship, DSA course with projects, DSA in JavaScript for frontend developers, DSA with Python for data science, DSA for full-stack developers, DSA using C++ for CP, Leetcode patterns in DSA"
+        />
+
+        <link rel="canonical" href="https://www.cedrf.com/" />
+        <meta property="og:image" content="https://www.cedrf.com/logo.png" />
+        <meta property="og:type" content="website" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://www.cedrf.com/logo.png" />
+      </Helmet>
+
     <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
       {!isLoginPage && <Navbar />}
       <div className="max-w-7xl mx-auto px-4 py-6">
@@ -51,7 +66,7 @@ function AppWrapper() {
         
       </div>
     </div>
-    
+    </>
   );
 }
 
