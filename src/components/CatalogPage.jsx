@@ -53,10 +53,10 @@ console.log("📦 CatalogPage loaded");
 
     try {
       const res = await axios.post('https://cedrf.umangmathpal.workers.dev/payment', {
-        customer_name: user.firstName || 'Customer',
+        customer_name: user.firstName || 'CEDRF',
         customer_email: user.email,
-        customer_phone: user.phone || '9999999999',
-        amount: 599,
+        customer_phone: user.phone || '9105498001',
+        amount: 1,
       });
       if (res.data && res.data.payment_session_id) {
         return {
