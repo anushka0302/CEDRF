@@ -19,7 +19,8 @@ export default function LoginPage() {
 
   const [isSignup, setIsSignup] = useState(false);
   const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [phone, setPhone] = useState('');
+
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -39,7 +40,7 @@ const [showPassword, setShowPassword] = useState(false);
 
       await setDoc(doc(db, 'users', uid), {
         firstName,
-        lastName,
+        phone,
         dob,
         email,
         hasPaid: false,
@@ -139,17 +140,21 @@ const [showPassword, setShowPassword] = useState(false);
                   required
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="First Name"
+                  placeholder="Name"
                   className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <input
-                  type="text"
-                  required
-                  value={lastName}
-                  onChange={(e) => setLastName(e.target.value)}
-                  placeholder="Last Name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
+                        <input
+              type="tel"
+              required
+              value={phone}
+              onChange={(e) => {
+                const val = e.target.value;
+                if (/^\d{0,10}$/.test(val)) setPhone(val); // allows only digits up to 10
+              }}
+              placeholder="Phone Number (10 digits)"
+              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+
                             <input
                   type="text"
                   required

@@ -19,8 +19,8 @@ export default function CatalogPage() {
   const [showPopup, setShowPopup] = useState(paymentFailed);
  const [cashfreeInstance, setCashfreeInstance] = useState(null);
 
-  //let cashfree;
-console.log("📦 CatalogPage loaded");
+  
+//console.log("📦 CatalogPage loaded");
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -28,7 +28,7 @@ console.log("📦 CatalogPage loaded");
       try {
       const cf = await load({ mode: 'production' });
       setCashfreeInstance(cf);
-      console.log("✅ Cashfree loaded");
+     // console.log("✅ Cashfree loaded");
     } catch (e) {
       console.error("❌ Cashfree load error", e);
     }
@@ -36,7 +36,7 @@ console.log("📦 CatalogPage loaded");
     init();
   }, []);
  useEffect(() => {
-  console.log("🔐 User is:", user);
+  //console.log("🔐 User is:", user);
 
     if (user && user.hasPaid) {
       navigate('/', { replace: true });
@@ -78,9 +78,9 @@ console.log("📦 CatalogPage loaded");
 
     try {
       const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
-     console.log(res.data);
+     //console.log(res.data);
       if (res.data && res.data.success) {
-         console.log("✅ Verified. Now marking payment done.");
+       //  console.log("✅ Verified. Now marking payment done.");
        await markPaymentDone();
         navigate('/');
       } else {
