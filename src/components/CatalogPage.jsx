@@ -8,7 +8,7 @@ import 'aos/dist/aos.css';
 import Footer from './Footer';
 import ScrollToTop  from './ScrollToTop'; 
 import stairimg from '../assets/mintinit.svg';
-import { Helmet } from 'react-helmet';
+
 
 export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
@@ -17,17 +17,28 @@ export default function CatalogPage() {
 
   const [paymentFailed, setPaymentFailed] = useState(location.state?.paymentFailed || false);
   const [showPopup, setShowPopup] = useState(paymentFailed);
-  let cashfree;
+ const [cashfreeInstance, setCashfreeInstance] = useState(null);
+
+  //let cashfree;
+console.log("📦 CatalogPage loaded");
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
     const init = async () => {
-      cashfree = await load({ mode: 'production' });
+      try {
+      const cf = await load({ mode: 'production' });
+      setCashfreeInstance(cf);
+      console.log("✅ Cashfree loaded");
+    } catch (e) {
+      console.error("❌ Cashfree load error", e);
+    }
     };
     init();
   }, []);
  useEffect(() => {
-    if (user?.hasPaid) {
+  console.log("🔐 User is:", user);
+
+    if (user && user.hasPaid) {
       navigate('/', { replace: true });
     }
   }, [user, navigate]);
@@ -79,21 +90,30 @@ export default function CatalogPage() {
   };
   const handleClick = async (e) => {
     e.preventDefault();
+     if (!cashfreeInstance) {
+    console.error("❌ Cashfree SDK not loaded yet");
+    return;
+  }
     const result = await getSessionId();
     if (!result) return;
 
     const { sessionId, orderId } = result;
 
     try {
-       await cashfree.checkout({ paymentSessionId: sessionId, redirectTarget: '_modal' });
-       verifyPayment(orderId);
+           await cashfreeInstance.checkout({ paymentSessionId: sessionId, redirectTarget: '_modal' });
+    verifyPayment(orderId);
+
     } catch (error) {
-      navigate('/catalog', { state: { paymentFailed: true } });
+          console.error("❌ Checkout Error:", error);
+    navigate('/catalog', { state: { paymentFailed: true } });
+
     }
   };
-
+if (!cashfreeInstance || !user) {
+  return <div className="text-center p-8 text-gray-600">Loading...</div>;
+}
   return (
-    <Helmet>
+   
     <div className="bg-white min-h-screen font-sans overflow-x-hidden">
       {/* Hero Section */}
       <ScrollToTop/>
@@ -195,7 +215,7 @@ export default function CatalogPage() {
         </div>
       )}
     </div>
-    </Helmet>
+   
   );
 }
 
