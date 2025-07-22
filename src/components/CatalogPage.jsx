@@ -22,7 +22,7 @@ export default function CatalogPage() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
     const init = async () => {
-      cashfree = await load({ mode: 'sandbox' });
+      cashfree = await load({ mode: 'production' });
     };
     init();
   }, []);
