@@ -79,12 +79,14 @@ console.log("📦 CatalogPage loaded");
     try {
       const res = await axios.post('https://cedrf.umangmathpal.workers.dev/verify', { orderId });
       if (res.data && res.data.success) {
-        markPaymentDone();
+         console.log("✅ Verified. Now marking payment done.");
+       await markPaymentDone();
         navigate('/');
       } else {
         navigate('/catalog', { state: { paymentFailed: true } });
       }
     } catch (error) {
+      console.error("❌ Error verifying payment:", error);
       navigate('/catalog', { state: { paymentFailed: true } });
     }
   };
