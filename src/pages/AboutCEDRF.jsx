@@ -65,10 +65,10 @@ const AboutCEDRF = () => {
 
       <h2 className="text-2xl font-semibold mt-8 mb-3">Connect With Us</h2>
 <p>
-  <span className="flex items-center gap-2">
+  {/*<span className="flex items-center gap-2">
     <HiMiniBuildingOffice2 />
     Haldwani, Uttarakhand, India
-  </span>
+  </span>*/}
   <span className="flex items-center gap-2 block mt-1">
     <CgWebsite />
     Website:{" "}
