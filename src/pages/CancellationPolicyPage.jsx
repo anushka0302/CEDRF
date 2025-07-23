@@ -70,12 +70,13 @@ export default function CancellationPolicyPage() {
       <strong>Phone:</strong> <a href="tel:+918630191968" className="text-blue-700 underline">+91 8630191968</a>
     </div>
   </li>
-  <li className="flex items-start gap-2">
+ {/*} <li className="flex items-start gap-2">
     <HiMiniBuildingOffice2 className="mt-1" />
     <div>
       <strong>Registered Address:</strong> CEDRF Learning, Haldwani, Uttarakhand, India
     </div>
   </li>
+  */}
   <li className="flex items-start gap-2">
     <GoLaw className="mt-1" />
     <div>
