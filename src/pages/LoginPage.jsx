@@ -17,7 +17,7 @@ export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [isSignup, setIsSignup] = useState(false);
+  const [isSignup, setIsSignup] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [phone, setPhone] = useState('');
 
@@ -78,6 +78,10 @@ const [showPassword, setShowPassword] = useState(false);
   return (
 
 <>
+ <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
        <Helmet>
         <title>CEDRF – Comprehensive Educational Development and Research Foundation</title>
         <meta name="description" content="Empowering India with digital literacy, innovation, and education since 2009. Join CEDRF's mission to uplift communities nationwide." />

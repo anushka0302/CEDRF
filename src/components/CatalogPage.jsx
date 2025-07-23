@@ -8,8 +8,10 @@ import 'aos/dist/aos.css';
 import Footer from './Footer';
 import ScrollToTop  from './ScrollToTop'; 
 import stairimg from '../assets/mintinit.svg';
-
-
+import { CiCalendarDate } from "react-icons/ci";
+import { HiOutlineBanknotes } from "react-icons/hi2";
+import { LiaChalkboardTeacherSolid } from "react-icons/lia";
+import { FcAlarmClock } from "react-icons/fc";
 export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
   const navigate = useNavigate();
@@ -116,7 +118,11 @@ if (!cashfreeInstance || !user) {
   return <div className="text-center p-8 text-gray-600">Loading...</div>;
 }
   return (
-   
+   <>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
     <div className="bg-white min-h-screen font-sans overflow-x-hidden">
       {/* Hero Section */}
       <ScrollToTop/>
@@ -167,12 +173,24 @@ if (!cashfreeInstance || !user) {
         <div className="md:w-1/2">
           <h3 className="text-xl font-bold mb-3 text-gray-900">Why Pay For This Course?</h3>
           <p className="text-gray-600 mb-4">Not just a course. A ₹LPA outcome.</p>
-          <ul className="space-y-2 text-gray-700">
-            <li>⚡ 12-Week Plan – Learn with structure</li>
-            <li>💼 FAANG-Level DSA – Practice real interview problems</li>
-            <li>🎯 Mentorship – Weekly live doubt-solving + resume</li>
-            <li className="text-sm mt-2 text-gray-500">Bonus: GitHub Projects | PDF Notes | Placement Assistance</li>
-          </ul>
+        <ul className="text-gray-700">
+  <li className="flex items-start gap-2">
+    <CiCalendarDate className="mt-0.5 text-xl" />
+    <span>12-Week Plan – Learn with structure</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <HiOutlineBanknotes className="mt-0.5 text-xl" />
+    <span>FAANG-Level DSA – Practice real interview problems</span>
+  </li>
+  <li className="flex items-start gap-2">
+    <LiaChalkboardTeacherSolid className="mt-0.5 text-xl" />
+    <span>Mentorship – Weekly live doubt-solving + resume</span>
+  </li>
+  <li className="text-sm mt-2 text-gray-500">
+    Bonus: GitHub Projects | PDF Notes | Placement Assistance
+  </li>
+</ul>
+
         </div>
         <div className="md:w-1/2">
           <h3 className="text-xl font-bold mb-3 text-gray-900">What Our Students Say</h3>
@@ -191,9 +209,11 @@ if (!cashfreeInstance || !user) {
 
       {/* Call to Action */}
       <section className="px-6 md:px-16 py-10 bg-indigo-100 flex flex-col md:flex-row justify-between items-center gap-6" data-aos="zoom-in">
-        <div className="text-lg font-semibold text-blue-900">
-          ⏰ Monsoon Offer Ending Soon — Get Full Access for just ₹499
+              <div className="text-lg font-semibold text-blue-900 flex items-center gap-2">
+          <FcAlarmClock />
+          Monsoon Offer Ending Soon — Get Full Access for just ₹499
         </div>
+
         <button
           onClick={handleClick}
           className="bg-blue-700 text-white px-6 py-3 rounded-md font-bold hover:bg-blue-900 transition shadow-md hover:scale-105">
@@ -218,6 +238,7 @@ if (!cashfreeInstance || !user) {
         </div>
       )}
     </div>
+    </>
    
   );
 }

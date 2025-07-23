@@ -1,6 +1,9 @@
 import React from 'react';
 import Footer from '../components/Footer';
 import ScrollToTop from '../components/ScrollToTop';
+import { MdMarkEmailRead } from "react-icons/md";
+import { IoPhonePortrait } from "react-icons/io5";
+import { HiMiniBuildingOffice2 } from "react-icons/hi2";
 export default function ContactUs() {
   return (
     <>
@@ -26,7 +29,7 @@ export default function ContactUs() {
           <div className="space-y-8 text-base md:text-lg">
             {/* Email */}
             <div className="flex items-start gap-4">
-              <span className="text-xl">📧</span>
+              <span className="text-xl p-1"><MdMarkEmailRead /></span>
               <div>
                 <h2 className="font-semibold text-gray-800">Email</h2>
                 <a
@@ -40,7 +43,7 @@ export default function ContactUs() {
 
             {/* Phone */}
             <div className="flex items-start gap-4">
-              <span className="text-xl">📞</span>
+              <span className="text-xl p-1"><IoPhonePortrait /></span>
               <div>
                 <h2 className="font-semibold text-gray-800">Phone</h2>
                 <a
@@ -52,7 +55,7 @@ export default function ContactUs() {
               </div>
             </div>
 
-            {/* Address */}
+            {/* Address 
             <div className="flex items-start gap-4">
               <span className="text-xl">📍</span>
               <div>
@@ -63,10 +66,10 @@ export default function ContactUs() {
                 </p>
               </div>
             </div>
-
+*/}
             {/* Legal Name */}
             <div className="flex items-start gap-4">
-              <span className="text-xl">🏢</span>
+              <span className="text-xl p-1"><HiMiniBuildingOffice2 /></span>
               <div>
                 <h2 className="font-semibold text-gray-800">Legal Name</h2>
                 <p className="text-gray-600">

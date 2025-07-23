@@ -1,10 +1,15 @@
 import React from "react";
 import Footer from "../components/Footer";
-
+import { MdMarkEmailRead } from "react-icons/md";
+import { HiMiniBuildingOffice2 } from "react-icons/hi2";
+import { CgWebsite } from "react-icons/cg";
 const AboutCEDRF = () => {
   return (
     <>
-   
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
     <main className="max-w-4xl mx-auto font-sans px-6 py-12 text-gray-800">
       <h1 className="text-3xl font-bold mb-6">About CEDRF</h1>
 
@@ -47,7 +52,7 @@ const AboutCEDRF = () => {
 
       <h2 className="text-2xl font-semibold mt-8 mb-3">Backed by Passion, Not Profits</h2>
       <p className="mb-6">
-        CEDRF operates with a not-for-profit mindset — we’ve kept our DSA course at just ₹599 so
+        CEDRF operates with a not-for-profit mindset — we’ve kept our DSA course at just ₹499 so
         that every student, regardless of background, can access world-class education and
         mentorship.
       </p>
@@ -59,28 +64,37 @@ const AboutCEDRF = () => {
       </p>
 
       <h2 className="text-2xl font-semibold mt-8 mb-3">Connect With Us</h2>
-      <p className="space-y-1">
-        📍 Haldwani, Uttarakhand, India <br />
-        🌐 Website:{" "}
-        <a
-          href="https://www.cedrf.com"
-          className="text-blue-600 hover:underline"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          www.cedrf.com
-        </a>
+<p>
+  <span className="flex items-center gap-2">
+    <HiMiniBuildingOffice2 />
+    Haldwani, Uttarakhand, India
+  </span>
+  <span className="flex items-center gap-2 block mt-1">
+    <CgWebsite />
+    Website:{" "}
+    <a
+      href="https://www.cedrf.com"
+      className="text-blue-600 hover:underline"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      www.cedrf.com
+    </a>
+  </span>
+  <span className="flex items-center gap-2 block mt-1">
+    <MdMarkEmailRead />
+    Email:{" "}
+    <a
+      href="mailto:infocedrf@protonmail.com"
+      className="text-blue-600 hover:underline"
+    >
+      infocedrf@protonmail.com
+    </a>
+  </span>
+
         <br />
-        📧 Email:{" "}
-        <a
-          href="mailto:infocedrf@protonmail.com"
-          className="text-blue-600 hover:underline"
-        >
-          infoedrf@protonmail.com
-        </a>
-        <br />
-        🔗{" "}
-      {/*  <a
+      {/*    🔗{" "}
+      <a
           href="https://www.linkedin.com/company/cedrf"
           className="text-blue-600 hover:underline"
           target="_blank"

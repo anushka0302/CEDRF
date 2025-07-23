@@ -2,6 +2,11 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
+    <>
+     <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
     <footer className="border-t border-gray-200 text-sm text-gray-700 font-sans">
       <div className="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {/* Brand Info */}
@@ -76,5 +81,6 @@ export default function Footer() {
         Designed with <span className="text-red-500">❤️</span> by AU Team
       </div>
     </footer>
+    </>
   );
 }

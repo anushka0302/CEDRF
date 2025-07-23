@@ -24,6 +24,11 @@ export default function Navbar() {
   const isActive = (path) => location.pathname === path;
 
   return (
+    <>
+     <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
     <nav className="bg-white border-b shadow px-4 py-2 w-full relative z-50">
       {/* Outer Wrapper for Navbar */}
       <div className="flex items-center justify-between w-full relative">
@@ -136,5 +141,6 @@ export default function Navbar() {
         </div>
       )}
     </nav>
+    </>
   );
 }

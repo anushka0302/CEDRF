@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Papa from "papaparse";
 import Footer from "../components/Footer";
+import { SiLaunchpad } from "react-icons/si";
+
 const GOOGLE_SHEET_CSV_URL =
   "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGwA0BCBpGv51pmvnz5d-KwpbaipbOf5S7G5bnlY5TdRqalSiJYHKe-CQnuMLz6v5E1bM1GJlcego0/pub?output=csv";
 
@@ -60,7 +62,15 @@ export default function JobsPage() {
   return (
     <>
     <div className="p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 text-center">🚀 Job Opportunities</h1>
+    
+      <h1 className="text-3xl font-bold mb-6 text-center">
+  <span className="inline-flex items-center justify-center gap-2">
+    <SiLaunchpad />
+    Job Opportunities
+    <SiLaunchpad />
+  </span>
+</h1>
+
 
       <div className="mb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <input

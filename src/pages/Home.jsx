@@ -148,6 +148,10 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
 
   return (
     <>
+     <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+        rel="stylesheet"
+      />
     <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-50">
      <ScrollToTop/>
       <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">

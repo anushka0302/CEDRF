@@ -1,6 +1,7 @@
 import Footer from "../components/Footer";
 import ScrollToTop from "../components/ScrollToTop";
-
+import { MdMarkEmailRead } from "react-icons/md";
+import { IoPhonePortrait } from "react-icons/io5";
 export default function TermsOfUse() {
   return (
     <>
@@ -101,14 +102,23 @@ export default function TermsOfUse() {
           </p>*/}
 
        <h2 className="text-2xl font-semibold text-blue-800 mt-8 mb-3">14. Contact Information</h2>
-          <p className="mb-5 leading-relaxed">
-            For any questions regarding these Terms, feel free to reach out to us:
-            <br />
-            📧 <a href="mailto:infocedrf@protonmail.com" className="text-blue-600 hover:underline">infocedrf@protonmail.com</a>
-            <br />
-            📞 <a href="tel:+918630191968" className="text-blue-600 hover:underline">+91 8630191968</a>
-            <br />
-          </p>
+         <p className="mb-5 leading-relaxed">
+  For any questions regarding these Terms, feel free to reach out to us:
+  <br />
+  <span className="flex items-center gap-2 mt-2">
+    <MdMarkEmailRead />
+    <a href="mailto:infocedrf@protonmail.com" className="text-blue-600 hover:underline">
+      infocedrf@protonmail.com
+    </a>
+  </span>
+  <span className="flex items-center gap-2 mt-2">
+    <IoPhonePortrait />
+    <a href="tel:+918630191968" className="text-blue-600 hover:underline">
+      +91 8630191968
+    </a>
+  </span>
+</p>
+
 
           <p className="mt-10 text-sm text-gray-500 text-right">
             Last updated: {new Date().toLocaleDateString()}
