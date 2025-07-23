@@ -30,9 +30,7 @@ function AppWrapper() {
 
   return (
     <>
-       
-
-    <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
+       <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
       {!isLoginPage && <Navbar />}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <Routes>

@@ -1,96 +1,140 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import logo from '../assets/logo.png';
+import React, { useState, useEffect } from 'react';
+import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, logout } = useAuth();
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobileView(width < 1080); // Slightly increased for better spacing
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  const isActive = (path) => location.pathname === path;
 
   return (
-    <>
-      {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full bg-white shadow z-50">
-        <div className="flex items-center justify-between px-4 py-2 sm:px-6 xl:px-12">
-          {/* Left: Logo */}
-          <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="CEDRF" className="h-10 w-auto" />
-          </div>
+    <nav className="bg-white border-b shadow px-4 py-2 w-full relative z-50">
+      {/* Outer Wrapper for Navbar */}
+      <div className="flex items-center justify-between w-full relative">
+        {/* Logo (left) */}
+        <div className="flex items-center space-x-2">
+          <img src={logo} alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+        </div>
 
-          {/* Center: Title & Subtitle */}
-          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2 text-center pointer-events-none whitespace-nowrap">
-            <div className="text-blue-800 font-semibold text-sm sm:text-base md:text-lg">
-              Comprehensive Educational Development And Research Foundation
+        {/* Center: Title and subtitle */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+          <h1 className="text-[10px] sm:text-sm md:text-base font-bold text-blue-800 leading-tight break-words whitespace-pre-wrap">
+            Comprehensive Educational Development<br className="sm:hidden" />
+            <span className="inline-block">&nbsp;And Research Foundation</span>
+            <div className="text-[9px] sm:text-xs text-black italic animate-pulse font-semibold mt-1">
+              — Since 2009 —
             </div>
-            <div className="text-xs italic text-gray-600 animate-pulse">— Since 2009 —</div>
-          </div>
+          </h1>
+        </div>
 
-          {/* Right: Nav Links (hidden below xl to prevent overlap) */}
-          <div className="hidden xl:flex items-center space-x-6">
-            <NavLink to="/jobs" label="Jobs" currentPath={location.pathname} />
-            <NavLink to="/about" label="About" currentPath={location.pathname} />
-            <span className="text-gray-800">Hello, Anushka</span>
-            <button className="text-red-600 hover:text-red-800">Logout</button>
-          </div>
-
-          {/* Hamburger icon on smaller screens (below xl) */}
-          <div className="xl:hidden">
-            <button onClick={() => setIsMenuOpen(true)} className="text-gray-700 focus:outline-none">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
+        {/* Right side: Links or Hamburger */}
+        <div className="flex items-center">
+          {isMobileView ? (
+            <button className="z-10" onClick={() => setMenuOpen(!menuOpen)}>
+              {menuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
-          </div>
-        </div>
-      </nav>
-
-      {/* Side Drawer */}
-      <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-md z-50 transform transition-transform duration-300 ${
-          isMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between items-center p-4 border-b">
-          <h2 className="text-lg font-semibold">Menu</h2>
-          <button onClick={() => setIsMenuOpen(false)} className="text-gray-600 hover:text-black">
-            <svg className="h-6 w-6" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
-        </div>
-        <div className="flex flex-col px-4 py-4 space-y-4">
-          <Link to="/jobs" className="text-gray-700 hover:text-blue-600 " onClick={() => setIsMenuOpen(false)}>Jobs</Link>
-          <Link to="/about" className="text-gray-700 hover:text-blue-600 " onClick={() => setIsMenuOpen(false)}>About</Link>
-          <span className="text-gray-800">Hello, Anushka</span>
-          <button className="text-red-600 hover:text-red-800" onClick={() => setIsMenuOpen(false)}>Logout</button>
+          ) : (
+            <div className="flex items-center space-x-4 font-medium text-sm">
+              <Link
+                to="/jobs"
+                className={`${
+                  isActive('/jobs') ? 'text-blue-600 underline' : 'text-gray-600'
+                } hover:text-blue-600 hover:underline transition`}
+              >
+                Jobs
+              </Link>
+              <Link
+                to="/about"
+                className={`${
+                  isActive('/about') ? 'text-blue-600 underline' : 'text-gray-600'
+                } hover:text-blue-600 hover:underline transition`}
+              >
+                About
+              </Link>
+              {user?.firstName && (
+                <span className="text-gray-600">Hello, {user.firstName}</span>
+              )}
+              {user ? (
+                <button
+                  onClick={logout}
+                  className="text-red-500 hover:text-red-700 hover:underline transition"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link
+                  to="/login"
+                  className="text-blue-500 hover:text-blue-700 hover:underline transition"
+                >
+                  Login
+                </Link>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Overlay */}
-      {isMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-40 z-40"
-          onClick={() => setIsMenuOpen(false)}
-        />
+      {/* Mobile Dropdown - aligned to right */}
+      {isMobileView && menuOpen && (
+        <div className="absolute right-4 mt-2 flex flex-col items-end space-y-3 text-sm font-medium">
+          <Link
+            to="/jobs"
+            onClick={() => setMenuOpen(false)}
+            className={`${
+              isActive('/jobs') ? 'text-blue-600 underline' : 'text-gray-600'
+            } hover:text-blue-600 hover:underline`}
+          >
+            Jobs
+          </Link>
+          <Link
+            to="/about"
+            onClick={() => setMenuOpen(false)}
+            className={`${
+              isActive('/about') ? 'text-blue-600 underline' : 'text-gray-600'
+            } hover:text-blue-600 hover:underline`}
+          >
+            About
+          </Link>
+          {user?.firstName && (
+            <span className="text-gray-600">Hello, {user.firstName}</span>
+          )}
+          {user ? (
+            <button
+              onClick={() => {
+                setMenuOpen(false);
+                logout();
+              }}
+              className="text-red-500 hover:text-red-700 hover:underline"
+            >
+              Logout
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              onClick={() => setMenuOpen(false)}
+              className="text-blue-500 hover:text-blue-700 hover:underline"
+            >
+              Login
+            </Link>
+          )}
+        </div>
       )}
-
-      {/* Push content below navbar */}
-      <div className="pt-16" />
-    </>
-  );
-}
-
-// 🔁 Helper to show underline on active link
-function NavLink({ to, label, currentPath }) {
-  const isActive = currentPath === to;
-  return (
-    <Link
-      to={to}
-      className={`${
-        isActive
-          ? "border-b-2 border-blue-600 text-blue-700"
-          : "text-gray-700"
-      } hover:text-blue-600`}
-    >
-      {label}
-    </Link>
+    </nav>
   );
 }
