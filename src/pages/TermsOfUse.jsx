@@ -106,9 +106,8 @@ export default function TermsOfUse() {
             <br />
             📧 <a href="mailto:infocedrf@protonmail.com" className="text-blue-600 hover:underline">infocedrf@protonmail.com</a>
             <br />
-            📞 <a href="tel:+917060666870" className="text-blue-600 hover:underline">+91 70606 66870</a>
+            📞 <a href="tel:+918630191968" className="text-blue-600 hover:underline">+91 8630191968</a>
             <br />
-            📍 Gurudwara Road, Charayal Nayabad, Haldwani (Nainital), Uttarakhand 263139
           </p>
 
           <p className="mt-10 text-sm text-gray-500 text-right">

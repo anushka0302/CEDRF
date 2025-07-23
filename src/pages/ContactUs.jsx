@@ -44,10 +44,10 @@ export default function ContactUs() {
               <div>
                 <h2 className="font-semibold text-gray-800">Phone</h2>
                 <a
-                  href="tel:+917060666870"
+                  href="tel:+918630191968"
                   className="text-blue-600 hover:underline"
                 >
-                  +91 70606 66870
+                  +91 8630191968
                 </a>
               </div>
             </div>

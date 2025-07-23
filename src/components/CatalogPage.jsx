@@ -123,11 +123,11 @@ if (!cashfreeInstance || !user) {
       <section className="relative flex flex-col md:flex-row justify-between items-center px-6 md:px-16 py-12 gap-8 bg-gradient-to-r from-gray-100 to-gray-300 shadow-inner">
         <div className="md:w-1/2 space-y-5 z-10" data-aos="fade-right">
           <h1 className="text-3xl md:text-5xl font-bold text-gray-900 leading-snug">
-            Pay ₹599 for your Future – Become FAANG-Ready in 12 Weeks
+            Pay ₹499 for your Future – Become FAANG-Ready in 8 Weeks
           </h1>
           <div className="flex items-center space-x-4">
             <span className="border-2 border-black px-4 py-1 rounded text-lg font-medium animate-pulse">
-              Launch Offer: ₹599
+              Launch Offer: ₹499
             </span>
           </div>
           <button
@@ -192,12 +192,12 @@ if (!cashfreeInstance || !user) {
       {/* Call to Action */}
       <section className="px-6 md:px-16 py-10 bg-indigo-100 flex flex-col md:flex-row justify-between items-center gap-6" data-aos="zoom-in">
         <div className="text-lg font-semibold text-blue-900">
-          ⏰ Monsoon Offer Ending Soon — Get Full Access for just ₹599
+          ⏰ Monsoon Offer Ending Soon — Get Full Access for just ₹499
         </div>
         <button
           onClick={handleClick}
           className="bg-blue-700 text-white px-6 py-3 rounded-md font-bold hover:bg-blue-900 transition shadow-md hover:scale-105">
-          PAY ₹599 & START NOW
+          PAY ₹499 & START NOW
         </button>
       </section>
 <Footer/>

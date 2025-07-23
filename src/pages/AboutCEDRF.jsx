@@ -80,7 +80,7 @@ const AboutCEDRF = () => {
         </a>
         <br />
         🔗{" "}
-        <a
+      {/*  <a
           href="https://www.linkedin.com/company/cedrf"
           className="text-blue-600 hover:underline"
           target="_blank"
@@ -97,6 +97,7 @@ const AboutCEDRF = () => {
         >
           Facebook
         </a>
+        */}
       </p>
      
     </main>

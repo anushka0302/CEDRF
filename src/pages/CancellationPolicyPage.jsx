@@ -56,7 +56,7 @@ export default function CancellationPolicyPage() {
           </p>
           <ul className="space-y-1">
             <li><strong>Email:</strong> <a href="mailto:infocedrf@protonmail.com" className="text-blue-700 underline">infocedrf@protonmail.com</a></li>
-            <li><strong>Phone:</strong> <a href="tel:+917060666870" className="text-blue-700 underline">+91 7060666870</a></li>
+            <li><strong>Phone:</strong> <a href="tel:+918630191968" className="text-blue-700 underline">+91 8630191968</a></li>
             <li><strong>Registered Address:</strong> CEDRF Learning, Haldwani, Uttarakhand, India</li>
             <li><strong>Legal Entity:</strong> Comprehensive Educational Development and Research Foundation</li>
           </ul>
