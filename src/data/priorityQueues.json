@@ -41,7 +41,7 @@
     "clue": "Look for problems where you maintain a sliding window of fixed size and efficiently find the maximum or minimum element.",
     "questions": [
       { "title": "Sliding Window Maximum", "url": "https://leetcode.com/problems/sliding-window-maximum/" },
-      { "title": "Maximum Sum of Subarray of Size K", "url": "https://leetcode.com/problems/maximum-sum-of-subarray-of-size-k/" },
+      { "title": "Maximum Sum of Subarray of Size K", "url": "https://www.naukri.com/code360/problems/maximum-subarray-sum_630526" },
       { "title": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/" },
       { "title": "Max Consecutive Ones III", "url": "https://leetcode.com/problems/max-consecutive-ones-iii/" },
       { "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit", "url": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/" }
@@ -53,9 +53,9 @@
     "clue": "Look for problems where you need to design a data structure using priority queues for various functionalities.",
     "questions": [
       { "title": "Design Twitter", "url": "https://leetcode.com/problems/design-twitter/" },
-      { "title": "Design Hit Counter", "url": "https://leetcode.com/problems/design-hit-counter/" },
+      { "title": "Design Hit Counter", "url": "https://www.geeksforgeeks.org/system-design/design-a-hit-counter/" },
       { "title": "Design Browser History", "url": "https://leetcode.com/problems/design-browser-history/" },
-      { "title": "Design Snake Game", "url": "https://leetcode.com/problems/design-snake-game/" },
+      { "title": "Design Snake Game", "url": "https://www.geeksforgeeks.org/advance-java/design-snake-game/" },
       { "title": "Design a Leaderboard", "url": "https://leetcode.com/problems/design-a-leaderboard/" }
     ]
   },
@@ -65,7 +65,7 @@
     "clue": "Look for problems where you construct or manipulate data structures based on specific rules using priority queues.",
     "questions": [
       { "title": "Task Scheduler", "url": "https://leetcode.com/problems/task-scheduler/" },
-      { "title": "Rearrange String K Distance Apart", "url": "https://leetcode.com/problems/rearrange-string-k-distance-apart/" },
+      { "title": "Rearrange String K Distance Apart", "url": "https://www.naukri.com/code360/problems/rearrange-characters_982765" },
       { "title": "Reorganize String", "url": "https://leetcode.com/problems/reorganize-string/" },
       { "title": "Distant Barcodes", "url": "https://leetcode.com/problems/distant-barcodes/" },
       { "title": "Rearrange Words in a Sentence", "url": "https://leetcode.com/problems/rearrange-words-in-a-sentence/" }
@@ -79,7 +79,7 @@
       { "title": "Network Delay Time", "url": "https://leetcode.com/problems/network-delay-time/" },
       { "title": "Cheapest Flights Within K Stops", "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/" },
       { "title": "Path with Maximum Probability", "url": "https://leetcode.com/problems/path-with-maximum-probability/" },
-      { "title": "The Maze II", "url": "https://leetcode.com/problems/the-maze-ii/" },
+      { "title": "The Maze II", "url": "https://www.spoj.com/problems/MICEMAZE/" },
       { "title": "Kth Smallest Element in a Sorted Matrix", "url": "https://leetcode.com/problems/kth-smallest-element-in-a-sorted-matrix/" }
     ]
   }

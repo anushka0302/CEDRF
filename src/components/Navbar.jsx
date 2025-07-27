@@ -1,8 +1,8 @@
-import { Link, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
-import logo from '../assets/logo.png';
-import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Link, useLocation } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import logo from "../assets/logo.svg";
+import { useState, useEffect } from "react";
+import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const { user, logout } = useAuth();
@@ -12,135 +12,154 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      const width = window.innerWidth;
-      setIsMobileView(width < 1080); // Slightly increased for better spacing
+      setIsMobileView(window.innerWidth < 1080);
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const isActive = (path) => location.pathname === path;
 
   return (
-    <>
-     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
-    <nav className="bg-white border-b shadow px-4 py-2 w-full relative z-50">
-      {/* Outer Wrapper for Navbar */}
+    <nav className="bg-gray-900 border-b border-gray-800 px-4 py-3 w-full relative z-50">
       <div className="flex items-center justify-between w-full relative">
-        {/* Logo (left) */}
-        <div className="flex items-center space-x-2">
-          <img src={logo} alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12 object-contain" />
+        {/* Logo */}
+        <div className="flex items-center space-x-3">
+          <img
+            src={logo}
+            alt="Logo"
+            className="w-8 h-8 sm:w-10 sm:h-10 object-contain "
+          />
+          <div className="hidden sm:block">
+            <h1 className="text-white text-lg font-serif italic">CEDRF</h1>
+            <p className="text-gray-500 text-xs font-serif italic leading-tight">
+              Since 2009
+            </p>
+          </div>
         </div>
 
-        {/* Center: Title and subtitle */}
-        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-          <h1 className="text-[10px] sm:text-sm md:text-base font-bold text-blue-800 leading-tight break-words whitespace-pre-wrap">
-            Comprehensive Educational Development<br className="sm:hidden" />
-            <span className="inline-block">&nbsp;And Research Foundation</span>
-            <div className="text-[9px] sm:text-xs text-black italic animate-pulse font-semibold mt-1">
-              — Since 2009 —
-            </div>
-          </h1>
+        {/* Center Title - Mobile */}
+        <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center sm:hidden">
+          <h1 className="text-white text-sm font-serif italic">CEDRF</h1>
+          <p className="text-gray-500 text-xs font-serif italic">Since 2009</p>
         </div>
 
-        {/* Right side: Links or Hamburger */}
-        <div className="flex items-center">
-          {isMobileView ? (
-            <button className="z-10" onClick={() => setMenuOpen(!menuOpen)}>
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-          ) : (
-            <div className="flex items-center space-x-4 font-medium text-sm">
-              <Link
-                to="/jobs"
-                className={`${
-                  isActive('/jobs') ? 'text-blue-600 underline' : 'text-gray-600'
-                } hover:text-blue-600 hover:underline transition`}
+        {/* Desktop Navigation */}
+        {!isMobileView ? (
+          <div className="flex items-center space-x-6 italic ">
+            <Link
+              to="/jobs"
+              className={`transition-colors ${
+                isActive("/jobs")
+                  ? "text-[#ff6d00] "
+                  : "text-gray-300 hover:text-[#ff6d00]"
+              }`}
+            >
+              Jobs
+            </Link>
+            <Link
+              to="/about"
+              className={`transition-colors ${
+                isActive("/about")
+                  ? "text-[#ff6d00] "
+                  : "text-gray-300 hover:text-[#ff6d00]"
+              }`}
+            >
+              About
+            </Link>
+            {user?.firstName && (
+              <span className="text-gray-400 text-sm">
+                Hello, {user.firstName}
+              </span>
+            )}
+            {user ? (
+              <button
+                onClick={logout}
+                className="text-[#ff6d00] hover:text-[#ff6d00] transition-colors font-semibold"
               >
-                Jobs
-              </Link>
+                Logout
+              </button>
+            ) : (
               <Link
-                to="/about"
-                className={`${
-                  isActive('/about') ? 'text-blue-600 underline' : 'text-gray-600'
-                } hover:text-blue-600 hover:underline transition`}
+                to="/login"
+                className="bg-[#ff6d00] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#ff6d00] transition-colors"
               >
-                About
+                Login
               </Link>
-              {user?.firstName && (
-                <span className="text-gray-600">Hello, {user.firstName}</span>
-              )}
+            )}
+          </div>
+        ) : (
+          /* Mobile Menu Button */
+          <button
+            className="z-10 text-gray-300 hover:text-white transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        )}
+      </div>
+
+      {/* Mobile Dropdown Menu */}
+      {isMobileView && menuOpen && (
+        <div className="absolute right-4 top-full mt-2 bg-black border border-gray-800 rounded-lg shadow-lg py-3 px-4 min-w-[160px]">
+          <div className="flex flex-col space-y-3 text-sm">
+            <Link
+              to="/jobs"
+              onClick={() => setMenuOpen(false)}
+              className={`text-left transition-colors ${
+                isActive("/jobs")
+                  ? "text-[#ff6d00] font-semibold"
+                  : "text-gray-300 hover:text-[#ff6d00]"
+              }`}
+            >
+              Jobs
+            </Link>
+            <Link
+              to="/about"
+              onClick={() => setMenuOpen(false)}
+              className={`text-left transition-colors ${
+                isActive("/about")
+                  ? "text-[#ff6d00] font-semibold"
+                  : "text-gray-300 hover:text-[#ff6d00]"
+              }`}
+            >
+              About
+            </Link>
+            {user?.firstName && (
+              <div className="border-t border-gray-800 pt-3">
+                <span className="text-gray-400 text-sm">
+                  Hello, {user.firstName}
+                </span>
+              </div>
+            )}
+            <div
+              className={user?.firstName ? "" : "border-t border-gray-800 pt-3"}
+            >
               {user ? (
                 <button
-                  onClick={logout}
-                  className="text-red-500 hover:text-red-700 hover:underline transition"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    logout();
+                  }}
+                  className="text-[#ff6d00] hover:text-[#ff6d00] transition-colors font-semibold text-left w-full"
                 >
                   Logout
                 </button>
               ) : (
                 <Link
                   to="/login"
-                  className="text-blue-500 hover:text-blue-700 hover:underline transition"
+                  onClick={() => setMenuOpen(false)}
+                  className="bg-[#ff6d00] text-white px-4 py-2 rounded text-sm font-semibold hover:bg-[#ff6d00] transition-colors block text-center"
                 >
                   Login
                 </Link>
               )}
             </div>
-          )}
-        </div>
-      </div>
-
-      {/* Mobile Dropdown - aligned to right */}
-      {isMobileView && menuOpen && (
-        <div className="absolute right-4 mt-2 flex flex-col items-end space-y-3 text-sm font-medium">
-          <Link
-            to="/jobs"
-            onClick={() => setMenuOpen(false)}
-            className={`${
-              isActive('/jobs') ? 'text-blue-600 underline' : 'text-gray-600'
-            } hover:text-blue-600 hover:underline`}
-          >
-            Jobs
-          </Link>
-          <Link
-            to="/about"
-            onClick={() => setMenuOpen(false)}
-            className={`${
-              isActive('/about') ? 'text-blue-600 underline' : 'text-gray-600'
-            } hover:text-blue-600 hover:underline`}
-          >
-            About
-          </Link>
-          {user?.firstName && (
-            <span className="text-gray-600">Hello, {user.firstName}</span>
-          )}
-          {user ? (
-            <button
-              onClick={() => {
-                setMenuOpen(false);
-                logout();
-              }}
-              className="text-red-500 hover:text-red-700 hover:underline"
-            >
-              Logout
-            </button>
-          ) : (
-            <Link
-              to="/login"
-              onClick={() => setMenuOpen(false)}
-              className="text-blue-500 hover:text-blue-700 hover:underline"
-            >
-              Login
-            </Link>
-          )}
+          </div>
         </div>
       )}
     </nav>
-    </>
   );
 }

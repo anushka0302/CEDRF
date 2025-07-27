@@ -5,7 +5,7 @@
     "clue": "Look for problems where you need to group nodes based on their connectivity, often involving DFS or BFS traversal.",
     "questions": [
       { "title": "Number of Islands", "url": "https://leetcode.com/problems/number-of-islands/" },
-      { "title": "Connected Components in Undirected Graph", "url": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/" },
+      { "title": "Connected Components in Undirected Graph", "url": "https://www.geeksforgeeks.org/problems/connected-components-in-an-undirected-graph/1" },
       { "title": "Friend Circles", "url": "https://leetcode.com/problems/friend-circles/" },
       { "title": "Accounts Merge", "url": "https://leetcode.com/problems/accounts-merge/" },
       { "title": "Redundant Connection", "url": "https://leetcode.com/problems/redundant-connection/" }
@@ -20,7 +20,7 @@
       { "title": "Cheapest Flights Within K Stops", "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/" },
       { "title": "Shortest Path in Binary Matrix", "url": "https://leetcode.com/problems/shortest-path-in-binary-matrix/" },
       { "title": "Word Ladder", "url": "https://leetcode.com/problems/word-ladder/" },
-      { "title": "Maze", "url": "https://leetcode.com/problems/the-maze/" }
+      { "title": "Maze", "url": "https://www.geeksforgeeks.org/problems/rat-in-a-maze-problem/1" }
     ]
   },
   {
@@ -42,9 +42,9 @@
     "questions": [
       { "title": "Is Graph Bipartite?", "url": "https://leetcode.com/problems/is-graph-bipartite/" },
       { "title": "Possible Bipartition", "url": "https://leetcode.com/problems/possible-bipartition/" },
-      { "title": "Bipartite", "url": "https://leetcode.com/problems/bipartite-graph/" },
-      { "title": "Graph Coloring", "url": "https://leetcode.com/problems/graph-coloring/" },
-      { "title": "Matching Bipartite Graph", "url": "https://leetcode.com/problems/matching-bipartite-graph/" }
+      { "title": "Bug Life", "url": "https://www.spoj.com/problems/BUGLIFE/" },
+      { "title": "Graph Coloring", "url": "https://www.naukri.com/code360/problems/m-coloring-problem_981273" },
+      { "title": "Matching Bipartite Graph", "url": "https://www.geeksforgeeks.org/problems/maximum-bipartite-matching--170646/1" }
     ]
   },
   {
@@ -52,9 +52,9 @@
     "scenario": "You're tasked with finding the minimum weight connected subtree that spans all vertices in a graph.",
     "clue": "Look for problems involving weighted edges and the need to minimize the total weight to connect all nodes.",
     "questions": [
-      { "title": "Minimum Spanning Tree", "url": "https://leetcode.com/problems/graph-valid-tree/" },
-      { "title": "Connecting Cities With Minimum Cost", "url": "https://leetcode.com/problems/connecting-cities-with-minimum-cost/" },
-      { "title": "Campus Bikes II", "url": "https://leetcode.com/problems/campus-bikes-ii/" },
+      { "title": "Minimum Spanning Tree", "url": "https://www.geeksforgeeks.org/problems/minimum-spanning-tree/1" },
+      { "title": "Connecting Cities With Minimum Cost", "url": "https://www.geeksforgeeks.org/problems/minimum-cost-to-connect-all-houses-in-a-city/0" },
+      { "title": "Campus Bikes II", "url": "https://www.geeksforgeeks.org/dsa/assign-campus-bikes-to-workers-ii/" },
       { "title": "Optimal Division", "url": "https://leetcode.com/problems/optimal-division/" },
       { "title": "Redundant Connection II", "url": "https://leetcode.com/problems/redundant-connection-ii/" }
     ]
@@ -64,11 +64,12 @@
     "scenario": "You're given a directed graph without cycles, and you need to traverse it efficiently.",
     "clue": "Look for problems where you need to perform a topological sort or find the longest path without revisiting nodes.",
     "questions": [
-      { "title": "Alien Dictionary", "url": "https://leetcode.com/problems/alien-dictionary/" },
+        { "title": "Toposort", "url": "https://www.spoj.com/problems/TOPOSORT/" },
+      { "title": "Alien Dictionary", "url": "https://www.geeksforgeeks.org/problems/alien-dictionary/1" },
       { "title": "Longest Increasing Path in a Matrix", "url": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/" },
       { "title": "Course Schedule III", "url": "https://leetcode.com/problems/course-schedule-iii/" },
-      { "title": "Sequence Reconstruction", "url": "https://leetcode.com/problems/sequence-reconstruction/" },
-      { "title": "All Paths from Source Lead to Destination", "url": "https://leetcode.com/problems/all-paths-from-source-lead-to-destination/" }
+    
+      { "title": "All Paths from Source Lead to Destination", "url": "https://leetcode.com/problems/all-paths-from-source-to-target/description/" }
     ]
   },
   {
@@ -76,7 +77,7 @@
     "scenario": "You need to assign colors to the vertices of a graph such that no two adjacent vertices have the same color.",
     "clue": "Look for problems where you need to color the graph with a minimum number of colors without violating the coloring rule.",
     "questions": [
-      { "title": "Graph Coloring", "url": "https://leetcode.com/problems/graph-coloring/" },
+      { "title": "Graph Coloring", "url": "https://leetcode.com/problems/shortest-path-with-alternating-colors/description/" },
       { "title": "Course Schedule IV", "url": "https://leetcode.com/problems/course-schedule-iv/" },
       { "title": "Minimum Number of Vertices to Reach All Nodes", "url": "https://leetcode.com/problems/minimum-number-of-vertices-to-reach-all-nodes/" },
       { "title": "Flower Planting With No Adjacent", "url": "https://leetcode.com/problems/flower-planting-with-no-adjacent/" }

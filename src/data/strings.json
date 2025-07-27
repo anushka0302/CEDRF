@@ -18,7 +18,7 @@
     "questions": [
       { "title": "Minimum Window Substring", "url": "https://leetcode.com/problems/minimum-window-substring/" },
       { "title": "Longest Substring Without Repeating Characters", "url": "https://leetcode.com/problems/longest-substring-without-repeating-characters/" },
-      { "title": "Longest Substring with At Most Two Distinct Characters", "url": "https://leetcode.com/problems/longest-substring-with-at-most-two-distinct-characters/" },
+      { "title": "Longest Substring with At Most K Distinct Characters", "url": "https://www.naukri.com/code360/problems/longest-substring-with-at-most-k-distinct-characters_2221410" },
       { "title": "Find All Anagrams in a String", "url": "https://leetcode.com/problems/find-all-anagrams-in-a-string/" },
       { "title": "Longest Repeating Character Replacement", "url": "https://leetcode.com/problems/longest-repeating-character-replacement/" }
     ]

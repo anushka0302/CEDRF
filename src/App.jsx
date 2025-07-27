@@ -4,7 +4,7 @@ import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import PatternPage from './pages/PatternPage';
 import LoginPage from './pages/LoginPage';
-import Dashboard from './pages/Dashboard';
+
 import CatalogPage from './components/CatalogPage.jsx';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
@@ -22,6 +22,7 @@ import JobsPage from './pages/JobPage.jsx';
 function AppWrapper() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
+  const isCatalogPage = location.pathname === '/catalog';
   const { loading } = useAuth();
 
   if (loading) {
@@ -31,23 +32,25 @@ function AppWrapper() {
   return (
     <>
        <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
-      {!isLoginPage && <Navbar />}
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      
+      {!isLoginPage && !isCatalogPage && <Navbar />}
+      <div className="max-w-8xl m-0 px-0 py-0">
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/catalog" element={<CatalogPage />} />
-          <Route path="/about" element={<AboutCEDRF />} />
-          <Route path="/" element={<PrivateRoute requirePayment={true}><Home data={data} /></PrivateRoute>} />
-          <Route path="/dashboard" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
-          <Route path="/patterns/:topic" element={<PrivateRoute><PatternPage data={data} /></PrivateRoute>} />
-           <Route path="/contact" element={<PrivateRoute><ContactUs/></PrivateRoute>} />
+            
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/catalog" element={<CatalogPage />} />
+            <Route path="/about" element={<AboutCEDRF />} />
+            <Route path="/" element={<PrivateRoute requirePayment={true}><Home data={data} /></PrivateRoute>} />
+            
+            <Route path="/patterns/:topic" element={<PrivateRoute><PatternPage data={data} /></PrivateRoute>} />
+            <Route path="/contact" element={<PrivateRoute><ContactUs/></PrivateRoute>} />
             <Route path="/terms" element={<PrivateRoute><TermsOfUse/></PrivateRoute>} />
-             <Route path="/cancellation-policy" element={<PrivateRoute><CancellationPolicyPage/></PrivateRoute>} />
-               <Route path="/privacy-policy" element={<PrivateRoute><PrivacyPolicy/></PrivateRoute>} />
-<Route path="/mentoring" element={<PrivateRoute><MentoringFormPage/></PrivateRoute>} />
-<Route path="/jobs" element={<PrivateRoute><JobsPage/></PrivateRoute>} />
+            <Route path="/cancellation-policy" element={<PrivateRoute><CancellationPolicyPage/></PrivateRoute>} />
+            <Route path="/privacy-policy" element={<PrivateRoute><PrivacyPolicy/></PrivateRoute>} />
+            <Route path="/mentoring" element={<PrivateRoute><MentoringFormPage/></PrivateRoute>} />
+            <Route path="/jobs" element={<PrivateRoute><JobsPage/></PrivateRoute>} />
+            </Routes>
 
-        </Routes>
 
         
         

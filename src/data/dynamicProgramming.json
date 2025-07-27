@@ -32,7 +32,7 @@
       { "title": "Burst Balloons", "url": "https://leetcode.com/problems/burst-balloons/" },
       { "title": "Partition Equal Subset Sum", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
       { "title": "Strange Printer", "url": "https://leetcode.com/problems/strange-printer/" },
-      { "title": "Maximum Vacation Days", "url": "https://leetcode.com/problems/maximum-vacation-days/" }
+      { "title": "Cheapest Flights", "url": "https://leetcode.com/problems/cheapest-flights-within-k-stops/description/" }
     ]
   },
   {
@@ -40,7 +40,7 @@
     "scenario": "You encounter a problem where you need to optimize the allocation of resources to maximize or minimize a value, subject to capacity constraints.",
     "clue": "Look for problems where you need to select items from a set to maximize or minimize a value without exceeding capacity constraints.",
     "questions": [
-      { "title": "0/1 Knapsack", "url": "https://leetcode.com/problems/01-knapsack/" },
+      { "title": "0/1 Knapsack", "url": "https://www.geeksforgeeks.org/problems/0-1-knapsack-problem0945/1" },
       { "title": "Partition Equal Subset Sum", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },
       { "title": "Target Sum", "url": "https://leetcode.com/problems/target-sum/" },
       { "title": "Minimum Subset Sum Difference", "url": "https://leetcode.com/problems/partition-equal-subset-sum/" },

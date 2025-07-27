@@ -3,16 +3,16 @@ import { useState, useEffect } from 'react';
 import { auth, db } from '../firebase';
 import {
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
   sendPasswordResetEmail
 } from 'firebase/auth';
-import { setDoc, doc } from 'firebase/firestore';
+import { setDoc, doc, getDoc } from 'firebase/firestore';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import logo from '../assets/logo.png';
 import { useNavigate } from 'react-router-dom';
-import { Eye, EyeOff } from 'lucide-react';
+import { Eye, EyeOff, Sun, Moon } from 'lucide-react';
 import { Helmet } from "react-helmet";
+import white from '../assets/whitelogo.svg';
 export default function LoginPage() {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -20,24 +20,54 @@ export default function LoginPage() {
   const [isSignup, setIsSignup] = useState(true);
   const [firstName, setFirstName] = useState('');
   const [phone, setPhone] = useState('');
-
   const [dob, setDob] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showIntro, setShowIntro] = useState(true);
   const [forgotMode, setForgotMode] = useState(false);
-const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => localStorage.getItem('theme') === 'dark');
+
   useEffect(() => {
     const timer = setTimeout(() => setShowIntro(false), 2000);
     return () => clearTimeout(timer);
   }, []);
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    if (darkMode) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+
+  const redirectUser = async (uid) => {
+    try {
+      const userRef = doc(db, 'users', uid);
+      const userSnap = await getDoc(userRef);
+      if (userSnap.exists()) {
+        const userData = userSnap.data();
+        if (userData.hasPaid) {
+          navigate('/home');
+        } else {
+          navigate('/catalog');
+        }
+      } else {
+        toast.error("User profile not found.");
+      }
+    } catch (err) {
+      toast.error("Redirection failed.");
+    }
+  };
 
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       const uid = cred.user.uid;
-
       await setDoc(doc(db, 'users', uid), {
         firstName,
         phone,
@@ -45,9 +75,9 @@ const [showPassword, setShowPassword] = useState(false);
         email,
         hasPaid: false,
       });
-
       toast.success('Signup successful! Logging you in...');
       await login(email, password);
+      await redirectUser(uid);
     } catch (err) {
       toast.error(err.message || 'Signup failed');
     }
@@ -56,13 +86,14 @@ const [showPassword, setShowPassword] = useState(false);
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      const userCred = await login(email, password);
+      const uid = userCred.user.uid;
+      await redirectUser(uid);
     } catch (err) {
       toast.error(err.message || 'Login failed');
     }
   };
 
-  // ✅ NEW forgot password logic (based on image)
   const handleForgotPassword = async (e) => {
     e.preventDefault();
     try {
@@ -76,180 +107,149 @@ const [showPassword, setShowPassword] = useState(false);
   };
 
   return (
-
-<>
- <link
+    <>
+      <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
-       <Helmet>
+      <Helmet>
         <title>CEDRF – Comprehensive Educational Development and Research Foundation</title>
         <meta name="description" content="Empowering India with digital literacy, innovation, and education since 2009. Join CEDRF's mission to uplift communities nationwide." />
-        <meta name="keywords" content="CEDRF, Educational Foundation, Skill Development, Research, Digital Literacy, Innovation, Youth Empowerment, India, Education NGO, USA, World-wide, DSA, FAANG, Google, Microsoft, MNC, WWW, Job, Placement, Software Engineering, SDA, Gate, Btech, BCA, Mtech, MCA, Computer Science, DSA Patterns, Array, String, DP, Binary Tree, Queue, Stack, Linked list, Recursion, Advanced logic, OA, logical thinking, abstract thinking, logic building, easy DSA, DSA course, DSA patterns, Data Structures and Algorithms, DSA for coding interviews, Learn DSA online, DSA roadmap, DSA with JavaScript / Python / C++, Master DSA, data structures and algorithms for beginners, DSA pattern course for placements, DSA questions with solutions, system design and DSA, DSA cheat sheet, crack coding interviews with DSA, top DSA patterns for interviews, DSA in 30 days roadmap, DSA live classes with mentorship, DSA course with projects, DSA in JavaScript for frontend developers, DSA with Python for data science, DSA for full-stack developers, DSA using C++ for CP, Leetcode patterns in DSA"
-        />
-
+        <meta name="keywords" content="CEDRF, Educational Foundation, Skill Development, Research, Digital Literacy, Innovation, Youth Empowerment, India, Education NGO, USA, World-wide, DSA, FAANG, Google, Microsoft, MNC, WWW, Job, Placement, Software Engineering, SDA, Gate, Btech, BCA, Mtech, MCA, Computer Science, DSA Patterns, Array, String, DP, Binary Tree, Queue, Stack, Linked list, Recursion, Advanced logic, OA, logical thinking, abstract thinking, logic building, easy DSA, DSA course, DSA patterns, Data Structures and Algorithms, DSA for coding interviews, Learn DSA online, DSA roadmap, DSA with JavaScript / Python / C++, Master DSA, data structures and algorithms for beginners, DSA pattern course for placements, DSA questions with solutions, system design and DSA, DSA cheat sheet, crack coding interviews with DSA, top DSA patterns for interviews, DSA in 30 days roadmap, DSA live classes with mentorship, DSA course with projects, DSA in JavaScript for frontend developers, DSA with Python for data science, DSA for full-stack developers, DSA using C++ for CP, Leetcode patterns in DSA" />
         <link rel="canonical" href="https://www.cedrf.com/" />
         <meta property="og:image" content="https://www.cedrf.com/logo.png" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:image" content="https://www.cedrf.com/logo.png" />
-     
-      <script type="application/ld+json">
-      {`
-        {
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          "name": "CEDRF",
-          "url": "https://www.cedrf.com",
-          "logo": "https://www.cedrf.com/logo.png",
-          "foundingDate": "2009",
-          "description": "Comprehensive Educational Development and Research Foundation - empowering India through education, research, and innovation.",
-          "sameAs": [
-            "https://www.linkedin.com/company/cedrf",
-            "https://twitter.com/cedrf"
-          ]
-        }
-      `}
-
-      
-    </script>
-    
-     
-     
-     
-     
       </Helmet>
-    <div className="fixed inset-0 bg-gradient-to-br from-indigo-100 to-blue-200 flex items-center justify-center overflow-hidden">
-      <ToastContainer />
-      {showIntro ? (
-        <div className="absolute inset-0 flex items-center justify-center z-50 bg-transparent">
-          <img src={logo} alt="Logo" className="w-24 h-24 animate-logo-bounceup" />
-        </div>
-      ) : (
-        <div className="bg-white shadow-xl rounded-lg px-8 py-10 w-full max-w-sm animate-fadein z-10">
-          <h2 className="text-2xl font-bold text-center mb-6 text-blue-700">
-            {forgotMode ? 'Reset Password' : isSignup ? 'Sign Up' : 'Login'}
-          </h2>
-
-          <form
-            onSubmit={
-              forgotMode ? handleForgotPassword : isSignup ? handleSignup : handleLogin
-            }
-            className="space-y-4"
-          >
-            {isSignup && !forgotMode && (
-              <>
-                <input
-                  type="text"
-                  required
-                  value={firstName}
-                  onChange={(e) => setFirstName(e.target.value)}
-                  placeholder="Name"
-                  className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-                        <input
-              type="tel"
-              required
-              value={phone}
-              onChange={(e) => {
-                const val = e.target.value;
-                if (/^\d{0,10}$/.test(val)) setPhone(val); // allows only digits up to 10
-              }}
-              placeholder="Phone Number (10 digits)"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-                            <input
-                  type="text"
-                  required
-                  onFocus={(e) => (e.target.type = 'date')}
-                  onBlur={(e) => {
-                    if (!e.target.value) e.target.type = 'text';
-                  }}
-                  value={dob}
-                  onChange={(e) => setDob(e.target.value)}
-                  placeholder="DOB"
-                  className="w-full px-4 py-2 border border-gray-300 rounded text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                />
-              </>
-            )}
-
-            <input
-              type="email"
-              required
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-
-            {!forgotMode && (
-          <div className="relative w-full">
-      <input
-        type={showPassword ? 'text' : 'password'}
-        required
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Password"
-        className="w-full px-4 py-2 pr-10 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-      />
-      <button
-        type="button"
-        className="absolute inset-y-0 right-2 flex items-center text-gray-500"
-        onClick={() => setShowPassword((prev) => !prev)}
-        tabIndex={-1} // so it doesn't interfere with tabbing through the form
-      >
-        {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
-      </button>
-    </div>
-            )}
-
-            <button
-              type="submit"
-              className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
+      <div className="fixed inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white flex items-center justify-center overflow-hidden dark:text-white dark:bg-gray-900">
+        <ToastContainer />
+       { /*<button
+          onClick={() => setDarkMode(!darkMode)}
+          className="absolute top-4 right-4 bg-gray-800 p-2 rounded-full hover:bg-gray-700 transition"
+          aria-label="Toggle dark mode"
+        >
+          {darkMode ? <Sun className="text-yellow-400" /> : <Moon className="text-white" />}
+        </button>
+*/}
+        {showIntro ? (
+          <div className="absolute inset-0 flex items-center justify-center z-50 bg-transparent">
+            <img src={white} alt="Logo" className="w-24 h-24 animate-logo-bounceup" />
+          </div>
+        ) : (
+<div className="bg-gray-900/90 backdrop-blur-md shadow-2xl rounded-3xl px-10 py-8 w-full max-w-md animate-fadein z-10 border border-gray-700">
+  <img src={white} alt="Logo" className="w-20 h-20 mx-auto mb-4" />
+  
+            <form
+              onSubmit={forgotMode ? handleForgotPassword : isSignup ? handleSignup : handleLogin}
+              className="space-y-4"
             >
-              {forgotMode ? 'Send Reset Link' : isSignup ? 'Sign Up' : 'Login'}
-            </button>
-          </form>
-
-          {!forgotMode && (
-            <p className="text-sm text-center mt-4 text-gray-600">
-              {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
+              {isSignup && !forgotMode && (
+                <>
+                  <input
+                    type="text"
+                    required
+                    value={firstName}
+                    onChange={(e) => setFirstName(e.target.value)}
+                    placeholder="Name"
+                    className="w-full px-4 py-2 border border-gray-700 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="tel"
+                    required
+                    value={phone}
+                    onChange={(e) => {
+                      const val = e.target.value;
+                      if (/^\d{0,10}$/.test(val)) setPhone(val);
+                    }}
+                    placeholder="Phone Number (10 digits)"
+                    className="w-full px-4 py-2 border border-gray-700 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <input
+                    type="text"
+                    required
+                    onFocus={(e) => (e.target.type = 'date')}
+                    onBlur={(e) => {
+                      if (!e.target.value) e.target.type = 'text';
+                    }}
+                    value={dob}
+                    onChange={(e) => setDob(e.target.value)}
+                    placeholder="DOB"
+                    className="w-full px-4 py-2 border border-gray-700 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </>
+              )}
+              <input
+                type="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email"
+                className="w-full px-4 py-2 border border-gray-700 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              {!forgotMode && (
+                <div className="relative w-full">
+                  <input
+                    type={showPassword ? 'text' : 'password'}
+                    required
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Password"
+                    className="w-full px-4 py-2 pr-10 border border-gray-700 rounded bg-gray-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button
+                    type="button"
+                    className="absolute inset-y-0 right-2 flex items-center text-gray-400"
+                    onClick={() => setShowPassword((prev) => !prev)}
+                    tabIndex={-1}
+                  >
+                    {showPassword ? <EyeOff size={20} /> : <Eye size={20} />}
+                  </button>
+                </div>
+              )}
               <button
-                onClick={() => setIsSignup(!isSignup)}
-                className="text-blue-600 hover:underline font-medium"
+                type="submit"
+                className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition duration-200"
               >
-                {isSignup ? 'Login' : 'Sign Up'}
+                {forgotMode ? 'Send Reset Link' : isSignup ? 'Sign Up' : 'Login'}
               </button>
-            </p>
-          )}
-
-          {!isSignup && !forgotMode && (
-            <p className="text-sm text-center mt-2 text-yellow-600">
-              Forgot your password?{' '}
-              <button
-                onClick={() => setForgotMode(true)}
-                className="text-yellow-600 underline"
-              >
-                Reset it
-              </button>
-            </p>
-          )}
-
-          {forgotMode && (
-            <p className="text-sm text-center mt-4 text-gray-600">
-              Remembered your password?{' '}
-              <button
-                onClick={() => setForgotMode(false)}
-                className="text-blue-600 underline font-medium"
-              >
-                Go to Login
-              </button>
-            </p>
-          )}
-        </div>
-      )}
-    </div>
+            </form>
+            {!forgotMode && (
+              <p className="text-sm text-center mt-4 text-gray-300">
+                {isSignup ? 'Already have an account?' : "Don't have an account?"}{' '}
+                <button
+                  onClick={() => setIsSignup(!isSignup)}
+                  className="text-blue-400 hover:underline font-medium"
+                >
+                  {isSignup ? 'Login' : 'Sign Up'}
+                </button>
+              </p>
+            )}
+            {!isSignup && !forgotMode && (
+              <p className="text-sm text-center mt-2 text-yellow-500">
+                Forgot your password?{' '}
+                <button
+                  onClick={() => setForgotMode(true)}
+                  className="text-yellow-400 underline"
+                >
+                  Reset it
+                </button>
+              </p>
+            )}
+            {forgotMode && (
+              <p className="text-sm text-center mt-4 text-gray-300">
+                Remembered your password?{' '}
+                <button
+                  onClick={() => setForgotMode(false)}
+                  className="text-blue-400 underline font-medium"
+                >
+                  Go to Login
+                </button>
+              </p>
+            )}
+          </div>
+        )}
+      </div>
     </>
   );
 }

@@ -7,7 +7,8 @@ import React from 'react';
 import { toast } from 'react-toastify';
 
 import linkIcon from '../assets/clickss.svg';
-
+import { FcBookmark } from "react-icons/fc";
+import { FcServices } from "react-icons/fc";
 export default function Home({ data }) {
   const [checkedTopics, setCheckedTopics] = useState({});
   const [weeks, setWeeks] = useState(12);
@@ -139,8 +140,11 @@ const body = `Hello, I found your FANG Template Resume on the website and would 
 Please get back to me at your earliest convenience.
 
 Name: 
-Phone: 
-Email: 
+
+Phone:
+
+Email:
+
 `;
 
 const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
@@ -152,30 +156,44 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
         href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
         rel="stylesheet"
       />
-    <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-50">
+    <div className="flex flex-col lg:flex-row min-h-screen w-full overflow-x-hidden bg-gray-900">
      <ScrollToTop/>
-      <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">
-        <div className="bg-indigo-100 p-4 rounded">
-          <h2 className="font-semibold text-sm">Indicate your preferences</h2>
-          <p className="text-xs text-gray-600 mt-1">We will recommend the best practice questions.</p>
-        </div>
-        <div className="bg-yellow-100 p-4 rounded animate-pulse">
-          <h2 className="font-semibold text-sm text-gray-700">⏱️ Max mindstorming time</h2>
-          <p className="text-lg font-bold text-yellow-800 mt-2">
-            {mindstormingTime} minute{mindstormingTime === 1 ? '' : 's'} (today)
-          </p>
-        </div>
-        <div>
-          <h3 className="text-sm font-semibold text-gray-700">SCHEDULE</h3>
-          <div className="mt-2">
-            <p className="text-xs">Weeks: {weeks}</p>
-            <input type="range" min="1" max="20" value={weeks} onChange={(e) => setWeeks(Number(e.target.value))} className="w-full mt-1 cursor-pointer" />
-          </div>
-          <div className="mt-3">
-            <p className="text-xs">Hours/week: {hours}</p>
-            <input type="range" min="1" max="60" value={hours} onChange={(e) => setHours(Number(e.target.value))} className="w-full mt-1 text-blue-500 cursor-pointer" />
-          </div>
-          <div className="mt-4 text-xs text-gray-600">
+    <aside className="lg:w-60 w-full bg-gray-900 flex flex-col px-4 py-6 space-y-6 order-1 lg:order-none">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-md text-white transition hover:border-orange-500">
+  <h2 className="font-semibold text-sm mb-1">Indicate your preferences</h2>
+  <p className="text-xs text-white/80">
+    We will recommend the best practice questions.
+  </p>
+</div>
+
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl animate-pulse shadow-md transition hover:border-orange-500 text-white">
+  <h2 className="font-semibold text-sm text-white/90">Max mindstorming time</h2>
+  <p className="text-lg font-bold text-yellow-400 mt-2">
+    {mindstormingTime} minute{mindstormingTime === 1 ? '' : 's'} (today)
+  </p>
+</div>
+
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-md text-white hover:border-orange-500 transition">
+  <h3 className="text-sm font-semibold text-white/90">SCHEDULE</h3>
+  <div className="mt-2">
+    <p className="text-xs text-white/80">Weeks: {weeks}</p>
+    <input type="range" min="1" max="20" value={weeks} onChange={(e) => setWeeks(Number(e.target.value))}
+      className="w-full mt-1 cursor-pointer accent-orange-400"/>
+  </div>
+
+
+          <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-md text-white hover:border-orange-500 transition mt-3">
+  <p className="text-xs text-white/80">Hours/week: {hours}</p>
+  <input
+    type="range"
+    min="1"
+    max="60"
+    value={hours}
+    onChange={(e) => setHours(Number(e.target.value))}
+    className="w-full mt-1 accent-orange-400 cursor-pointer"/>
+</div>
+
+          <div className="mt-4 text-xs text-white">
             <p><strong>Total hours:</strong> {totalHours}</p>
             <p><strong>Questions/hour:</strong> {questionsPerHour}</p>
             <p><strong>Completed:</strong> {completedPercentage}%</p>
@@ -184,18 +202,21 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
       </aside>
 
 <main className="flex-1 px-4 md:px-8 py-6 order-0 lg:order-none">
-  <h1 className="text-2xl md:text-3xl font-semibold mb-6 text-center lg:text-left">
+  <h1 className="text-2xl md:text-3xl text-white font-semibold mb-6 text-center lg:text-left">
     DSA Patterns
   </h1>
   <div className="space-y-6">
     {Object.entries(data).map(([topic, patterns]) => (
       <details
         key={topic}
-        className="border rounded bg-white shadow-sm transition-all duration-300"
+        className=" bg-transparent border border-gray-700 rounded-xl p-4 transition-all duration-300 hover:border-orange-500"
       >
-        <summary className="text-blue-700 font-semibold px-4 py-3 cursor-pointer text-lg flex items-center justify-between hover:bg-blue-50">
+        <summary className="text-white font-semibold px-4 py-3 cursor-pointer text-lg flex items-center justify-between hover:bg-orange-500/10 transition-colors duration-300">
           <span className="flex items-center gap-2">
-            ▶ {topic.replace(/([a-z])([A-Z])/g, "$1 $2")}
+             <span className="rotate-270">
+    <FcBookmark />
+  </span>
+            {topic.replace(/([a-z])([A-Z])/g, "$1 $2")}
           </span>
           {isTopicChecked(topic, patterns) && (
             <span className="text-green-600 font-bold text-lg">✔</span>
@@ -208,28 +229,32 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
     return (
       <div key={idx}>
         {/* Pattern Header */}
+       
         <div
-          className="text-md font-semibold text-blue-700 cursor-pointer px-4 py-2 hover:bg-blue-100 rounded flex justify-between items-center"
+          className="text-md font-semibold  text-white cursor-pointer px-4 py-2 rounded flex justify-between items-center  hover:bg-orange-300/10 transition-colors duration-300"
           onClick={() => toggleSubtopic(topic, idx)}
         >
+          
           {pattern.type}
+           <FcServices/>
           {isAllChecked(topic, pattern.type, pattern.questions.length) && (
             <span className="text-green-600 font-bold">✔</span>
           )}
         </div>
 
         {isOpen && (
-          <div className="p-4 border border-gray-200 rounded bg-white hover:shadow transition">
+          
+          <div className="bg-transparent border border-gray-700 rounded-xl p-4 transition-all duration-300  bg-gray-900 hover:shadow transition">
             {/* Scenario and Clue */}
-            <p className="text-sm text-gray-700 mb-1">
+            <p className="text-sm text-white mb-1">
               <strong>Scenario:</strong> {pattern.scenario}
             </p>
-            <p className="text-sm text-gray-700 mb-4">
+            <p className="text-sm text-white mb-4">
               <strong>Clue:</strong> {pattern.clue}
             </p>
 
             {/* Mark when done header (global) */}
-            <div className="flex justify-end pr-4 text-xs text-gray-500 font-medium mb-2">
+            <div className="flex justify-end pr-4 text-xs font-semibold mb-2 animate-pulse text-[#FEC5E5] drop-shadow-[0_0_5px_rgba(255,0,200,0.8)]">
               Mark when done
             </div>
 
@@ -242,16 +267,16 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
                 return (
                   <li
                     key={i}
-                    className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 flex-wrap gap-2 ${
-                      checked ? "bg-green-50 border-green-300" : "bg-gray-50 border-gray-200"
+                    className={`flex items-center justify-between px-4 py-2 rounded-md border transition duration-200 flex-wrap gap-2 hover:bg-orange-200/10 transition-colors duration-300 ${
+                      checked ? "bg-green-50 border-green-300" : "bg-gray-900 bg-transparent border border-gray-700 rounded-xl p-4 transition-all duration-300 hover:border-orange-500"
                     }`}
                   >
                     {/* Left: Question Number and Title */}
                     <div className="flex items-center gap-3 flex-wrap w-full sm:w-auto flex-1">
-                      <span className="text-sm font-medium text-gray-600">{questionNum}</span>
+                      <span className="text-sm font-medium text-[#B0E0E6]">{questionNum}</span>
                       <span
                         className={`text-sm font-medium break-all ${
-                          checked ? "text-green-700" : "text-blue-700"
+                          checked ? "text-green-500 " : "text-[#4FBAC7] "
                         }`}
                       >
                         {q.title}
@@ -297,44 +322,44 @@ const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=
   </div>
 </main>
 
-      <aside className="lg:w-60 w-full bg-white flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
+      <aside className="lg:w-60 w-full bg-gray-900 flex flex-col px-4 py-6 space-y-6 order-2 lg:order-none">
        
-        <div className="rounded-xl border border-blue-200 p-4 bg-blue-50 text-gray-800 font-sans shadow-sm">
-  <h5 className="text-lg font-bold text-blue-900 tracking-tight mb-2">
+       <div className="rounded-2xl border border-white/20 p-6 bg-white/10 backdrop-blur-md text-white font-sans shadow-xl transition duration-300 hover:border-orange-500">
+  <h5 className="text-xl font-bold text-white tracking-tight mb-3">
     Welcome to CEDRF — Code Your Future, One Hour at a Time.
   </h5>
-  <p className="text-sm leading-relaxed text-gray-700 mb-4">
-    <strong>CEDRF</strong> is where your ideas become real-world projects.
-    Whether you're pursuing <strong>B.Tech</strong>, <strong>M.Tech</strong>, <strong>MBA</strong>, or <strong>MCA</strong>, our expert-led guidance helps you build hands-on IT projects in <strong>AI</strong>, <strong>Machine Learning</strong>, <strong>Blockchain</strong>, <strong>Android</strong>, and beyond.
+  <p className="text-sm leading-relaxed text-white/80 mb-5">
+    <strong className="text-white">CEDRF</strong> is where your ideas become real-world projects.
+    Whether you're pursuing <strong className="text-white">B.Tech</strong>, <strong className="text-white">M.Tech</strong>, <strong className="text-white">MBA</strong>, or <strong className="text-white">MCA</strong>, our expert-led guidance helps you build hands-on IT projects in <strong className="text-white">AI</strong>, <strong className="text-white">Machine Learning</strong>, <strong className="text-white">Blockchain</strong>, <strong className="text-white">Android</strong>, and beyond.
     <br /><br />
     Learn from mentors who code, create, and inspire — and unlock the tools you need to succeed in today’s tech landscape.
   </p>
   <a
     href="/mentoring"
-    className="inline-block text-sm font-medium text-blue-700 hover:text-blue-900 hover:underline transition duration-200"
+    className="inline-block text-sm font-medium text-orange-400 hover:text-orange-500 hover:underline transition duration-200"
   >
     Join today & get 20% off mentoring →
   </a>
 </div>
-       <div className="bg-red-100 p-4 rounded">
-    <h3 className="text-sm font-semibold">Build a FAANG-Worthy Resume — Fast.</h3>
-    <p className="text-xs text-gray-700 mt-1">
-      Proven templates that land interviews.
-    </p>
+       <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-md text-white transition hover:border-orange-500">
+  <h3 className="text-sm font-semibold mb-1">Build a FAANG-Worthy Resume — Fast.</h3>
+  <p className="text-xs text-white/80">
+    Proven templates that land interviews.
+  </p>
 
-    <a
-      href={mailtoLink}
-      className="text-xs text-white bg-red-600 hover:bg-red-700 transition px-3 py-1 rounded inline-block mt-2"
-    >
-      Click Me
-    </a>
-  </div>
+  <a
+    href={mailtoLink}
+    className="text-xs font-medium text-black bg-orange-400 hover:bg-orange-500 transition px-3 py-1 rounded mt-3 inline-block shadow hover:shadow-lg"
+  >
+    Click Me
+  </a>
+</div>
       </aside>
      
     </div>
-    <div className="w-full flex justify-center items-center mt-4 px-2 md:px-4 lg:px-40">
+  
       <Footer />
-    </div>
+    
     </>
   );
 }

@@ -1,40 +1,35 @@
-import React from 'react';
-import Footer from '../components/Footer';
-import ScrollToTop from '../components/ScrollToTop';
+import Footer from "../components/Footer";
+import ScrollToTop from "../components/ScrollToTop";
 import { MdMarkEmailRead } from "react-icons/md";
 import { IoPhonePortrait } from "react-icons/io5";
 import { HiMiniBuildingOffice2 } from "react-icons/hi2";
+
 export default function ContactUs() {
   return (
-    <>
-      {/* Load Inter font */}
-      <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-        rel="stylesheet"
-      />
-     <ScrollToTop/>
-      <div
-        className="min-h-screen bg-white text-gray-900 px-6 py-14 md:px-24"
-        style={{ fontFamily: 'Inter, sans-serif' }}
-      >
+    <div className="bg-black min-h-screen">
+      <ScrollToTop />
+      <div className="min-h-screen text-gray-300 px-6 py-14 md:px-24 font-serif">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-extrabold text-center mb-6 tracking-tight">
+          <h1 className="text-4xl md:text-5xl font-serif italic text-white text-center mb-8 tracking-tight">
             Get in Touch with Us
           </h1>
 
-          <p className="text-lg md:text-xl text-center text-gray-600 mb-10">
-            We welcome your inquiries, feedback, and suggestions. Feel free to connect with us — we’re just a message away.
+          <p className="text-lg md:text-xl text-center text-gray-400 mb-12 leading-relaxed">
+            We welcome your inquiries, feedback, and suggestions. Feel free to
+            connect with us — we're just a message away.
           </p>
 
-          <div className="space-y-8 text-base md:text-lg">
+          <div className="space-y-10 text-base md:text-lg">
             {/* Email */}
-            <div className="flex items-start gap-4">
-              <span className="text-xl p-1"><MdMarkEmailRead /></span>
+            <div className="flex items-start gap-5 bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors">
+              <span className="text-2xl text-[#ff6d00] mt-1">
+                <MdMarkEmailRead />
+              </span>
               <div>
-                <h2 className="font-semibold text-gray-800">Email</h2>
+                <h2 className="font-semibold text-white mb-2">Email</h2>
                 <a
                   href="mailto:infocedrf@protonmail.com"
-                  className="text-blue-600 hover:underline"
+                  className="text-[#ff6d00] hover:text-[#ff6d00] hover:underline transition-colors"
                 >
                   infocedrf@protonmail.com
                 </a>
@@ -42,51 +37,59 @@ export default function ContactUs() {
             </div>
 
             {/* Phone */}
-            <div className="flex items-start gap-4">
-              <span className="text-xl p-1"><IoPhonePortrait /></span>
+            <div className="flex items-start gap-5 bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors">
+              <span className="text-2xl text-[#ff6d00] mt-1">
+                <IoPhonePortrait />
+              </span>
               <div>
-                <h2 className="font-semibold text-gray-800">Phone</h2>
+                <h2 className="font-semibold text-white mb-2">Phone</h2>
                 <a
                   href="tel:+918630191968"
-                  className="text-blue-600 hover:underline"
+                  className="text-[#ff6d00] hover:text-[#ff6d00] hover:underline transition-colors"
                 >
                   +91 8630191968
                 </a>
               </div>
             </div>
 
-            {/* Address 
-            <div className="flex items-start gap-4">
-              <span className="text-xl">📍</span>
-              <div>
-                <h2 className="font-semibold text-gray-800">Address</h2>
-                <p className="text-gray-600">
-                  Gurudwara Road, Charayal Nayabad,<br />
-                  Haldwani (Nainital), Uttarakhand 263139
-                </p>
-              </div>
-            </div>
-*/}
             {/* Legal Name */}
-            <div className="flex items-start gap-4">
-              <span className="text-xl p-1"><HiMiniBuildingOffice2 /></span>
+            <div className="flex items-start gap-5 bg-gray-900 border border-gray-800 rounded-lg p-6 hover:border-gray-700 transition-colors">
+              <span className="text-2xl text-[#ff6d00] mt-1">
+                <HiMiniBuildingOffice2 />
+              </span>
               <div>
-                <h2 className="font-semibold text-gray-800">Legal Name</h2>
-                <p className="text-gray-600">
-                  Comprehensive Educational Development and Research Foundation (CEDRF)
+                <h2 className="font-semibold text-white mb-2">Legal Name</h2>
+                <p className="text-gray-300 font-serif italic">
+                  Comprehensive Educational Development and Research Foundation
+                  (CEDRF)
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="mt-12 text-center text-sm text-gray-500">
-            Response time: within 24 hours <br />
-            Support Hours: 9:00 AM – 6:00 PM IST (Mon – Fri)
+          <div className="mt-16 text-center">
+            <div className="bg-gray-900 border border-gray-800 rounded-lg p-6">
+              <p className="text-sm text-gray-400 leading-relaxed">
+                <span className="text-white font-semibold">Response time:</span>{" "}
+                within 24 hours
+                <br />
+                <span className="text-white font-semibold">
+                  Support Hours:
+                </span>{" "}
+                9:00 AM – 6:00 PM IST (Mon – Fri)
+              </p>
+            </div>
+
+            <div className="mt-8">
+              <p className="text-gray-500 text-sm font-serif italic">
+                — Since 2009 —
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
       <Footer />
-    </>
+    </div>
   );
 }

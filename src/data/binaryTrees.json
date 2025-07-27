@@ -56,7 +56,7 @@
       { "title": "Binary Tree Level Order Traversal II", "url": "https://leetcode.com/problems/binary-tree-level-order-traversal-ii/" },
       { "title": "Search in a Binary Search Tree", "url": "https://leetcode.com/problems/search-in-a-binary-search-tree/" },
       { "title": "Validate Binary Search Tree", "url": "https://leetcode.com/problems/validate-binary-search-tree/" },
-      { "title": "Closest Binary Search Tree Value", "url": "https://leetcode.com/problems/closest-binary-search-tree-value/" }
+      { "title": "Closest Binary Search Tree Element", "url": "https://www.geeksforgeeks.org/problems/find-the-closest-element-in-bst/1" }
     ]
   },
   {
@@ -67,7 +67,7 @@
       { "title": "Diameter of Binary Tree", "url": "https://leetcode.com/problems/diameter-of-binary-tree/" },
       { "title": "Count Complete Tree Nodes", "url": "https://leetcode.com/problems/count-complete-tree-nodes/" },
       { "title": "Balanced Binary Tree", "url": "https://leetcode.com/problems/balanced-binary-tree/" },
-      { "title": "Binary Tree Longest Consecutive Sequence", "url": "https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/" },
+      { "title": "Binary Tree Longest Consecutive Sequence", "url": "https://www.geeksforgeeks.org/problems/longest-consecutive-sequence-in-binary-tree/1" },
       { "title": "Subtree of Another Tree", "url": "https://leetcode.com/problems/subtree-of-another-tree/" }
     ]
   }

@@ -4,9 +4,9 @@
     "scenario": "Implement basic recursive functions that solve a problem by dividing it into smaller instances of the same problem until a base case is reached.",
     "clue": "Problems where the solution can be naturally expressed in terms of smaller instances of the same problem, such as factorial calculation, Fibonacci sequence generation, or exponentiation.",
     "questions": [
-      { "title": "Factorial", "url": "https://leetcode.com/problems/factorial/" },
+      { "title": "Factorial", "url": "https://www.geeksforgeeks.org/problems/factorial5739/1" },
       { "title": "Fibonacci Number", "url": "https://leetcode.com/problems/fibonacci-number/" },
-      { "title": "Pow(x, n)", "url": "https://leetcode.com/problems/pow-x-n/" },
+      { "title": "Pow(x, n)", "url": "https://leetcode.com/problems/powx-n/description/?envType=problem-list-v2&envId=recursion" },
       { "title": "Greatest Common Divisor of Strings", "url": "https://leetcode.com/problems/greatest-common-divisor-of-strings/" },
       { "title": "Minimum Moves to Move a Box to Their Target Location", "url": "https://leetcode.com/problems/minimum-moves-to-move-a-box-to-their-target-location/" }
     ]

@@ -29,8 +29,8 @@
     "questions": [
       { "title": "Allocate Minimum Number of Pages", "url": "https://www.interviewbit.com/problems/allocate-books/" },
       { "title": "Minimize Maximum Pair Sum in Array", "url": "https://leetcode.com/problems/minimize-maximum-pair-sum-in-array/" },
-      { "title": "Divide Chocolate", "url": "https://leetcode.com/problems/divide-chocolate/" },
-      { "title": "Maximum Distance to Gas Station", "url": "https://leetcode.com/problems/minimize-max-distance-to-gas-station/" }
+      { "title": "Divide Chocolate", "url": "https://www.geeksforgeeks.org/problems/chocolate-distribution-problem3825/1" },
+      { "title": "Maximum Distance to Gas Station", "url": "https://www.geeksforgeeks.org/problems/minimize-max-distance-to-gas-station/1" }
     ]
   },
   {

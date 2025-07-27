@@ -7,10 +7,10 @@
       { "title": "Implement Queue using Stacks", "url": "https://leetcode.com/problems/implement-queue-using-stacks/" },
       { "title": "Implement Stack using Queues", "url": "https://leetcode.com/problems/implement-stack-using-queues/" },
       { "title": "Design Browser History", "url": "https://leetcode.com/problems/design-browser-history/" },
-      { "title": "Design Hit Counter", "url": "https://leetcode.com/problems/design-hit-counter/" },
+      { "title": "Design Hit Counter", "url": "https://www.geeksforgeeks.org/system-design/design-a-hit-counter/" },
       { "title": "Design Circular Queue", "url": "https://leetcode.com/problems/design-circular-queue/" },
       { "title": "Design Twitter", "url": "https://leetcode.com/problems/design-twitter/" },
-      { "title": "Design Snake Game", "url": "https://leetcode.com/problems/design-snake-game/" }
+      { "title": "Design Snake Game", "url": "https://www.geeksforgeeks.org/advance-java/design-snake-game/" }
     ]
   },
   {
@@ -56,8 +56,8 @@
     "questions": [
       { "title": "Sliding Window Maximum", "url": "https://leetcode.com/problems/sliding-window-maximum/" },
       { "title": "Design Circular Deque", "url": "https://leetcode.com/problems/design-circular-deque/" },
-      { "title": "Moving Average from Data Stream", "url": "https://leetcode.com/problems/moving-average-from-data-stream/" },
-      { "title": "First Unique Number", "url": "https://leetcode.com/problems/first-unique-number/" },
+      { "title": "First Negative", "url": "https://www.geeksforgeeks.org/problems/first-negative-integer-in-every-window-of-size-k3345/1" },
+      { "title": "First Unique Character", "url": "https://www.geeksforgeeks.org/problems/first-non-repeating-character-in-a-stream1216/1" },
       { "title": "Max Sum of Rectangle No Larger Than K", "url": "https://leetcode.com/problems/max-sum-of-rectangle-no-larger-than-k/" }
     ]
   }
