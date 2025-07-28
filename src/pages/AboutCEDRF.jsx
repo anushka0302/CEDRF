@@ -38,7 +38,7 @@ const AboutCEDRF = () => {
         <div className="space-y-3 mb-8">
           <p className="text-gray-300 flex items-start">
             <span className="text-[#ff6d00] mr-3">•</span>
-            12-Week DSA Program based on real-world coding patterns
+           8-Week DSA Program based on real-world coding patterns
           </p>
           <p className="text-gray-300 flex items-start">
             <span className="text-[#ff6d00] mr-3">•</span>
