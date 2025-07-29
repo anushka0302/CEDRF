@@ -69,7 +69,7 @@ export default function CatalogPage() {
           customer_name: user.firstName || "CEDRF",
           customer_email: user.email,
           customer_phone: user.phone || "9105498001",
-          amount: 1,
+          amount: 499,
         }
       );
       if (res.data && res.data.payment_session_id) {
