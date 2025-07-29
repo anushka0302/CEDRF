@@ -33,16 +33,7 @@ export default function LoginPage() {
     return () => clearTimeout(timer);
   }, []);
 
-  useEffect(() => {
-    const root = window.document.documentElement;
-    if (darkMode) {
-      root.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      root.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-    }
-  }, [darkMode]);
+ 
 
   const redirectUser = async (uid) => {
     try {
@@ -77,7 +68,9 @@ export default function LoginPage() {
       });
       toast.success('Signup successful! Logging you in...');
       await login(email, password);
-      await redirectUser(uid);
+      //await redirectUser(uid);
+      navigate('/catalog', { state: { triggerPayment: true } });
+
     } catch (err) {
       toast.error(err.message || 'Signup failed');
     }

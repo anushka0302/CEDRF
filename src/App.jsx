@@ -23,11 +23,6 @@ function AppWrapper() {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
   const isCatalogPage = location.pathname === '/catalog';
-  const { loading } = useAuth();
-
-  if (loading) {
-    return <div className="text-center mt-20 text-xl font-bold">Loading...</div>;
-  }
 
   return (
     <>

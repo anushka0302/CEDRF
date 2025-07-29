@@ -4,12 +4,12 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { toast } from 'react-toastify';
-
+import { getDeviceId } from '../utils/getDeviceId'; // Assuming you have a utility function to get device ID
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -25,7 +25,7 @@ export const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
       }
-      setLoading(false);
+    
     });
     return () => unsubscribe();
   }, []);
@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
+     const deviceId = await getDeviceId();
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const uid = userCred.user.uid;
       const userDoc = await getDoc(doc(db, 'users', uid));
@@ -46,6 +47,32 @@ export const AuthProvider = ({ children }) => {
       } else {
         toast.error('User record not found in Firestore.');
       }
+const userData = userDoc.data();
+
+// 2. Check or save device lock
+const lockRef = doc(db, 'deviceLocks', uid);
+const lockSnap = await getDoc(lockRef);
+
+if (!lockSnap.exists()) {
+  // First time login — save device
+  await setDoc(lockRef, { deviceId });
+} else {
+  const savedDeviceId = lockSnap.data().deviceId;
+  if (savedDeviceId !== deviceId) {
+    // Device mismatch — deny login
+    await signOut(auth);
+    toast.error('Access denied: This account is locked to another device. Contact support to reset.');
+    return;
+  }
+}
+
+
+
+
+
+
+
+      
     } catch (err) {
       toast.error(err.message || 'Login failed');
     }
@@ -71,8 +98,8 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, loading, login, logout, markPaymentDone }}>
-      {!loading && children}
+    <AuthContext.Provider value={{ user, login, logout, markPaymentDone }}>
+      { children}
     </AuthContext.Provider>
   );
 };

@@ -19,6 +19,7 @@ export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+ const triggerPayment = location.state?.triggerPayment || false;
 
   const [paymentFailed, setPaymentFailed] = useState(
     location.state?.paymentFailed || false
@@ -38,12 +39,21 @@ export default function CatalogPage() {
     };
     init();
   }, []);
+  useEffect(() => {
+  if (user && !user.hasPaid && triggerPayment && cashfreeInstance) {
+    // Automatically start payment flow
+    handleClick(new Event('auto')); // create a dummy event
+  }
+}, [user, triggerPayment, cashfreeInstance]);
 
   useEffect(() => {
-    if (user && user.hasPaid) {
+    if (user && user.hasPaid ) {
       navigate("/", { replace: true });
     }
   }, [user, navigate]);
+
+
+  
 
   const getSessionId = async () => {
     if (!user) {
@@ -59,7 +69,7 @@ export default function CatalogPage() {
           customer_name: user.firstName || "CEDRF",
           customer_email: user.email,
           customer_phone: user.phone || "9105498001",
-          amount: 499,
+          amount: 1,
         }
       );
       if (res.data && res.data.payment_session_id) {
@@ -99,10 +109,17 @@ export default function CatalogPage() {
 
   const handleClick = async (e) => {
     e.preventDefault();
+      if (!user) {
+    console.error("User not found. Redirecting to login.");
+    navigate("/login");
+    return null; // this is good, you already have this
+  }
+    
     if (!cashfreeInstance) {
       console.error("❌ Cashfree SDK not loaded yet");
       return;
     }
+  
     const result = await getSessionId();
     if (!result) return;
 
@@ -120,7 +137,7 @@ export default function CatalogPage() {
     }
   };
 
-  if (!cashfreeInstance || !user) {
+  if (!cashfreeInstance ) {
     return (
       <div className="bg-black min-h-screen flex items-center justify-center">
         <div className="text-center p-8 text-gray-400">Loading...</div>
