@@ -4,7 +4,7 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import { auth, db } from '../firebase';
 import { toast } from 'react-toastify';
-import { getDeviceId } from '../utils/getDeviceId'; // Assuming you have a utility function to get device ID
+import { getDeviceId } from '../utils/getDeviceId'; // Make sure this always returns a consistent string
 
 const AuthContext = createContext();
 
@@ -12,14 +12,13 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
-  // 🔐 Watch for auth state
+  // Monitor auth state
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
         try {
           const docRef = doc(db, 'users', firebaseUser.uid);
           const docSnap = await getDoc(docRef);
-
           if (docSnap.exists()) {
             setUser(docSnap.data());
           } else {
@@ -27,7 +26,7 @@ export const AuthProvider = ({ children }) => {
             toast.error('User record not found.');
           }
         } catch (err) {
-          console.error('Error loading user:', err);
+          console.error('Error fetching user:', err);
           setUser(null);
         }
       } else {
@@ -38,10 +37,11 @@ export const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  // 🔓 Login + device lock
+  // Login with device lock check
   const login = async (email, password) => {
     try {
       const deviceId = await getDeviceId();
+
       const userCred = await signInWithEmailAndPassword(auth, email, password);
       const uid = userCred.user.uid;
 
@@ -55,7 +55,7 @@ export const AuthProvider = ({ children }) => {
 
       const userData = userDoc.data();
 
-      // 🔒 Check or set device lock
+      // 🔒 Check or save device lock
       const lockRef = doc(db, 'deviceLocks', uid);
       const lockSnap = await getDoc(lockRef);
 
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
 
-      // ✅ All good, set user and redirect
+      // ✅ Finalize login
       setUser(userData);
       toast.success('Login successful!');
       navigate(userData.hasPaid ? '/' : '/catalog');
@@ -81,7 +81,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 🚪 Logout
+  // Logout and clean up
   const logout = async () => {
     try {
       await signOut(auth);
@@ -94,16 +94,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  // 💰 Mark user as paid
+  // Mark user payment as complete
   const markPaymentDone = async () => {
     try {
       if (!user) {
-        toast.error('No user to update.');
+        toast.error('No user found.');
         return;
       }
 
       const uid = auth.currentUser?.uid;
-      if (!uid) return;
+      if (!uid) {
+        toast.error('Invalid session.');
+        return;
+      }
 
       const updatedUser = { ...user, hasPaid: true };
       const docRef = doc(db, 'users', uid);
@@ -116,8 +119,8 @@ export const AuthProvider = ({ children }) => {
       }
 
     } catch (err) {
-      console.error('Payment update failed:', err);
-      toast.error('Failed to mark payment.');
+      console.error('Error updating payment:', err);
+      toast.error('Failed to update payment.');
     }
   };
 
