@@ -59,9 +59,12 @@ export const AuthProvider = ({ children }) => {
       const lockRef = doc(db, 'deviceLocks', uid);
       const lockSnap = await getDoc(lockRef);
 
-      if (!lockSnap.exists()) {
-        await setDoc(lockRef, { deviceId });
-      } else {
+     if (!lockSnap.exists()) {
+  await setDoc(lockRef, {
+    deviceId,
+    userName: userCred.user.displayName || userCred.user.email || 'Unknown'
+  });
+}else {
         const savedDeviceId = lockSnap.data().deviceId;
         if (savedDeviceId !== deviceId) {
           await signOut(auth);
