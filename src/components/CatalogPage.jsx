@@ -165,14 +165,14 @@ useEffect(() => {
   if (!cashfreeInstance ) {
     return (
       <div className="bg-black min-h-screen flex items-center justify-center">
-           <img src={loaderGif} alt="Loading..." className="w-20 h-20" />
+           <img src={loaderGif} alt="Loading..." className="w-30 h-30" />
       </div>
     );
   }
   if (isLoading) {
   return (
     <div className="bg-black min-h-screen flex items-center justify-center">
-      <img src={loaderGif} alt="Loading..." className="w-20 h-20" />
+      <img src={loaderGif} alt="Loading..." className="w-30 h-30" />
     </div>
   );
 }
