@@ -15,6 +15,9 @@ import { FcAlarmClock } from "react-icons/fc";
 import { Gift, TrendingUp, Rocket } from 'lucide-react'; // Lucide icons
 import Navbar from "./Navbar";
 import aiimg from "../assets/ai.svg";
+import loaderGif from "../assets/loading.gif"
+
+
 export default function CatalogPage() {
   const { user, markPaymentDone } = useAuth();
   const navigate = useNavigate();
@@ -26,6 +29,7 @@ export default function CatalogPage() {
   );
   const [showPopup, setShowPopup] = useState(paymentFailed);
   const [cashfreeInstance, setCashfreeInstance] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -51,6 +55,27 @@ export default function CatalogPage() {
       navigate("/", { replace: true });
     }
   }, [user, navigate]);
+useEffect(() => {
+  const checkImages = async () => {
+    const imageUrls = [stairimg, aiimg];
+    const promises = imageUrls.map(
+      (url) =>
+        new Promise((resolve) => {
+          const img = new Image();
+          img.src = url;
+          img.onload = resolve;
+          img.onerror = resolve;
+        })
+    );
+
+    await Promise.all(promises);
+    setIsLoading(false); // images + SDK are ready
+  };
+
+  if (cashfreeInstance) {
+    checkImages(); // only check when SDK is ready
+  }
+}, [cashfreeInstance]);
 
 
   
@@ -140,10 +165,17 @@ export default function CatalogPage() {
   if (!cashfreeInstance ) {
     return (
       <div className="bg-black min-h-screen flex items-center justify-center">
-        <div className="text-center p-8 text-gray-400">Loading...</div>
+           <img src={loaderGif} alt="Loading..." className="w-20 h-20" />
       </div>
     );
   }
+  if (isLoading) {
+  return (
+    <div className="bg-black min-h-screen flex items-center justify-center">
+      <img src={loaderGif} alt="Loading..." className="w-20 h-20" />
+    </div>
+  );
+}
 
   return (
     <div className="bg-gray-900 min-h-screen font-serif overflow-x-hidden">
