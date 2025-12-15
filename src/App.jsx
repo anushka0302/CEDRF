@@ -7,7 +7,7 @@ import PatternPage from './pages/PatternPage';
 import LoginPage from './pages/LoginPage';
 
 import CatalogPage from './components/CatalogPage.jsx';
-import { AuthProvider, useAuth } from './context/AuthContext';
+import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import data from './data/index.js';
 import DisableInspect from './components/DisableInspect';
