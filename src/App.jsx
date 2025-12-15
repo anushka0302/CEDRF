@@ -1,4 +1,5 @@
 // src/App.jsx
+import WelcomeVideoModal from './components/WelcomeVideoModal'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -26,6 +27,7 @@ function AppWrapper() {
 
   return (
     <>
+      <WelcomeVideoModal /> {/* Add this line at the top */}
        <div className="min-h-screen bg-gray-50 text-gray-900 select-none">
       
       {!isLoginPage && !isCatalogPage && <Navbar />}
